@@ -5,7 +5,7 @@
   font-style: light;
 }
 @font-face {
-  font-family: "agro";
+  font-family: "agroM";
   src: url("./fonts/SB\ 어그로OTF\ M.otf") format("opentype");
   font-weight: 500; /* medium은 일반적으로 500의 폰트 가중치에 해당합니다. */
   font-style: medium;

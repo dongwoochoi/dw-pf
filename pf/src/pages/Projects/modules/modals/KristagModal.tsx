@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import DefaultModal from "./DefaultModal";
 
-export default function KRISTAG_Modal() {
+export default function KristagModal() {
   return (
     <DefaultModal
       oneLineIntroduce={"사내 인하우스 데이터 라벨링 툴"}

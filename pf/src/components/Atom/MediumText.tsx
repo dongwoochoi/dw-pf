@@ -10,6 +10,6 @@ export default function MediumText({ children }: PropsType) {
 
 const textStyle = {
   fontFamily: "agroL",
-  fontSize: "24px",
+  fontSize: "20px",
   color: "white",
 };

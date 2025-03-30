@@ -1,5 +1,12 @@
 import { favicons, Projects } from "../../assets/img";
-import KRISTAG_Modal from "./modules/modals/KRISTAG_Modal";
+import SeoreuModal from "./modules/modals/SeoreuModal";
+import KristagModal from "./modules/modals/KristagModal";
+import SinpleModal from "./modules/modals/SinpleModal";
+import LGModal from "./modules/modals/LGModal";
+import ProtFolioModal from "./modules/modals/PortFolioModal";
+import HackerTonModal from "./modules/modals/HackerTonModal";
+import IdeaModal from "./modules/modals/IdeaModal";
+import CapStoneModal from "./modules/modals/CapStoneModal";
 
 export const MAIN_PROJECT_STRUCTURE = [
   {
@@ -76,34 +83,34 @@ export const SUB_PROJECT_STRUCTURE = [
 export const PROJECT_MODAL_STRUCTURE = [
   {
     title: "KRISTAG",
-    jsx: <KRISTAG_Modal />,
+    jsx: <KristagModal />,
   },
   {
     title: "SINPLE",
-    jsx: <div></div>,
+    jsx: <SinpleModal />,
   },
   {
     title: "(주)서르 홈페이지 제작",
-    jsx: <div></div>,
+    jsx: <SeoreuModal />,
   },
   {
     title: "LG Product Review Labeling Project",
-    jsx: <div></div>,
+    jsx: <LGModal />,
   },
   {
     title: "PortFolio",
-    jsx: <div></div>,
+    jsx: <ProtFolioModal />,
   },
   {
     title: "GDSC_DEU 2023 Winter HackerTon",
-    jsx: <div></div>,
+    jsx: <HackerTonModal />,
   },
   {
     title: "Idea Connection",
-    jsx: <div></div>,
+    jsx: <IdeaModal />,
   },
   {
     title: "CapStone",
-    jsx: <div></div>,
+    jsx: <CapStoneModal />,
   },
 ];

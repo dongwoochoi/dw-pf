@@ -91,6 +91,9 @@ export default function DefaultModal({
                     }}
                   >
                     {item.workedContend.map((text) => {
+                      if (text === "") {
+                        return <div css={{ marginBottom: "16px" }}>{text}</div>;
+                      }
                       return (
                         <li>
                           <MediumText>{text}</MediumText>
@@ -152,7 +155,7 @@ const contentTextBox = {
   padding: "16px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "16px",
+  gap: "40px",
 };
 
 const tagBox = {
@@ -178,8 +181,10 @@ const introduce = {};
 
 const workCategoryStyle = {
   color: "white",
-  fontSize: "32px",
+  fontSize: "24px",
+  fontWeight: "600",
   padding: "8px",
   background: "#717172",
   marginBottom: "16px",
+  fontFamily: "agroL",
 };
