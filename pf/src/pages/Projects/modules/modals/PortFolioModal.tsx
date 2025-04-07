@@ -29,6 +29,10 @@ export default function ProtFolioModal() {
           ],
         },
       ]}
+      troubleShooting={[
+        { title: "string", problem: "string", solution: "string" },
+      ]}
+      learned={""}
     />
   );
 }

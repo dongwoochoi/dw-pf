@@ -29,6 +29,10 @@ export default function LGModal() {
           ],
         },
       ]}
+      troubleShooting={[
+        { title: "string", problem: "string", solution: "string" },
+      ]}
+      learned={""}
     />
   );
 }

@@ -30,6 +30,10 @@ export default function CapStoneModal() {
           ],
         },
       ]}
+      troubleShooting={[
+        { title: "string", problem: "string", solution: "string" },
+      ]}
+      learned={""}
     />
   );
 }

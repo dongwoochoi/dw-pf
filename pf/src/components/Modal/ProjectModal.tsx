@@ -3,17 +3,31 @@ import { useAtom } from "jotai";
 import { ProjectModalAtom } from "../../jotai/Modal/ProjectModalAtom";
 import Modal from "../Modal";
 import { icons } from "../../assets/icon";
+import { useEffect, useRef } from "react";
 
 export default function ProjectModal() {
   const [alertContent, handleModal] = useAtom(ProjectModalAtom);
+  const modalRef = useRef<any>(null);
 
   const handleClose = () => {
     handleModal(null);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (!modalRef.current?.contains(event.target)) {
+        handleClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <Modal open={!!alertContent}>
-      <section css={wrapper}>
+      <section css={wrapper} ref={modalRef}>
         <img css={closeBtn} src={icons.x} onClick={handleClose} alt="close" />
         <div css={topWrapper}>
           <div css={styledContent}>
@@ -43,7 +57,7 @@ const topWrapper = {
   marginBottom: "40px",
 };
 
-const styledTitle = {};
+// const styledTitle = {};
 
 const styledContent = {
   whiteSpace: "pre-wrap" as const,

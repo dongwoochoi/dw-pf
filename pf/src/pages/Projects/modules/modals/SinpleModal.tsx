@@ -51,6 +51,10 @@ export default function SinpleModal() {
           workedContend: ["메인페이지 리뉴얼", "피드백 및 수정사항 반영"],
         },
       ]}
+      troubleShooting={[
+        { title: "string", problem: "string", solution: "string" },
+      ]}
+      learned={""}
     />
   );
 }

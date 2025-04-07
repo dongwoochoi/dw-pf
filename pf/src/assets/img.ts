@@ -21,6 +21,8 @@ import kristagF from "./imgs/favicons/kristagF.png";
 import seoreuF from "./imgs/favicons/seoreuF.svg";
 import sinpleF from "./imgs/favicons/sinpleF.png";
 
+import Me from "./imgs/me.jpeg";
+
 export const logos = {
   TypeScriptLog,
   SlackLogo,
@@ -50,4 +52,6 @@ export const favicons = {
   seoreuF,
 };
 
-export const Image = {};
+export const Image = {
+  Me,
+};

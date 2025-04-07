@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import BorderBottomTitle from "../../../../components/Atom/BorderBottomTitle";
+import LightText from "../../../../components/Atom/LightText";
 import MediumText from "../../../../components/Atom/MediumText";
 
 interface PropsType {
@@ -13,6 +14,12 @@ interface PropsType {
     workCategory: string;
     workedContend: string[];
   }[];
+  troubleShooting: {
+    title: string;
+    problem: string;
+    solution: string;
+  }[];
+  learned: string;
 }
 
 export default function DefaultModal({
@@ -23,6 +30,8 @@ export default function DefaultModal({
   introducingText,
   introducingImg,
   mainFunction,
+  troubleShooting,
+  learned,
 }: PropsType) {
   const colors = [
     "#D94F4F",
@@ -48,13 +57,13 @@ export default function DefaultModal({
       <p css={titleStyle}>{title}</p>
       <div css={header}>
         <div css={leftHeader}>
-          <MediumText>한줄 소개</MediumText>
-          <MediumText>진행상태</MediumText>
-          <MediumText>기술 태그</MediumText>
+          <LightText>한줄 소개</LightText>
+          <LightText>진행상태</LightText>
+          <LightText>기술 태그</LightText>
         </div>
         <div css={rightHeader}>
-          <MediumText>{oneLineIntroduce}</MediumText>
-          <MediumText> {status}</MediumText>
+          <LightText>{oneLineIntroduce}</LightText>
+          <LightText> {status}</LightText>
           <div css={tagBox}>
             {tags?.map((item, index) => {
               return (
@@ -81,7 +90,7 @@ export default function DefaultModal({
             {mainFunction.map((item) => {
               return (
                 <div>
-                  <div css={workCategoryStyle}>{item.workCategory}</div>
+                  <div css={categoryStyle}>{item.workCategory}</div>
                   <ul
                     css={{
                       marginLeft: "40px",
@@ -96,7 +105,7 @@ export default function DefaultModal({
                       }
                       return (
                         <li>
-                          <MediumText>{text}</MediumText>
+                          <LightText>{text}</LightText>
                         </li>
                       );
                     })}
@@ -105,6 +114,53 @@ export default function DefaultModal({
               );
             })}
           </div>
+        </div>
+        <div css={introduce}>
+          <BorderBottomTitle>트러블 슈팅</BorderBottomTitle>
+          <div css={contentTextBox}>
+            {troubleShooting.map((item) => {
+              return (
+                <div
+                  css={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div css={categoryStyle}>{item.title}</div>
+                  <div css={{ marginLeft: "20px" }}>
+                    <div css={troubleContent}>
+                      <MediumText css={{ whiteSpace: "nowrap", flexShrink: 0 }}>
+                        [문제 상황]
+                      </MediumText>
+                      <LightText>{item.problem}</LightText>
+                    </div>
+                    <div css={{ ...troubleContent, marginTop: "8px" }}>
+                      <MediumText css={{ whiteSpace: "nowrap", flexShrink: 0 }}>
+                        [해결 방법]
+                      </MediumText>
+                      <LightText>{item.solution}</LightText>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div css={introduce}>
+          <BorderBottomTitle>느낀점</BorderBottomTitle>
+          <ul
+            css={{
+              marginTop: "16px",
+              marginLeft: "40px",
+            }}
+          >
+            <li>
+              <LightText>{learned}</LightText>
+            </li>
+          </ul>
+        </div>
+        <div css={introduce}>
+          <BorderBottomTitle>관련 사진</BorderBottomTitle>
         </div>
       </div>
     </div>
@@ -148,6 +204,9 @@ const titleStyle = {
 };
 
 const content = {
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "40px",
   padding: "16px",
 };
 
@@ -171,15 +230,14 @@ const tagStyle = (color: string) => ({
   color: "white",
   width: "auto",
   height: "30px",
-  fontWeight: "400",
-  fontFamily: "agro",
+  fontFamily: "agroM",
   background: color,
   borderRadius: "5px",
 });
 
 const introduce = {};
 
-const workCategoryStyle = {
+const categoryStyle = {
   color: "white",
   fontSize: "24px",
   fontWeight: "600",
@@ -187,4 +245,10 @@ const workCategoryStyle = {
   background: "#717172",
   marginBottom: "16px",
   fontFamily: "agroL",
+};
+
+const troubleContent = {
+  display: "flex",
+  alignItems: "flex-start",
+  gap: "16px",
 };

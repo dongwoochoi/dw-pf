@@ -18,11 +18,10 @@ export default function Career() {
       careerRef: ref,
     };
   });
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
   const handleTabClick = (index: number) => {
     if (swiperRef.current) {
       swiperRef.current.slideTo(index);
-      setCurrentIndex(index);
     }
   };
   const swiperRef = useRef<any>(null);
@@ -129,7 +128,7 @@ const titleTextStyle = {
 
 const row = {
   width: "100%",
-  height: "500px",
+  height: "600px",
   marginTop: "40px",
   display: "flex",
   gap: "160px",
@@ -172,6 +171,8 @@ const careerStyle = {
   fontSize: "20px",
   borderRadius: "5px",
   fontFamily: "agro",
+  cursor: "pointer",
+  "&:hover": { background: "#727272" },
 };
 
 const explainStyle = (isOpen: boolean) => ({
@@ -183,6 +184,7 @@ const explainStyle = (isOpen: boolean) => ({
   borderRadius: "5px",
   fontFamily: "agroL",
   marginTop: "8px",
+  lineHeight: "28px",
 });
 
 const categoryStyle = {

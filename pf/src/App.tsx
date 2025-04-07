@@ -7,10 +7,12 @@ import Career from "./pages/Career";
 import MainPage from "./pages/Main";
 import Projects from "./pages/Projects";
 import Skill from "./pages/Skill";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div>
+      <ToastContainer />
       <MainPage />
       <div>
         <div css={glassContent} />

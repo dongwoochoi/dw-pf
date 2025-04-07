@@ -6,11 +6,13 @@ import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css";
 import ProjectCard from "./ProjectCard";
-import { useRef } from "react";
+import { MutableRefObject } from "react";
 
 export default function ProjectSlide({
   structure,
+  swiperRef,
 }: {
+  swiperRef: MutableRefObject<SwiperClass | null>;
   structure: {
     title: string;
     team: string;
@@ -20,7 +22,6 @@ export default function ProjectSlide({
     favicon: string;
   }[];
 }) {
-  const swiperRef = useRef<any>(null);
   return (
     <div css={wrapper}>
       <Swiper
@@ -48,10 +49,11 @@ export default function ProjectSlide({
           );
         })}
       </Swiper>
+
       <Global
         styles={css`
           .swiper {
-            width: 100%%;
+            width: 100%;
           }
           .swiper-pagination {
             bottom: -24px;
@@ -66,8 +68,11 @@ export default function ProjectSlide({
 }
 
 const wrapper = {
+  position: "relative" as const,
   display: "flex",
-  flexDirection: "column" as const,
+  overflow: "visible",
+  flexDirection: "row" as const,
+  alignItems: "center",
 };
 
 const swiperContainer = {

@@ -39,6 +39,10 @@ export default function HackerTonModal() {
           ],
         },
       ]}
+      troubleShooting={[
+        { title: "string", problem: "string", solution: "string" },
+      ]}
+      learned={""}
     />
   );
 }
