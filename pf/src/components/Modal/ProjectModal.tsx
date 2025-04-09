@@ -5,6 +5,7 @@ import Modal from "../Modal";
 import { icons } from "../../assets/icon";
 import { useEffect, useRef } from "react";
 import { modalDepthAtom } from "../../jotai/modalDepthAtom";
+import { css } from "@emotion/react";
 
 export default function ProjectModal() {
   const [alertContent, handleModal] = useAtom(ProjectModalAtom);
@@ -46,16 +47,30 @@ export default function ProjectModal() {
   );
 }
 
-const wrapper = {
-  position: "relative" as const,
-  width: "1400px",
-  height: "800px",
-  padding: "40px",
-  background: "#2C2C2C",
-  borderRadius: "5px",
-  boxShadow: "0px 2px 6px 2px #00000026",
-  overflowY: "scroll" as const,
-};
+const wrapper = css`
+  position: relative;
+  width: 1400px;
+  height: 800px;
+  padding: 40px;
+  background: #2c2c2c;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px 2px #00000026;
+  overflow-y: scroll;
+
+  /* 스크롤바 커스텀 */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+`;
 
 const topWrapper = {
   display: "flex",

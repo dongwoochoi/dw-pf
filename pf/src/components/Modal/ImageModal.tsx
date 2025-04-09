@@ -54,10 +54,9 @@ const wrapper = {
   width: "1400px",
   height: "auto",
   padding: "40px",
-  background: "#2C2C2C",
+  background: "transparent",
   borderRadius: "5px",
   boxShadow: "0px 2px 6px 2px #00000026",
-  overflowY: "scroll" as const,
 };
 
 const topWrapper = {
