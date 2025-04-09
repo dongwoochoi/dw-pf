@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { KrisTag_Modal } from "../../../../assets/img";
 import DefaultModal from "./DefaultModal";
 
 export default function KristagModal() {
@@ -30,6 +31,7 @@ export default function KristagModal() {
             "react-router-dom V6 의 history 객체 제거로 인해 blocking 직접 구현",
             "생성 및 수정 페이지별 변경상황 발생시 블로킹하도록 커스터마이징",
           ],
+          atTroubleShooting: true,
         },
         {
           workCategory: "Zoom Viewer 구현",
@@ -57,6 +59,32 @@ export default function KristagModal() {
       learned={
         "이 프로젝트는 기본적으로 복잡한 데이터를 다루는 과정이 많았습니다. Depth가 3-4인 중첩 객체를 드롭다운으로 선택해야하는 메타데이터를 다루면서 많은 중복 코드가 발생하고 어려움을 느꼈는데 많은 복잡도가 있는 만큼 미리 정리와 분류가 필요하다는것을 직접적으로 깨닫게 되었고, 줌뷰어나 라벨링 워크플레이스 부분을 제작하며 캔버스 또는 많은 동적인 작업도 해볼 수 있어서 좋았습니다. 무엇보다 업데이트되는 라이브러리들의 변경사항에 대응하여보면서 앞으로 있을 많은 변화에 적응해 나갈때 필요한 경험과 자신감을 가지게 되었습니다."
       }
+      introducingImg={[
+        {
+          title: "메인 페이지",
+          img: KrisTag_Modal.Kristag_main,
+        },
+        {
+          title: "라벨링 작업 화면",
+          img: KrisTag_Modal.Kristag_labeling,
+        },
+        {
+          title: "줌 뷰어 작동 화면",
+          img: KrisTag_Modal.Kristag_zoomViewer,
+        },
+        {
+          title: "블로킹 작동 화면",
+          img: KrisTag_Modal.Kristag_blocking,
+        },
+        {
+          title: "메타데이터 화면",
+          img: KrisTag_Modal.Kristag_metadata,
+        },
+        {
+          title: "아이템 관리 화면",
+          img: KrisTag_Modal.Kristag_item,
+        },
+      ]}
     />
   );
 }

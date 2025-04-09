@@ -8,7 +8,7 @@ export default function HackerTonModal() {
       title={"GDSC HackerTon"}
       status={"완료"}
       tags={["React", "React-Query", "Geocoding_API", "Oauth 2.0"]}
-      introducingText={`GDSC(구글 대학생 개발 동아리)에서 주최한 해커톤 참여 프로젝트로 당근마켓의 중에서 위치기반 서비스를 중점으로 클론코딩 하였습니다.`}
+      introducingText={`GDSC(구글 대학생 개발 동아리)에서 주최한 해커톤 참여 프로젝트로 당근마켓의 기능들 중에서 위치기반 거래 서비스를 중점으로 클론코딩 하였습니다.`}
       mainFunction={[
         {
           workCategory: "전반적인 UX/UI 구현",
@@ -39,9 +39,9 @@ export default function HackerTonModal() {
           ],
         },
       ]}
-      troubleShooting={[
-        { title: "string", problem: "string", solution: "string" },
-      ]}
+      //   troubleShooting={[
+      //     { title: "string", problem: "string", solution: "string" },
+      //   ]}
       learned={""}
     />
   );

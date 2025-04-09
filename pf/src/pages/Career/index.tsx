@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { refAtom } from "../../jotai/refAtom";
 import { useSetAtom } from "jotai";
 import { CAREER_STRUCTURE, YEARS_STRUCTURE } from "./structure";

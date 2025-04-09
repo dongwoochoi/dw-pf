@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { useSetAtom } from "jotai";
 import BorderBottomTitle from "../../../../components/Atom/BorderBottomTitle";
 import LightText from "../../../../components/Atom/LightText";
 import MediumText from "../../../../components/Atom/MediumText";
+import { ImageModalAtom } from "../../../../jotai/Modal/imageModalAtom";
 
 interface PropsType {
   oneLineIntroduce: string;
@@ -9,12 +11,16 @@ interface PropsType {
   status: string;
   tags: string[];
   introducingText: string;
-  introducingImg?: string[];
+  introducingImg?: {
+    title: string;
+    img: string;
+  }[];
   mainFunction: {
     workCategory: string;
     workedContend: string[];
+    atTroubleShooting?: boolean;
   }[];
-  troubleShooting: {
+  troubleShooting?: {
     title: string;
     problem: string;
     solution: string;
@@ -46,11 +52,17 @@ export default function DefaultModal({
     "#3E4349",
   ];
 
+  const handleImgModalAtom = useSetAtom(ImageModalAtom);
+
   const shuffleArray = (array: string[]) => {
     return [...array].sort(() => Math.random() - 0.5);
   };
 
   const shuffledColors = shuffleArray(colors);
+
+  const handleImgModeal = (img: string) => {
+    handleImgModalAtom(img);
+  };
 
   return (
     <div css={wrapper}>
@@ -90,7 +102,20 @@ export default function DefaultModal({
             {mainFunction.map((item) => {
               return (
                 <div>
-                  <div css={categoryStyle}>{item.workCategory}</div>
+                  <div css={categoryStyle}>
+                    <p>{item.workCategory}</p>
+                    {item.atTroubleShooting ? (
+                      <p
+                        css={{
+                          position: "absolute",
+                          right: "1%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        * 자세한 내용 TroubleShooting에 작성
+                      </p>
+                    ) : null}
+                  </div>
                   <ul
                     css={{
                       marginLeft: "40px",
@@ -115,52 +140,78 @@ export default function DefaultModal({
             })}
           </div>
         </div>
-        <div css={introduce}>
-          <BorderBottomTitle>트러블 슈팅</BorderBottomTitle>
-          <div css={contentTextBox}>
-            {troubleShooting.map((item) => {
-              return (
-                <div
-                  css={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <div css={categoryStyle}>{item.title}</div>
-                  <div css={{ marginLeft: "20px" }}>
-                    <div css={troubleContent}>
-                      <MediumText css={{ whiteSpace: "nowrap", flexShrink: 0 }}>
-                        [문제 상황]
-                      </MediumText>
-                      <LightText>{item.problem}</LightText>
-                    </div>
-                    <div css={{ ...troubleContent, marginTop: "8px" }}>
-                      <MediumText css={{ whiteSpace: "nowrap", flexShrink: 0 }}>
-                        [해결 방법]
-                      </MediumText>
-                      <LightText>{item.solution}</LightText>
+        {troubleShooting ? (
+          <div css={introduce}>
+            <BorderBottomTitle>트러블 슈팅</BorderBottomTitle>
+            <div css={contentTextBox}>
+              {troubleShooting?.map((item) => {
+                return (
+                  <div
+                    css={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div css={categoryStyle}>{item.title}</div>
+                    <div css={{ marginLeft: "20px" }}>
+                      <div css={troubleContent}>
+                        <MediumText
+                          css={{ whiteSpace: "nowrap", flexShrink: 0 }}
+                        >
+                          [문제 상황]
+                        </MediumText>
+                        <LightText>{item.problem}</LightText>
+                      </div>
+                      <div css={{ ...troubleContent, marginTop: "8px" }}>
+                        <MediumText
+                          css={{ whiteSpace: "nowrap", flexShrink: 0 }}
+                        >
+                          [해결 방법]
+                        </MediumText>
+                        <LightText>{item.solution}</LightText>
+                      </div>
                     </div>
                   </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : null}
+
+        {learned ? (
+          <div css={introduce}>
+            <BorderBottomTitle>느낀점</BorderBottomTitle>
+            <ul
+              css={{
+                marginTop: "16px",
+                marginLeft: "40px",
+              }}
+            >
+              <li>
+                <LightText>{learned}</LightText>
+              </li>
+            </ul>
+          </div>
+        ) : null}
+        <div css={introduce}>
+          <BorderBottomTitle>관련 사진</BorderBottomTitle>
+          <div css={imgContainer}>
+            {introducingImg?.map((item) => {
+              return (
+                <div css={imgContent}>
+                  <img
+                    css={imgStyle}
+                    src={item.img}
+                    onClick={() => {
+                      handleImgModeal(item.img);
+                    }}
+                    alt={item.title}
+                  />
+                  <p css={imgTitle}>{item.title}</p>
                 </div>
               );
             })}
           </div>
-        </div>
-        <div css={introduce}>
-          <BorderBottomTitle>느낀점</BorderBottomTitle>
-          <ul
-            css={{
-              marginTop: "16px",
-              marginLeft: "40px",
-            }}
-          >
-            <li>
-              <LightText>{learned}</LightText>
-            </li>
-          </ul>
-        </div>
-        <div css={introduce}>
-          <BorderBottomTitle>관련 사진</BorderBottomTitle>
         </div>
       </div>
     </div>
@@ -238,6 +289,10 @@ const tagStyle = (color: string) => ({
 const introduce = {};
 
 const categoryStyle = {
+  display: "flex",
+  flexDirection: "row" as const,
+  position: "relative" as const,
+  alignItems: "flex-end",
   color: "white",
   fontSize: "24px",
   fontWeight: "600",
@@ -251,4 +306,29 @@ const troubleContent = {
   display: "flex",
   alignItems: "flex-start",
   gap: "16px",
+};
+
+const imgContainer = {
+  width: "100%",
+  display: "flex",
+  flexWrap: "wrap" as const,
+  gap: "16px",
+};
+
+const imgContent = {
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "8px",
+};
+
+const imgStyle = {
+  width: "400px",
+  height: "190px",
+  cursor: "pointer",
+  "&:hover": { filter: "brightness(1.2)" },
+};
+
+const imgTitle = {
+  color: "white",
+  textAlign: "center" as const,
 };

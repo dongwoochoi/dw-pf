@@ -41,3 +41,7 @@ li {
 body.modal-wrapper-opened {
   overflow: hidden;
 }
+
+body.img-modal-wrapper-opened {
+  overflow: hidden;
+}

@@ -23,6 +23,27 @@ import sinpleF from "./imgs/favicons/sinpleF.png";
 
 import Me from "./imgs/me.jpeg";
 
+import bye1 from "./imgs//end/bye1.jpeg";
+import bye2 from "./imgs/end/bye2.jpeg";
+
+import Kristag_main from "./imgs/Modals/Kristag/main.png";
+import Kristag_labeling from "./imgs/Modals/Kristag/labeling.png";
+import Kristag_zoomViewer from "./imgs/Modals/Kristag/zoomViewer.png";
+import Kristag_metadata from "./imgs/Modals/Kristag/metadata.png";
+import Kristag_blocking from "./imgs/Modals/Kristag/blocking.png";
+import Kristag_item from "./imgs/Modals/Kristag/item.png";
+import Sinple_estimate_items from "./imgs/Modals/Sinple/Sinpe_estimate_items.png";
+import Sinple_estimate_list from "./imgs/Modals/Sinple/Sinple_estimate_list.jpeg";
+import Sinple_estimate from "./imgs/Modals/Sinple/Sinple_estimate.png";
+import Sinple_factory_map from "./imgs/Modals/Sinple/Sinple_factory_map.png";
+import Sinple_main from "./imgs/Modals/Sinple/Sinple_main.png";
+import Seoreu_mail from "./imgs/Modals/Seoreu/Seoreu_mail.png";
+import Seoreu_main from "./imgs/Modals/Seoreu/Seoreu_main.png";
+import Seoreu_page1 from "./imgs/Modals/Seoreu/Seoreu_page1.png";
+import Seoreu_page2 from "./imgs/Modals/Seoreu/Seoreu_page2.png";
+import Seoreu_page3 from "./imgs/Modals/Seoreu/Seoreu_page3.png";
+import Seoreu_page4 from "./imgs/Modals/Seoreu/Seoreu_page4.png";
+
 export const logos = {
   TypeScriptLog,
   SlackLogo,
@@ -50,6 +71,37 @@ export const favicons = {
   sinpleF,
   kristagF,
   seoreuF,
+};
+
+export const endPageImg = {
+  bye1,
+  bye2,
+};
+
+export const KrisTag_Modal = {
+  Kristag_blocking,
+  Kristag_item,
+  Kristag_labeling,
+  Kristag_main,
+  Kristag_zoomViewer,
+  Kristag_metadata,
+};
+
+export const Sinple_Modal = {
+  Sinple_estimate,
+  Sinple_estimate_items,
+  Sinple_estimate_list,
+  Sinple_factory_map,
+  Sinple_main,
+};
+
+export const Seoreu_Modal = {
+  Seoreu_mail,
+  Seoreu_main,
+  Seoreu_page1,
+  Seoreu_page2,
+  Seoreu_page3,
+  Seoreu_page4,
 };
 
 export const Image = {

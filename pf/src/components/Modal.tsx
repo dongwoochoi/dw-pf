@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect } from "react";
+import { incrementModal, decrementModal } from "./Modal/ModalManager";
 import { createPortal } from "react-dom";
 
 export interface PropTypes {
@@ -10,10 +11,9 @@ export interface PropTypes {
 export default function Modal({ open, children }: PropTypes) {
   useEffect(() => {
     if (open) {
-      document.body.classList.add("modal-wrapper-opened");
-
+      incrementModal();
       return () => {
-        document.body.classList.remove("modal-wrapper-opened");
+        decrementModal();
       };
     }
   }, [open]);

@@ -43,7 +43,7 @@ export default function SideBar() {
 
 const wrapper = {
   width: "300px",
-  margin: "200px 40px 0 -40px",
+  margin: "200px 40px 200px -40px",
   position: "sticky" as const,
   top: "150px",
   display: "flex",

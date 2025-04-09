@@ -9,7 +9,7 @@ import { MAIN_PROJECT_STRUCTURE, SUB_PROJECT_STRUCTURE } from "../structure";
 import { icons } from "../../../assets/icon";
 
 const ProjectTabSwiper = () => {
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
   const projectSwiperRef1 = useRef<any>(null);
   const projectSwiperRef2 = useRef<any>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);

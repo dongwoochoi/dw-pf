@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-// import { Image } from "../../assets/img";
 
 export default function MainPage() {
   return (
