@@ -28,7 +28,7 @@ export default function ProjectSlide({
         css={swiperContainer}
         onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
         spaceBetween={0}
-        slidesPerView={2.2} //반응형 도입할것
+        slidesPerView={2.5}
         direction="horizontal"
         pagination={{
           clickable: true,

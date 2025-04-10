@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-
+import useResponsive from "../../hooks/useResponsive";
 import { BaseTypes } from "../../types/common";
 
 interface PropsType extends BaseTypes {
@@ -12,16 +12,17 @@ export default function MediumText({
   size = 20,
   ...props
 }: PropsType) {
+  const { isPc } = useResponsive();
   return (
-    <p css={textStyle(size)} {...props}>
+    <p css={textStyle(isPc, size)} {...props}>
       {children}
     </p>
   );
 }
 
-const textStyle = (size: number) => ({
-  fontFamily: "agroM",
-  fontSize: `${size}px`,
+const textStyle = (isPc: boolean, size: number) => ({
+  fontFamily: "agroL",
+  fontSize: isPc ? `${size}px` : `${size - 4}px`,
   color: "white",
   lineHeight: "36px",
 });

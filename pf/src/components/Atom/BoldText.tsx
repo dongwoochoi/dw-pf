@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import useResponsive from "../../hooks/useResponsive";
 
 interface PropsType {
   children: React.ReactNode;
@@ -6,11 +7,12 @@ interface PropsType {
 }
 
 export default function BoldText({ children, size = 20 }: PropsType) {
-  return <p css={textStyle(size)}>{children}</p>;
+  const { isPc } = useResponsive();
+  return <p css={textStyle(isPc, size)}>{children}</p>;
 }
 
-const textStyle = (size: number) => ({
+const textStyle = (isPc: boolean, size: number) => ({
   fontFamily: "agroL",
-  fontSize: `${size}px`,
+  fontSize: isPc ? `${size}px` : `${size - 4}px`,
   color: "white",
 });
