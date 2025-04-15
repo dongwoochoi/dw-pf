@@ -35,7 +35,7 @@ export default function Career() {
       <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
         Career
       </BoldText>
-      <div css={row(careerSizeConverter().gap)}>
+      <div css={row}>
         <div css={yearTab}>
           {YEARS_STRUCTURE.map((item, i) => {
             return (
@@ -151,15 +151,13 @@ const titleTextStyle = {
   marginTop: "60px",
 };
 
-const row = (gap: number) => ({
+const row = {
   width: "100%",
   height: "600px",
   marginTop: "40px",
   display: "flex",
-  gap: `${gap}px`,
-
-  justifyContent: "center",
-});
+  justifyContent: "space-around",
+};
 
 const yearStyle = (isSelected: boolean, size: number) => ({
   paddingLeft: "16px",
@@ -181,7 +179,7 @@ const yearTab = {
 
 const careerBox = {
   display: "flex",
-  width: "800px",
+  width: "auto",
 };
 
 const careerStyle = (width: number, height: number) => ({
