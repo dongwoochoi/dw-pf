@@ -4,8 +4,15 @@ import { refAtom } from "../../jotai/refAtom";
 import { useSetAtom } from "jotai";
 import { Image } from "../../assets/img";
 import LightText from "../../components/Atom/LightText";
+import useMeasurement from "../../hooks/useMeasurement";
+import BoldText from "../../components/Atom/BoldText";
 
 export default function AboutMe() {
+  const {
+    myPictureSizeConverter,
+    titleFontSizeTransfer,
+    aboutMainGapSizeConverter,
+  } = useMeasurement();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
   setAtom((prev) => {
@@ -17,9 +24,11 @@ export default function AboutMe() {
 
   return (
     <div css={wrapper} ref={ref} id="aboutMe">
-      <p css={titleTextStyle}>About Me</p>
-      <div css={contentWrapper}>
-        <img css={picture} src={Image.Me} alt="me" />
+      <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
+        About Me
+      </BoldText>
+      <div css={contentWrapper(aboutMainGapSizeConverter())}>
+        <img css={picture(myPictureSizeConverter())} src={Image.Me} alt="me" />
         <div css={textContent}>
           <LightText>안녕하세요! 프론트엔드 개발자 최동우 입니다.</LightText>
           <br />
@@ -56,24 +65,20 @@ const wrapper = {
 };
 
 const titleTextStyle = {
-  fontFamily: "agro",
-  color: "white",
-  fontSize: "60px",
-  fontWeight: "800",
   marginTop: "60px",
   marginBottom: "48px",
 };
 
-const contentWrapper = {
+const contentWrapper = (gap: number) => ({
   display: "flex",
-  gap: "100px",
+  gap: `${gap}px`,
   justifyContent: "center",
   alignItems: "center",
-};
+});
 
-const picture = {
-  width: "400px",
-};
+const picture = (myPictureSizeConverter: number) => ({
+  width: `${myPictureSizeConverter}px`,
+});
 
 const textContent = {
   display: "flex",

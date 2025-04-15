@@ -1,37 +1,42 @@
 /** @jsxImportSource @emotion/react */
+import useMeasurement from "../hooks/useMeasurement";
 import useSideBar from "../hooks/useSideBar";
 
 export default function SideBar() {
+  const { sideBarFontSizeTransfer, sideBarMarginTransfer, sideBarTopTransfer } =
+    useMeasurement();
   const { handleScrollTo, visibleSection, ref } = useSideBar();
   return (
-    <div css={wrapper}>
-      <div css={menuBorder}>
+    <div css={wrapper(sideBarMarginTransfer(), sideBarTopTransfer())}>
+      <div css={menuBorder(sideBarFontSizeTransfer())}>
         <p
-          css={fontStyle(visibleSection?.aboutMe)}
+          css={fontStyle(visibleSection?.aboutMe, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.aboutMeRef)}
         >
           About Me
         </p>
       </div>
-      <div css={{ ...menuBorder }}>
+      <div css={{ ...menuBorder(sideBarFontSizeTransfer()) }}>
         <p
-          css={fontStyle(visibleSection?.career)}
+          css={fontStyle(visibleSection?.career, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.careerRef)}
         >
           Career
         </p>
       </div>
-      <div css={menuBorder}>
+      <div css={menuBorder(sideBarFontSizeTransfer())}>
         <p
-          css={fontStyle(visibleSection?.skills)}
+          css={fontStyle(visibleSection?.skills, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.skillRef)}
         >
           Skills
         </p>
       </div>
-      <div css={{ ...menuBorder, borderBottom: "none" }}>
+      <div
+        css={{ ...menuBorder(sideBarFontSizeTransfer()), borderBottom: "none" }}
+      >
         <p
-          css={fontStyle(visibleSection?.projects)}
+          css={fontStyle(visibleSection?.projects, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.projectRef)}
         >
           Projects
@@ -41,11 +46,11 @@ export default function SideBar() {
   );
 }
 
-const wrapper = {
-  width: "300px",
-  margin: "200px 40px 200px -40px",
+const wrapper = (margin: string, top: number) => ({
+  width: "260px",
+  margin,
   position: "sticky" as const,
-  top: "150px",
+  top: `${top}px`,
   display: "flex",
   flexDirection: "column" as const,
   justifyContent: "center",
@@ -53,17 +58,17 @@ const wrapper = {
   height: "100%",
   background: "#393939",
   borderRadius: "15px",
-};
+});
 
-const menuBorder = {
+const menuBorder = (paddingValue: number) => ({
   textAlign: "center" as const,
   borderBottom: "1px solid #CFCFCF",
-  padding: "24px 0",
-};
+  padding: `${paddingValue}px 0`,
+});
 
-const fontStyle = (isVisible: boolean) => ({
+const fontStyle = (isVisible: boolean, size: number) => ({
   color: isVisible ? "white" : "#9B9B9B",
-  fontSize: "24px",
+  fontSize: `${size}px`,
   fontWeight: 800,
   cursor: "pointer",
   "&:hover": { color: "white" },

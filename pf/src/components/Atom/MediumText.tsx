@@ -24,5 +24,4 @@ const textStyle = (isPc: boolean, size: number) => ({
   fontFamily: "agroL",
   fontSize: isPc ? `${size}px` : `${size - 4}px`,
   color: "white",
-  lineHeight: "36px",
 });

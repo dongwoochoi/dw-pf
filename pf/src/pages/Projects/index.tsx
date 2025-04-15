@@ -32,6 +32,7 @@ const wrapper = {
 
 const titleTextStyle = {
   fontFamily: "agro",
+  marginBottom: "16px",
   marginTop: "60px",
   color: "white",
   fontSize: "60px",

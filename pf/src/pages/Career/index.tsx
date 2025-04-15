@@ -7,8 +7,13 @@ import useCareer from "./useCareer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
 import { css, Global } from "@emotion/react";
+import useMeasurement from "../../hooks/useMeasurement";
+import BoldText from "../../components/Atom/BoldText";
 
 export default function Career() {
+  const { careerSizeConverter, titleFontSizeTransfer, fontSizeTransfer } =
+    useMeasurement();
+  const convertValue = careerSizeConverter();
   const { selectedYear, clickedCareer, handleYear, handleClick } = useCareer();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
@@ -27,13 +32,18 @@ export default function Career() {
   const swiperRef = useRef<any>(null);
   return (
     <div css={wrapper} ref={ref} id="career">
-      <p css={titleTextStyle}>Career</p>
-      <div css={row}>
+      <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
+        Career
+      </BoldText>
+      <div css={row(careerSizeConverter().gap)}>
         <div css={yearTab}>
           {YEARS_STRUCTURE.map((item, i) => {
             return (
               <div
-                css={yearStyle(selectedYear === item)}
+                css={yearStyle(
+                  selectedYear === item,
+                  careerSizeConverter().yearFontSize
+                )}
                 key={item}
                 onClick={() => {
                   handleYear(item);
@@ -60,16 +70,21 @@ export default function Career() {
                     (item) => item.year === selectedYear
                   ).map((value) => {
                     const isOpen = clickedCareer.includes(value.title);
+                    const { width, height } = convertValue;
                     return (
                       <div key={value.title}>
                         <div
-                          css={careerStyle}
+                          css={careerStyle(width, height)}
                           onClick={() => {
                             handleClick(value.title);
                           }}
                         >
-                          <p>{`${value.period}  |  ${value.title}`}</p>
-                          <p css={categoryStyle}>{value.category}</p>
+                          <BoldText
+                            size={fontSizeTransfer(20)}
+                          >{`${value.period}  |  ${value.title}`}</BoldText>
+                          <BoldText size={fontSizeTransfer(20)}>
+                            {value.category}
+                          </BoldText>
                         </div>
                         <div
                           css={{
@@ -78,8 +93,22 @@ export default function Career() {
                             margin: "4px 0",
                           }}
                         >
-                          <li css={{ color: "white" }}></li>
-                          <div css={explainStyle(isOpen)}>{value.explain}</div>
+                          <li
+                            css={{
+                              color: "white",
+                              fontSize: `${fontSizeTransfer(20)}px`,
+                            }}
+                          ></li>
+                          <div
+                            css={explainStyle(
+                              isOpen,
+                              fontSizeTransfer(20),
+                              width,
+                              height
+                            )}
+                          >
+                            {value.explain}
+                          </div>
                         </div>
                         <div
                           css={{
@@ -119,28 +148,24 @@ const wrapper = {
 };
 
 const titleTextStyle = {
-  fontFamily: "agro",
-  color: "white",
-  fontSize: "60px",
-  fontWeight: "800",
   marginTop: "60px",
 };
 
-const row = {
+const row = (gap: number) => ({
   width: "100%",
   height: "600px",
   marginTop: "40px",
   display: "flex",
-  gap: "160px",
+  gap: `${gap}px`,
 
   justifyContent: "center",
-};
+});
 
-const yearStyle = (isSelected: boolean) => ({
+const yearStyle = (isSelected: boolean, size: number) => ({
   paddingLeft: "16px",
   borderLeft: isSelected ? "3px solid white" : "none",
   color: isSelected ? "white" : "#9B9B9B",
-  fontSize: isSelected ? "40px" : "36px",
+  fontSize: isSelected ? `${size}px` : `${size - 4}px`,
   fontWeight: "600",
   cursor: "pointer",
   "&: hover": {
@@ -159,34 +184,33 @@ const careerBox = {
   width: "800px",
 };
 
-const careerStyle = {
+const careerStyle = (width: number, height: number) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  width: "800px",
-  height: "60px",
+  width: `${width}px`,
+  height: `${height}px`,
   background: "#4B4B4B",
   padding: "8px 16px",
   color: "white",
-  fontSize: "20px",
   borderRadius: "5px",
-  fontFamily: "agro",
   cursor: "pointer",
   "&:hover": { background: "#727272" },
-};
+});
 
-const explainStyle = (isOpen: boolean) => ({
-  width: "100%",
+const explainStyle = (
+  isOpen: boolean,
+  size: number,
+  width: number,
+  height: number
+) => ({
+  width: `${width}px`,
+  minHeight: `${height}px`,
   background: "#4B4B4B",
   padding: "8px 16px",
   color: "white",
-  fontSize: "20px",
+  fontSize: `${size}px`,
   borderRadius: "5px",
   fontFamily: "agroL",
   marginTop: "8px",
-  lineHeight: "28px",
 });
-
-const categoryStyle = {
-  fontSize: "16px",
-};

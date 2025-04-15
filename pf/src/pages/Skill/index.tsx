@@ -39,6 +39,7 @@ const wrapper = {
 const leftContent = {
   display: "flex",
   flexDirection: "column" as const,
+  gap: "16px",
 };
 
 const titleTextStyle = {

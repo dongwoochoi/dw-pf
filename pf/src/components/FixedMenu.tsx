@@ -3,8 +3,12 @@ import { toast } from "react-toastify";
 import { icons } from "../assets/icon";
 import useFixedMenu from "../hooks/useFixedMenu";
 import { Tooltip } from "react-tooltip";
+import useMeasurement from "../hooks/useMeasurement";
 
 export default function FixedMenu() {
+  const { fixedMenuTransfer } = useMeasurement();
+  const responsiveValue = fixedMenuTransfer();
+
   const { isOpen, handleOpen } = useFixedMenu();
   const toastMessage = () => {
     toast(
@@ -22,12 +26,12 @@ export default function FixedMenu() {
         progress: undefined,
         theme: "colored",
         style: {
-          width: "250px",
-          height: "10px",
+          width: "auto",
+          minHeight: "5vh",
           backgroundColor: "#727272",
           color: "#fff",
-          fontSize: "16px",
-          // padding: "12px 8px",
+          fontSize: `${responsiveValue.toastFontSize}px`,
+          // padding: "0 12px",
         },
       }
     );
@@ -47,39 +51,57 @@ export default function FixedMenu() {
 
   return (
     <div css={wrapper}>
-      <div css={iconBox} onClick={handleOpen}>
-        <img css={icon} src={icons.kebabMenu} alt="kebabMenu" />
+      <div css={iconBox(responsiveValue.size)} onClick={handleOpen}>
+        <img
+          css={icon(responsiveValue.icon)}
+          src={icons.kebabMenu}
+          alt="kebabMenu"
+        />
       </div>
       <div
-        css={iconButton(isOpen, 144, 0)}
+        css={iconButton(
+          isOpen,
+          responsiveValue.gap * 2,
+          0,
+          responsiveValue.size
+        )}
         onClick={copyToClipboard}
         data-tooltip-id="dropdown-tooltip"
         data-tooltip-content="메일주소 복사하기"
         data-tooltip-variant="light"
       >
-        <img css={icon} src={icons.mail} alt="mail" />
+        <img css={icon(responsiveValue.icon)} src={icons.mail} alt="mail" />
       </div>
       <div
-        css={iconButton(isOpen, 72, 0)}
+        css={iconButton(isOpen, responsiveValue.gap, 0, responsiveValue.size)}
         data-tooltip-id="dropdown-tooltip"
         data-tooltip-content="페이지 정보"
         data-tooltip-variant="light"
       >
-        <img css={icon} src={icons.spec} alt="spec" />
+        <img css={icon(responsiveValue.icon)} src={icons.spec} alt="spec" />
       </div>
       <div
-        css={iconButton(isOpen, 0, 72)}
+        css={iconButton(isOpen, 0, responsiveValue.gap, responsiveValue.size)}
         onClick={scrollToTop}
         data-tooltip-id="dropdown-tooltip"
         data-tooltip-content="최상단으로 이동"
         data-tooltip-variant="light"
       >
-        <img css={icon} src={icons.arrowUp} alt="arrowUp" />
+        <img
+          css={icon(responsiveValue.icon)}
+          src={icons.arrowUp}
+          alt="arrowUp"
+        />
       </div>
       <Tooltip
         css={{ zIndex: 10, fontWeight: 600 }}
         id="dropdown-tooltip"
         place="right"
+        style={{
+          fontSize: `${responsiveValue.toastFontSize}px`,
+          padding: "10px 14px",
+          maxWidth: "180px",
+        }}
       />
     </div>
   );
@@ -94,26 +116,31 @@ const wrapper = {
   right: "40px",
 };
 
-const iconBox = {
+const iconBox = (size: number) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   background: "white",
-  width: "60px",
-  height: "60px",
+  width: `${size}px`,
+  height: `${size}px`,
   borderRadius: "40px",
   padding: "8px",
   cursor: "pointer",
   "&:hover": { background: "#CFCFCF", scale: "1.1", transition: "0.3s" },
-};
+});
 
-const icon = {
-  width: "24px",
-  height: "24px",
-};
+const icon = (size: number) => ({
+  width: `${size}px`,
+  height: `${size}px`,
+});
 
-const iconButton = (isOpen: boolean, bottom: number, right: number) => ({
-  ...iconBox,
+const iconButton = (
+  isOpen: boolean,
+  bottom: number,
+  right: number,
+  size: number
+) => ({
+  ...iconBox(size),
   position: "absolute" as const,
   bottom: isOpen ? bottom : 0,
   right: isOpen ? right : 0,
