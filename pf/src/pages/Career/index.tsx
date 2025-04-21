@@ -153,7 +153,7 @@ const titleTextStyle = {
 
 const row = {
   width: "100%",
-  height: "600px",
+  // height: "600px",
   marginTop: "40px",
   display: "flex",
   justifyContent: "space-around",
@@ -180,6 +180,7 @@ const yearTab = {
 const careerBox = {
   display: "flex",
   width: "auto",
+  height: "50vh",
 };
 
 const careerStyle = (width: number, height: number) => ({

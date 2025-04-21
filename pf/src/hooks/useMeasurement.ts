@@ -12,7 +12,7 @@ export default function useMeasurement() {
       return size - 2;
     }
     if (isTablet) {
-      return size - 12;
+      return size - 8;
     }
     return size - 8;
   };
@@ -151,7 +151,6 @@ export default function useMeasurement() {
         yearFontSize: 40,
         width: 800,
         height: 60,
-        gap: 160,
       };
     }
     if (isLaptop) {
@@ -159,7 +158,6 @@ export default function useMeasurement() {
         yearFontSize: 40,
         width: 600,
         height: 60,
-        gap: 160,
       };
     }
     if (isTablet) {
@@ -167,18 +165,94 @@ export default function useMeasurement() {
         yearFontSize: 20,
         width: 350,
         height: 25,
-        gap: 40,
       };
     }
     return {
       yearFontSize: 40,
       width: 400,
       height: 60,
-      gap: 160,
     };
   };
 
   // -------------------------- Skill 부분 --------------------------
+  const skillSizeConverter = () => {
+    if (isPc) {
+      return {
+        height: 400,
+      };
+    }
+    if (isLaptop) {
+      return {
+        height: 400,
+      };
+    }
+    if (isTablet) {
+      return {
+        height: 250,
+      };
+    }
+    return {
+      height: 250,
+    };
+  };
+
+  const swiperSizeConverter = () => {
+    if (isPc) {
+      return {
+        width: 400,
+        tapFontSize: 20,
+        swiperGap: 36,
+        circleSize: 100,
+        circleImgSize: 50,
+      };
+    }
+    if (isLaptop) {
+      return {
+        width: 300,
+        tapFontSize: 16,
+        swiperGap: 24,
+        circleSize: 75,
+        circleImgSize: 50,
+      };
+    }
+    if (isTablet) {
+      return {
+        width: 250,
+        tapFontSize: 12,
+        swiperGap: 12,
+        circleSize: 50,
+        circleImgSize: 30,
+      };
+    }
+    return {
+      width: 300,
+      tapFontSize: 12,
+      swiperGap: 12,
+      circleSize: 75,
+      circleImgSize: 50,
+    };
+  };
+
+  const explainSizeConverter = () => {
+    if (isPc) {
+      return {
+        width: 600,
+      };
+    }
+    if (isLaptop) {
+      return {
+        width: 400,
+      };
+    }
+    if (isTablet) {
+      return {
+        width: 350,
+      };
+    }
+    return {
+      width: 400,
+    };
+  };
 
   // -------------------------- Project 부분 --------------------------
 
@@ -194,5 +268,8 @@ export default function useMeasurement() {
     aboutMainGapSizeConverter,
     sideBarTopTransfer,
     careerSizeConverter,
+    swiperSizeConverter,
+    explainSizeConverter,
+    skillSizeConverter,
   };
 }

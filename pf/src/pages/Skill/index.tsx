@@ -4,8 +4,12 @@ import { refAtom } from "../../jotai/refAtom";
 import { useSetAtom } from "jotai";
 import TabSwiper from "./modules/TabSwiper";
 import SkillExport from "./modules/SkillExplain";
+import BoldText from "../../components/Atom/BoldText";
+import useMeasurement from "../../hooks/useMeasurement";
 
 export default function Skill() {
+  const { titleFontSizeTransfer, swiperSizeConverter, skillSizeConverter } =
+    useMeasurement();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
   setAtom((prev) => {
@@ -15,9 +19,11 @@ export default function Skill() {
     };
   });
   return (
-    <div css={wrapper} ref={ref} id="skills">
-      <div css={leftContent}>
-        <p css={titleTextStyle}>Skills</p>
+    <div css={wrapper(skillSizeConverter().height)} ref={ref} id="skills">
+      <div css={leftContent(swiperSizeConverter().width)}>
+        <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
+          Skills
+        </BoldText>
         <TabSwiper />
       </div>
       <SkillExport />
@@ -25,26 +31,22 @@ export default function Skill() {
   );
 }
 
-const wrapper = {
+const wrapper = (height: number) => ({
   paddingLeft: "40px",
   boxSizing: "border-box" as const,
   width: "85%",
+  height: `${height}px`,
   maxWidth: "1400px",
-  height: "500px",
   display: "flex",
   justifyContent: "space-around",
   alignItems: "center",
-};
+});
 
-const leftContent = {
+const leftContent = (width: number) => ({
   display: "flex",
   flexDirection: "column" as const,
+  width: `${width}px`,
   gap: "16px",
-};
+});
 
-const titleTextStyle = {
-  fontFamily: "agro",
-  marginTop: "60px",
-  color: "white",
-  fontSize: "60px",
-};
+const titleTextStyle = {};

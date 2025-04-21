@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { visibleSectionAtom } from "../../../jotai/visibleSection";
+import useMeasurement from "../../../hooks/useMeasurement";
 
 interface PropsType {
   logo: string;
@@ -22,6 +23,7 @@ export default function GaugeComponent({
   needFit = false,
   handleClick,
 }: PropsType) {
+  const { swiperSizeConverter } = useMeasurement();
   const [progress, setProgress] = useState(0);
   const [mousHoverCounter, setMousHoverCounter] = useState<number>(0);
   const isVisible = useAtomValue(visibleSectionAtom);
@@ -43,7 +45,7 @@ export default function GaugeComponent({
 
   return (
     <div
-      css={wrapper}
+      css={wrapper(swiperSizeConverter().circleSize)}
       onClick={handleClick}
       onMouseEnter={() => {
         setMousHoverCounter(mousHoverCounter + 1);
@@ -53,18 +55,22 @@ export default function GaugeComponent({
         value={progress}
         strokeWidth={4}
         styles={buildStyles({
-          pathColor: "#DDDDDD", // 진행 색상 (오렌지)
-          trailColor: "#4B4B4B", // 배경 트레일 색상 (어두운 회색)
+          pathColor: "#DDDDDD",
+          trailColor: "#4B4B4B",
         })}
       />
-      <img css={imageStyle(needFit)} src={logo} alt={logo} />
+      <img
+        css={imageStyle(needFit, swiperSizeConverter().circleImgSize)}
+        src={logo}
+        alt={logo}
+      />
     </div>
   );
 }
 
-const wrapper = {
-  width: "100px",
-  height: "100px",
+const wrapper = (size: number) => ({
+  width: `${size}px`,
+  height: `${size}px`,
   borderRadius: "200px",
   display: "flex",
   justifyContent: "center",
@@ -74,12 +80,12 @@ const wrapper = {
   "&: hover": {
     scale: "1.2",
   },
-};
+});
 
-const imageStyle = (needFit: boolean) => ({
+const imageStyle = (needFit: boolean, imgSize: number) => ({
   position: "absolute" as const,
-  width: "50px",
-  height: "50px",
+  width: `${imgSize}px`,
+  height: `${imgSize}px`,
   borderRadius: "15px",
   objectFit: needFit ? ("cover" as const) : ("fill" as const),
 });

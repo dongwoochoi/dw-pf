@@ -12,8 +12,10 @@ import {
 } from "../structure";
 import { useSetAtom } from "jotai";
 import { skillAtom } from "../../../jotai/skill";
+import useMeasurement from "../../../hooks/useMeasurement";
 
 const TabSwiper = () => {
+  const { swiperSizeConverter } = useMeasurement();
   const swiperRef = useRef<any>(null);
   const setSelectedSkill = useSetAtom(skillAtom);
   const handleClick = (id: string) => {
@@ -31,19 +33,19 @@ const TabSwiper = () => {
     <div css={wrapper}>
       <div css={btnBox}>
         <div
-          css={btnStyle(currentIndex === 0)}
+          css={btnStyle(currentIndex === 0, swiperSizeConverter().tapFontSize)}
           onClick={() => handleTabClick(0)}
         >
           FE
         </div>
         <div
-          css={btnStyle(currentIndex === 1)}
+          css={btnStyle(currentIndex === 1, swiperSizeConverter().tapFontSize)}
           onClick={() => handleTabClick(1)}
         >
           BE
         </div>
         <div
-          css={btnStyle(currentIndex === 2)}
+          css={btnStyle(currentIndex === 2, swiperSizeConverter().tapFontSize)}
           onClick={() => handleTabClick(2)}
         >
           Tool
@@ -58,7 +60,15 @@ const TabSwiper = () => {
         slidesPerView={1}
       >
         <SwiperSlide>
-          <div css={{ display: "flex", gap: "36px" }}>
+          <div
+            css={{
+              padding: "8px",
+              display: "flex",
+              gap: `${swiperSizeConverter().swiperGap}px`,
+              justifyContent: "flex-start",
+              minHeight: "120px",
+            }}
+          >
             {FRONT_SLIDE_STRUCTURE.map((item) => {
               return (
                 <GaugeComponent
@@ -75,7 +85,15 @@ const TabSwiper = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div css={{ display: "flex", gap: "36px" }}>
+          <div
+            css={{
+              padding: "8px",
+              display: "flex",
+              gap: `${swiperSizeConverter().swiperGap}px`,
+              justifyContent: "flex-start",
+              minHeight: "120px",
+            }}
+          >
             {BACK_SLIDE_STRUCTURE.map((item) => {
               return (
                 <GaugeComponent
@@ -92,7 +110,16 @@ const TabSwiper = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div css={{ display: "flex", gap: "36px" }}>
+          <div
+            css={{
+              padding: "8px",
+              display: "flex",
+              gap: `${swiperSizeConverter().swiperGap}px`,
+              justifyContent: "flex-start",
+              minHeight: "120px",
+              flexWrap: "wrap",
+            }}
+          >
             {TOOL_SLIDE_STRUCTURE.map((item) => {
               return (
                 <GaugeComponent
@@ -131,9 +158,10 @@ const wrapper = {
 };
 
 const swiperContainer = {
-  width: "400px",
-  height: "250px",
-  minWidth: "400px",
+  position: "relative" as const,
+  // width: "400px",
+  // height: "250px",
+  // minWidth: "400px",
 };
 
 const btnBox = {
@@ -142,9 +170,9 @@ const btnBox = {
   marginBottom: "32px",
 };
 
-const btnStyle = (isClicked: boolean) => ({
+const btnStyle = (isClicked: boolean, fontSize: number) => ({
   fontFamily: "agro",
-  fontSize: "20px",
+  fontSize: `${fontSize}px`,
   color: isClicked ? "black" : "white",
   padding: "6px 10px",
   borderRadius: "5px",
