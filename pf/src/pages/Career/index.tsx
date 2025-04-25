@@ -195,6 +195,7 @@ const careerStyle = (width: number, height: number) => ({
   borderRadius: "5px",
   cursor: "pointer",
   "&:hover": { background: "#727272" },
+  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.5)",
 });
 
 const explainStyle = (
