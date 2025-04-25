@@ -43,6 +43,11 @@ import Seoreu_page1 from "./imgs/Modals/Seoreu/Seoreu_page1.png";
 import Seoreu_page2 from "./imgs/Modals/Seoreu/Seoreu_page2.png";
 import Seoreu_page3 from "./imgs/Modals/Seoreu/Seoreu_page3.png";
 import Seoreu_page4 from "./imgs/Modals/Seoreu/Seoreu_page4.png";
+import Lg_DataUpload from "./imgs/Modals/LG/Lg_Data_Upload.png";
+import Lg_DataExport from "./imgs/Modals/LG/Lg_Data_export.png";
+import Lg_DataLabeling from "./imgs/Modals/LG/Lg_Data_labeling.png";
+import Lg_DataStatus from "./imgs/Modals/LG/Lg_Data_status.png";
+import Lg_DataWorks from "./imgs/Modals/LG/Lg_Works.png";
 
 export const logos = {
   TypeScriptLog,
@@ -102,6 +107,14 @@ export const Seoreu_Modal = {
   Seoreu_page2,
   Seoreu_page3,
   Seoreu_page4,
+};
+
+export const Lg_Modal = {
+  Lg_DataExport,
+  Lg_DataLabeling,
+  Lg_DataStatus,
+  Lg_DataUpload,
+  Lg_DataWorks,
 };
 
 export const Image = {
