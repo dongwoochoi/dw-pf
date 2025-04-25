@@ -81,15 +81,17 @@ export default function ProjectCard({
 
 const wrapper = (width: number) => ({
   display: "flex",
+  padding: "4px",
   flexDirection: "column" as const,
   width: `${width}px`,
   height: `${width}px`,
   borderRadius: "5px",
   background: "#4B4B4B",
+  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
 });
 
 const imgSection = (img: string, isHover: boolean, width: number) => ({
-  width: `${width}px`,
+  width: `${width - 8}px`,
   height: "250px",
   backgroundImage: `url(${img})`,
   backgroundSize: "cover",
