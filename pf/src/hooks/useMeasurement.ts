@@ -379,6 +379,36 @@ export default function useMeasurement() {
   };
 
   // -------------------------- End 부분 --------------------------
+
+  const endSizeConverter = () => {
+    if (isPc) {
+      return {
+        width: 300,
+        height: 360,
+        fontSize: 60,
+      };
+    }
+    if (isLaptop) {
+      return {
+        width: 250,
+        height: 300,
+        fontSize: 48,
+      };
+    }
+    if (isTablet) {
+      return {
+        width: 150,
+        height: 190,
+        fontSize: 36,
+      };
+    }
+    return {
+      width: 300,
+      height: 360,
+      fontSize: 60,
+    };
+  };
+
   return {
     titleFontSizeTransfer,
     fontSizeTransfer,
@@ -396,5 +426,6 @@ export default function useMeasurement() {
     projectSizeConverter,
     projectFontSizeConverter,
     projectModalSizeConverter,
+    endSizeConverter,
   };
 }

@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { endPageImg } from "../../assets/img";
+import useMeasurement from "../../hooks/useMeasurement";
 
 export default function EndPage() {
+  const { endSizeConverter } = useMeasurement();
   const [showFirst, setShowFirst] = useState(true);
 
   useEffect(() => {
@@ -17,12 +19,12 @@ export default function EndPage() {
   return (
     <div css={wrapper}>
       <img
-        css={imgStyle}
+        css={imgStyle(endSizeConverter().width, endSizeConverter().height)}
         src={showFirst ? endPageImg.bye1 : endPageImg.bye2}
         alt="toggle"
       />
 
-      <p css={titleTextStyle}>Thank You!</p>
+      <p css={titleTextStyle(endSizeConverter().fontSize)}>Thank You!</p>
     </div>
   );
 }
@@ -37,14 +39,14 @@ const wrapper = {
   background: "white",
 };
 
-const titleTextStyle = {
+const titleTextStyle = (fontSize: number) => ({
   fontFamily: "agro",
-  fontSize: "60px",
+  fontSize: `${fontSize}px`,
   fontWeight: "800",
   marginTop: "60px",
-};
+});
 
-const imgStyle = {
-  width: "300px",
-  height: "360px",
-};
+const imgStyle = (width: number, height: number) => ({
+  width: `${width}px`,
+  height: `${height}px8`,
+});
