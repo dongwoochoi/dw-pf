@@ -5,7 +5,6 @@ import Modal from "../Modal";
 import { icons } from "../../assets/icon";
 import { useEffect, useRef } from "react";
 import { modalDepthAtom } from "../../jotai/modalDepthAtom";
-import { css } from "@emotion/react";
 
 export default function ProjectModal() {
   const [alertContent, handleModal] = useAtom(ProjectModalAtom);
@@ -47,30 +46,30 @@ export default function ProjectModal() {
   );
 }
 
-const wrapper = css`
-  position: relative;
-  width: 1400px;
-  height: 800px;
-  padding: 40px;
-  background: #2c2c2c;
-  border-radius: 5px;
-  box-shadow: 0px 2px 6px 2px #00000026;
-  overflow-y: scroll;
+const wrapper = {
+  position: "relative" as const,
+  width: `80vw`,
+  height: `80vh`,
+  padding: "40px",
+  background: "#2c2c2c",
+  borderRadius: "5px",
+  boxShadow: "0px 2px 6px 2px #00000026",
+  overflowY: "scroll" as const,
 
   /* 스크롤바 커스텀 */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
+  "&::-webkit-scrollbar": {
+    width: "8px",
+  },
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-  }
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "#888",
+    borderRadius: "4px",
+  },
 
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-`;
+  "&::-webkit-scrollbar-track:": {
+    backgroundColor: "transparent",
+  },
+};
 
 const topWrapper = {
   display: "flex",
@@ -89,7 +88,11 @@ const styledContent = {
 const closeBtn = {
   width: "48px",
   height: "48px",
-  position: "absolute" as const,
-  right: "24px",
+  position: "sticky" as const,
+  top: "-0%",
+  left: "95%",
   cursor: "pointer",
+  background: "#BFBFBF",
+  borderRadius: "24px",
+  zIndex: 999,
 };

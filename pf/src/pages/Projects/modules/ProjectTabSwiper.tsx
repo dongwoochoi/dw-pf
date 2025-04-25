@@ -7,8 +7,10 @@ import "swiper/css";
 import ProjectSlide from "./ProjectSlide";
 import { MAIN_PROJECT_STRUCTURE, SUB_PROJECT_STRUCTURE } from "../structure";
 import { icons } from "../../../assets/icon";
+import useMeasurement from "../../../hooks/useMeasurement";
 
 const ProjectTabSwiper = () => {
+  const { swiperSizeConverter } = useMeasurement();
   const swiperRef = useRef<SwiperClass | null>(null);
   const projectSwiperRef1 = useRef<any>(null);
   const projectSwiperRef2 = useRef<any>(null);
@@ -24,13 +26,13 @@ const ProjectTabSwiper = () => {
     <div css={wrapper}>
       <div css={btnBox}>
         <div
-          css={btnStyle(currentIndex === 0)}
+          css={btnStyle(currentIndex === 0, swiperSizeConverter().tapFontSize)}
           onClick={() => handleTabClick(0)}
         >
           Main
         </div>
         <div
-          css={btnStyle(currentIndex === 1)}
+          css={btnStyle(currentIndex === 1, swiperSizeConverter().tapFontSize)}
           onClick={() => handleTabClick(1)}
         >
           Sub
@@ -118,9 +120,9 @@ const btnBox = {
   marginBottom: "32px",
 };
 
-const btnStyle = (isClicked: boolean) => ({
+const btnStyle = (isClicked: boolean, fontSize: number) => ({
   fontFamily: "agro",
-  fontSize: "20px",
+  fontSize: `${fontSize}px`,
   color: isClicked ? "black" : "white",
   padding: "6px 10px",
   borderRadius: "5px",

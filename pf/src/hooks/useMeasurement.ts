@@ -156,14 +156,14 @@ export default function useMeasurement() {
     if (isLaptop) {
       return {
         yearFontSize: 40,
-        width: 600,
-        height: 60,
+        width: 800,
+        height: 45,
       };
     }
     if (isTablet) {
       return {
         yearFontSize: 20,
-        width: 350,
+        width: 500,
         height: 25,
       };
     }
@@ -255,6 +255,128 @@ export default function useMeasurement() {
   };
 
   // -------------------------- Project 부분 --------------------------
+  const projectFontSizeConverter = () => {
+    if (isPc) {
+      return {
+        title: 32,
+        text: 16,
+        tagPadding: "0px 4px",
+      };
+    }
+    if (isLaptop) {
+      return {
+        title: 28,
+        text: 12,
+        tagPadding: "0px 4px",
+      };
+    }
+    if (isTablet) {
+      return {
+        title: 24,
+        text: 10,
+        tagPadding: "0px 4px",
+      };
+    }
+    return {
+      title: 32,
+      text: 16,
+      tagPadding: "0px 4px",
+    };
+  };
+
+  const projectSizeConverter = () => {
+    if (isPc) {
+      return {
+        width: 500,
+        hoverHeight: 250,
+      };
+    }
+    if (isLaptop) {
+      return {
+        width: 450,
+        hoverHeight: 224.17,
+      };
+    }
+    if (isTablet) {
+      return {
+        width: 300,
+        hoverHeight: 172.52,
+      };
+    }
+    return {
+      width: 500,
+      hoverHeight: 250,
+    };
+  };
+
+  const projectModalSizeConverter = () => {
+    if (isPc) {
+      return {
+        headerGap: 24,
+        headerMarginBottom: 60,
+        font: {
+          title: 60,
+          boldSize: 36,
+          category: 24,
+          imgTitle: 16,
+        },
+        tag: {
+          fontSize: 20,
+          padding: 8,
+          height: 30,
+        },
+      };
+    }
+    if (isLaptop) {
+      return {
+        headerGap: 16,
+        headerMarginBottom: 40,
+        font: {
+          title: 48,
+          boldSize: 28,
+          category: 20,
+          imgTitle: 16,
+        },
+        tag: {
+          fontSize: 16,
+          padding: 8,
+          height: 26,
+        },
+      };
+    }
+    if (isTablet) {
+      return {
+        headerGap: 8,
+        headerMarginBottom: 24,
+        font: {
+          title: 36,
+          boldSize: 20,
+          category: 16,
+          imgTitle: 12,
+        },
+        tag: {
+          fontSize: 12,
+          padding: 8,
+          height: 20,
+        },
+      };
+    }
+    return {
+      headerGap: 24,
+      headerMarginBottom: 24,
+      font: {
+        title: 60,
+        boldSize: 36,
+        category: 16,
+        imgTitle: 12,
+      },
+      tag: {
+        fontSize: 20,
+        padding: 8,
+        height: 22,
+      },
+    };
+  };
 
   // -------------------------- End 부분 --------------------------
   return {
@@ -271,5 +393,8 @@ export default function useMeasurement() {
     swiperSizeConverter,
     explainSizeConverter,
     skillSizeConverter,
+    projectSizeConverter,
+    projectFontSizeConverter,
+    projectModalSizeConverter,
   };
 }

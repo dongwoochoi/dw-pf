@@ -14,7 +14,7 @@
 /* 600px ~ 1152px */
 @media (min-width: 600px) and (max-width: 1152px) {
   * {
-    line-height: 12px;
+    line-height: 18px;
   }
 }
 

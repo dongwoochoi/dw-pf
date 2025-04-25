@@ -27,11 +27,18 @@ export default function ProjectSlide({
       <Swiper
         css={swiperContainer}
         onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
-        spaceBetween={0}
-        slidesPerView={2.5}
+        spaceBetween={16}
         direction="horizontal"
         pagination={{
           clickable: true,
+        }}
+        breakpoints={{
+          600: { slidesPerView: 1.5 },
+          900: { slidesPerView: 1.7 },
+          1100: { slidesPerView: 2.2 },
+          1200: { slidesPerView: 1.8 },
+          1610: { slidesPerView: 2.2 },
+          1800: { slidesPerView: 2.5 },
         }}
         modules={[Pagination]}
       >

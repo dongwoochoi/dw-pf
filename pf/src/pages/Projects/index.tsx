@@ -3,8 +3,11 @@ import { useSetAtom } from "jotai";
 import { useRef } from "react";
 import { refAtom } from "../../jotai/refAtom";
 import ProjectTabSwiper from "./modules/ProjectTabSwiper";
+import BoldText from "../../components/Atom/BoldText";
+import useMeasurement from "../../hooks/useMeasurement";
 
 export default function Projects() {
+  const { titleFontSizeTransfer } = useMeasurement();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
   setAtom((prev) => {
@@ -16,7 +19,9 @@ export default function Projects() {
 
   return (
     <div css={wrapper} ref={ref} id="projects">
-      <p css={titleTextStyle}>Projects</p>
+      <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
+        Projects
+      </BoldText>
       <ProjectTabSwiper />
     </div>
   );
@@ -31,10 +36,6 @@ const wrapper = {
 };
 
 const titleTextStyle = {
-  fontFamily: "agro",
   marginBottom: "16px",
   marginTop: "60px",
-  color: "white",
-  fontSize: "60px",
-  fontWeight: "800",
 };

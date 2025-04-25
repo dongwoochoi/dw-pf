@@ -4,6 +4,7 @@ import BorderBottomTitle from "../../../../components/Atom/BorderBottomTitle";
 import LightText from "../../../../components/Atom/LightText";
 import MediumText from "../../../../components/Atom/MediumText";
 import { ImageModalAtom } from "../../../../jotai/Modal/imageModalAtom";
+import useMeasurement from "../../../../hooks/useMeasurement";
 
 interface PropsType {
   oneLineIntroduce: string;
@@ -51,7 +52,7 @@ export default function DefaultModal({
     "#5A6168",
     "#3E4349",
   ];
-
+  const { projectModalSizeConverter } = useMeasurement();
   const handleImgModalAtom = useSetAtom(ImageModalAtom);
 
   const shuffleArray = (array: string[]) => {
@@ -66,20 +67,26 @@ export default function DefaultModal({
 
   return (
     <div css={wrapper}>
-      <p css={titleStyle}>{title}</p>
-      <div css={header}>
-        <div css={leftHeader}>
-          <LightText>한줄 소개</LightText>
-          <LightText>진행상태</LightText>
-          <LightText>기술 태그</LightText>
+      <p css={titleStyle(projectModalSizeConverter().font.title)}>{title}</p>
+      <div css={header(projectModalSizeConverter().headerMarginBottom)}>
+        <div css={leftHeader(projectModalSizeConverter().headerGap)}>
+          <LightText css={{ whiteSpace: "nowrap" }}>한줄 소개</LightText>
+          <LightText css={{ whiteSpace: "nowrap" }}>진행상태</LightText>
+          <LightText css={{ whiteSpace: "nowrap" }}>기술 태그</LightText>
         </div>
-        <div css={rightHeader}>
+        <div css={rightHeader(projectModalSizeConverter().headerGap)}>
           <LightText>{oneLineIntroduce}</LightText>
           <LightText> {status}</LightText>
           <div css={tagBox}>
             {tags?.map((item, index) => {
               return (
-                <div key={item} css={tagStyle(shuffledColors[index])}>
+                <div
+                  key={item}
+                  css={tagStyle(
+                    shuffledColors[index],
+                    projectModalSizeConverter().tag
+                  )}
+                >
                   {item}
                 </div>
               );
@@ -89,27 +96,38 @@ export default function DefaultModal({
       </div>
       <div css={content}>
         <div css={introduce}>
-          <BorderBottomTitle>소개</BorderBottomTitle>
+          <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
+            소개
+          </BorderBottomTitle>
           <div css={contentTextBox}>
-            <MediumText>{introducingText}</MediumText>
+            <LightText>{introducingText}</LightText>
           </div>
         </div>
       </div>
       <div css={content}>
         <div css={introduce}>
-          <BorderBottomTitle>주요 작업 내용</BorderBottomTitle>
+          <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
+            주요 작업 내용
+          </BorderBottomTitle>
           <div css={contentTextBox}>
             {mainFunction.map((item) => {
               return (
                 <div>
-                  <div css={categoryStyle}>
+                  <div
+                    css={categoryStyle(
+                      projectModalSizeConverter().font.category
+                    )}
+                  >
                     <p>{item.workCategory}</p>
                     {item.atTroubleShooting ? (
                       <p
                         css={{
                           position: "absolute",
                           right: "1%",
-                          fontSize: "16px",
+                          bottom: "20%",
+                          fontSize: `${
+                            projectModalSizeConverter().font.category - 8
+                          }px`,
                         }}
                       >
                         * 자세한 내용 TroubleShooting에 작성
@@ -142,7 +160,9 @@ export default function DefaultModal({
         </div>
         {troubleShooting ? (
           <div css={introduce}>
-            <BorderBottomTitle>트러블 슈팅</BorderBottomTitle>
+            <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
+              트러블 슈팅
+            </BorderBottomTitle>
             <div css={contentTextBox}>
               {troubleShooting?.map((item) => {
                 return (
@@ -152,7 +172,13 @@ export default function DefaultModal({
                       flexDirection: "column",
                     }}
                   >
-                    <div css={categoryStyle}>{item.title}</div>
+                    <div
+                      css={categoryStyle(
+                        projectModalSizeConverter().font.category
+                      )}
+                    >
+                      {item.title}
+                    </div>
                     <div css={{ marginLeft: "20px" }}>
                       <div css={troubleContent}>
                         <MediumText
@@ -180,7 +206,9 @@ export default function DefaultModal({
 
         {learned ? (
           <div css={introduce}>
-            <BorderBottomTitle>느낀점</BorderBottomTitle>
+            <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
+              느낀점
+            </BorderBottomTitle>
             <ul
               css={{
                 marginTop: "16px",
@@ -194,7 +222,9 @@ export default function DefaultModal({
           </div>
         ) : null}
         <div css={introduce}>
-          <BorderBottomTitle>관련 사진</BorderBottomTitle>
+          <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
+            관련 사진
+          </BorderBottomTitle>
           <div css={imgContainer}>
             {introducingImg?.map((item) => {
               return (
@@ -207,7 +237,9 @@ export default function DefaultModal({
                     }}
                     alt={item.title}
                   />
-                  <p css={imgTitle}>{item.title}</p>
+                  <p css={imgTitle(projectModalSizeConverter().font.imgTitle)}>
+                    {item.title}
+                  </p>
                 </div>
               );
             })}
@@ -219,40 +251,41 @@ export default function DefaultModal({
 }
 
 const wrapper = {};
-const header = {
+const header = (marginBottom: number) => ({
   display: "flex",
   flexDirection: "row" as const,
   gap: "60px",
   paddingBottom: "16px",
   borderBottom: "1px solid #727272",
-  marginBottom: "60px",
-};
+  marginBottom: `${marginBottom}px`,
+});
 
-const leftHeader = {
+const leftHeader = (gap: number) => ({
   display: "flex",
   flexDirection: "column" as const,
-  gap: "24px",
+  gap: `${gap}px`,
   fontFamily: "agro",
   fontSize: "24px",
   color: "white",
   justifyContent: "center",
-};
+});
 
-const rightHeader = {
+const rightHeader = (gap: number) => ({
   display: "flex",
   flexDirection: "column" as const,
-  gap: "24px",
+  gap: `${gap}px`,
   fontFamily: "agro",
   fontSize: "24px",
   color: "white",
   justifyContent: "center",
-};
-const titleStyle = {
+});
+
+const titleStyle = (fontSize: number) => ({
   fontFamily: "agro",
   color: "white",
-  fontSize: "60px",
+  fontSize: `${fontSize}px`,
   marginBottom: "16px",
-};
+});
 
 const content = {
   display: "flex",
@@ -273,14 +306,18 @@ const tagBox = {
   flexDirection: "row" as const,
   gap: "8px",
 };
-const tagStyle = (color: string) => ({
-  padding: "8px",
+const tagStyle = (
+  color: string,
+  tag: { fontSize: number; padding: number; height: number }
+) => ({
+  padding: `${tag.padding}px`,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   color: "white",
   width: "auto",
-  height: "30px",
+  height: `${tag.height}px`,
+  fontSize: `${tag.fontSize}px`,
   fontFamily: "agroM",
   background: color,
   borderRadius: "5px",
@@ -288,19 +325,19 @@ const tagStyle = (color: string) => ({
 
 const introduce = {};
 
-const categoryStyle = {
+const categoryStyle = (fontSize: number) => ({
   display: "flex",
   flexDirection: "row" as const,
   position: "relative" as const,
   alignItems: "flex-end",
   color: "white",
-  fontSize: "24px",
+  fontSize: `${fontSize}px`,
   fontWeight: "600",
   padding: "8px",
   background: "#717172",
   marginBottom: "16px",
   fontFamily: "agroL",
-};
+});
 
 const troubleContent = {
   display: "flex",
@@ -309,8 +346,11 @@ const troubleContent = {
 };
 
 const imgContainer = {
+  marginTop: "16px",
   width: "100%",
   display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   flexWrap: "wrap" as const,
   gap: "16px",
 };
@@ -328,7 +368,8 @@ const imgStyle = {
   "&:hover": { filter: "brightness(1.2)" },
 };
 
-const imgTitle = {
+const imgTitle = (size: number) => ({
   color: "white",
   textAlign: "center" as const,
-};
+  fontSize: `${size}px`,
+});

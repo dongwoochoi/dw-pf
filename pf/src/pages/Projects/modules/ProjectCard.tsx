@@ -3,6 +3,7 @@
 import { useState } from "react";
 import useProjectModal from "../../../hooks/useProjectModal";
 import { PROJECT_MODAL_STRUCTURE } from "../structure";
+import useMeasurement from "../../../hooks/useMeasurement";
 
 interface PropsType {
   title: string;
@@ -19,6 +20,7 @@ export default function ProjectCard({
   tag,
   img,
 }: PropsType) {
+  const { projectSizeConverter, projectFontSizeConverter } = useMeasurement();
   const [isHover, setIsHover] = useState<boolean>(false);
   const { setProjectModal } = useProjectModal();
 
@@ -30,28 +32,42 @@ export default function ProjectCard({
       onMouseEnter={() => setIsHover(true)}
       onPointerLeave={() => setIsHover(false)}
     >
-      <div css={hoverSection(isHover)}>
-        <p css={hoverTitle}>{title}</p>
-        <p css={hoverText}>자세히 보기</p>
+      <div
+        css={hoverSection(
+          isHover,
+          projectSizeConverter().width,
+          projectSizeConverter().hoverHeight
+        )}
+      >
+        <p css={hoverTitle(projectFontSizeConverter().title)}>{title}</p>
+        <p css={hoverText(projectFontSizeConverter().text)}>자세히 보기</p>
       </div>
 
-      <div css={wrapper}>
+      <div css={wrapper(projectSizeConverter().width)}>
         <div
-          css={imgSection(img, isHover)}
+          css={imgSection(img, isHover, projectSizeConverter().width)}
           onClick={() => {
             setProjectModal(modalJSX);
           }}
         ></div>
         <div css={explainSection}>
           <div css={textSection}>
-            <p css={titleStyle}>{title}</p>
-            <p css={teamStyle}>{`at ${team}`}</p>
-            <p>{text}</p>
+            <p css={titleStyle(projectFontSizeConverter().title)}>{title}</p>
+            <p
+              css={teamStyle(projectFontSizeConverter().text)}
+            >{`at ${team}`}</p>
+            <p css={textStyle(projectFontSizeConverter().text)}>{text}</p>
           </div>
           <div css={tagBox}>
             {tag.map((item) => {
               return (
-                <div css={tagStyle} key={item}>
+                <div
+                  css={tagStyle(
+                    projectFontSizeConverter().text,
+                    projectFontSizeConverter().tagPadding
+                  )}
+                  key={item}
+                >
                   {item}
                 </div>
               );
@@ -63,17 +79,17 @@ export default function ProjectCard({
   );
 }
 
-const wrapper = {
+const wrapper = (width: number) => ({
   display: "flex",
   flexDirection: "column" as const,
-  width: "500px",
-  height: "500px",
+  width: `${width}px`,
+  height: `${width}px`,
   borderRadius: "5px",
   background: "#4B4B4B",
-};
+});
 
-const imgSection = (img: string, isHover: boolean) => ({
-  width: "500px",
+const imgSection = (img: string, isHover: boolean, width: number) => ({
+  width: `${width}px`,
   height: "250px",
   backgroundImage: `url(${img})`,
   backgroundSize: "cover",
@@ -94,37 +110,41 @@ const textSection = {
   color: "white",
 };
 
-const titleStyle = {
+const titleStyle = (fontSize: number) => ({
   fontFamily: "agro",
-  fontSize: "32px",
-};
+  fontSize: `${fontSize}px`,
+});
 
-const teamStyle = {
+const teamStyle = (fontSize: number) => ({
+  fontSize: `${fontSize}px`,
   marginBottom: "16px",
-};
+});
 
 const tagBox = {
   display: "flex",
   gap: "8px",
+  flexWrap: "wrap" as const,
 };
 
-const tagStyle = {
-  padding: "4px",
-  background: "#5E5E5E",
-  color: "white",
-  border: "1px solid white",
+const tagStyle = (fontSize: number, padding: string) => ({
+  padding,
+  background: "#6D6D6D",
+  color: "#EAEAEA",
   borderRadius: "5px",
-};
+  fontSize: `${fontSize}px`,
+  fontFamily: "agroL",
+  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+});
 
-const hoverText = {
+const hoverText = (fontSize: number) => ({
   fontFamily: "agro",
-  fontSize: "16px",
+  fontSize: `${fontSize}px`,
   fontWeight: "600",
-};
+});
 
-const hoverSection = (isHover: boolean) => ({
-  width: "500px",
-  height: "250px",
+const hoverSection = (isHover: boolean, width: number, height: number) => ({
+  width: `${width}px`,
+  height: `${height}px`,
   padding: "8px",
   display: isHover ? "flex" : "none",
   color: "white",
@@ -140,10 +160,14 @@ const hoverSection = (isHover: boolean) => ({
   background: "rgba(0, 0, 0, 0.5)",
 });
 
-const hoverTitle = {
+const hoverTitle = (fontSize: number) => ({
   color: "white",
   fontFamily: "agro",
-  fontSize: "32px",
+  fontSize: `${fontSize}px`,
   fontWeight: "600",
   textAlign: "center" as const,
-};
+});
+
+const textStyle = (fontSize: number) => ({
+  fontSize: `${fontSize}px`,
+});
