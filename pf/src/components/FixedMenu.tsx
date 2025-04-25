@@ -13,7 +13,7 @@ export default function FixedMenu() {
   const toastMessage = () => {
     toast(
       () => {
-        return <div css={toastWrapper}>{"메일주소가 복사되었습니다."}</div>;
+        return <div css={toastWrapper}>{"메일 주소가 복사되었습니다."}</div>;
       },
       {
         position: "bottom-center",
@@ -149,10 +149,12 @@ const iconButton = (
 });
 
 const toastWrapper = {
+  fontFamily: "agroL",
   display: "flex",
   width: "100%",
   justifyContent: "center",
   alignItems: "center",
   textAlign: "center" as const,
   gap: "8px",
+  padding: "8px 16px",
 };
