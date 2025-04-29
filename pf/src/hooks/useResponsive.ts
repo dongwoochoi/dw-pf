@@ -2,6 +2,9 @@ import { useMediaQuery } from "react-responsive";
 import { BREAK_POINT } from "../constants/breakpoints";
 
 export default function useResponsive() {
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${BREAK_POINT.tablet}px)`,
+  });
   const isTablet = useMediaQuery({
     query: `(min-width: ${BREAK_POINT.tablet}px)`,
   });
@@ -22,5 +25,5 @@ export default function useResponsive() {
 
   const isUnable = isTooSmall || isTooWide;
 
-  return { isPc, isTablet, isLaptop, isUnable };
+  return { isPc, isTablet, isLaptop, isUnable, isMobile };
 }

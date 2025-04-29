@@ -13,8 +13,10 @@ import {
 import { useSetAtom } from "jotai";
 import { skillAtom } from "../../../jotai/skill";
 import useMeasurement from "../../../hooks/useMeasurement";
+import useResponsive from "../../../hooks/useResponsive";
 
 const TabSwiper = () => {
+  const { isMobile } = useResponsive();
   const { swiperSizeConverter } = useMeasurement();
   const swiperRef = useRef<any>(null);
   const setSelectedSkill = useSetAtom(skillAtom);
@@ -31,7 +33,7 @@ const TabSwiper = () => {
 
   return (
     <div css={wrapper}>
-      <div css={btnBox}>
+      <div css={btnBox(isMobile)}>
         <div
           css={btnStyle(currentIndex === 0, swiperSizeConverter().tapFontSize)}
           onClick={() => handleTabClick(0)}
@@ -66,7 +68,7 @@ const TabSwiper = () => {
               display: "flex",
               gap: `${swiperSizeConverter().swiperGap}px`,
               justifyContent: "flex-start",
-              minHeight: "120px",
+              minHeight: isMobile ? "50px" : "120px",
             }}
           >
             {FRONT_SLIDE_STRUCTURE.map((item) => {
@@ -91,7 +93,7 @@ const TabSwiper = () => {
               display: "flex",
               gap: `${swiperSizeConverter().swiperGap}px`,
               justifyContent: "flex-start",
-              minHeight: "120px",
+              minHeight: isMobile ? "50px" : "120px",
             }}
           >
             {BACK_SLIDE_STRUCTURE.map((item) => {
@@ -116,7 +118,7 @@ const TabSwiper = () => {
               display: "flex",
               gap: `${swiperSizeConverter().swiperGap}px`,
               justifyContent: "flex-start",
-              minHeight: "120px",
+              minHeight: isMobile ? "50px" : "120px",
               flexWrap: "wrap",
             }}
           >
@@ -164,11 +166,11 @@ const swiperContainer = {
   // minWidth: "400px",
 };
 
-const btnBox = {
+const btnBox = (isMobile: boolean) => ({
   display: "flex",
   gap: "8px",
-  marginBottom: "32px",
-};
+  marginBottom: isMobile ? "8px" : "32px",
+});
 
 const btnStyle = (isClicked: boolean, fontSize: number) => ({
   fontFamily: "agro",

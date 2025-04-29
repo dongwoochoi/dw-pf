@@ -14,7 +14,7 @@ export default function useMeasurement() {
     if (isTablet) {
       return size - 8;
     }
-    return size - 8;
+    return size - 10;
   };
 
   const titleFontSizeTransfer = () => {
@@ -27,7 +27,7 @@ export default function useMeasurement() {
     if (isTablet) {
       return 40;
     }
-    return 60;
+    return 32;
   };
 
   const sideBarWidth = () => {
@@ -128,7 +128,7 @@ export default function useMeasurement() {
     if (isTablet) {
       return 150;
     }
-    return 230;
+    return 120;
   };
 
   const aboutMainGapSizeConverter = () => {
@@ -162,15 +162,15 @@ export default function useMeasurement() {
     }
     if (isTablet) {
       return {
-        yearFontSize: 20,
+        yearFontSize: 24,
         width: 500,
         height: 25,
       };
     }
     return {
-      yearFontSize: 40,
-      width: 400,
-      height: 60,
+      yearFontSize: 24,
+      width: 250,
+      height: "auto",
     };
   };
 
@@ -228,8 +228,8 @@ export default function useMeasurement() {
       width: 300,
       tapFontSize: 12,
       swiperGap: 12,
-      circleSize: 75,
-      circleImgSize: 50,
+      circleSize: 40,
+      circleImgSize: 25,
     };
   };
 
@@ -250,7 +250,7 @@ export default function useMeasurement() {
       };
     }
     return {
-      width: 400,
+      width: 300,
     };
   };
 

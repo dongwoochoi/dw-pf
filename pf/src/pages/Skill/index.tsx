@@ -6,8 +6,10 @@ import TabSwiper from "./modules/TabSwiper";
 import SkillExport from "./modules/SkillExplain";
 import BoldText from "../../components/Atom/BoldText";
 import useMeasurement from "../../hooks/useMeasurement";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function Skill() {
+  const { isMobile } = useResponsive();
   const { titleFontSizeTransfer, swiperSizeConverter, skillSizeConverter } =
     useMeasurement();
   const ref = useRef<HTMLDivElement>(null);
@@ -19,7 +21,11 @@ export default function Skill() {
     };
   });
   return (
-    <div css={wrapper(skillSizeConverter().height)} ref={ref} id="skills">
+    <div
+      css={wrapper(skillSizeConverter().height, isMobile)}
+      ref={ref}
+      id="skills"
+    >
       <div css={leftContent(swiperSizeConverter().width)}>
         <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
           Skills
@@ -31,13 +37,14 @@ export default function Skill() {
   );
 }
 
-const wrapper = (height: number) => ({
+const wrapper = (height: number, isMobile: boolean) => ({
   paddingLeft: "40px",
   boxSizing: "border-box" as const,
   width: "85%",
   height: `${height}px`,
   maxWidth: "1400px",
   display: "flex",
+  flexDirection: isMobile ? ("column" as const) : ("row" as const),
   justifyContent: "space-around",
   alignItems: "center",
 });

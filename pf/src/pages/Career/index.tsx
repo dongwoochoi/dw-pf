@@ -9,8 +9,10 @@ import { Swiper as SwiperClass } from "swiper";
 import { css, Global } from "@emotion/react";
 import useMeasurement from "../../hooks/useMeasurement";
 import BoldText from "../../components/Atom/BoldText";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function Career() {
+  const { isMobile } = useResponsive();
   const { careerSizeConverter, titleFontSizeTransfer, fontSizeTransfer } =
     useMeasurement();
   const convertValue = careerSizeConverter();
@@ -36,13 +38,14 @@ export default function Career() {
         Career
       </BoldText>
       <div css={row}>
-        <div css={yearTab}>
+        <div css={yearTab(isMobile)}>
           {YEARS_STRUCTURE.map((item, i) => {
             return (
               <div
                 css={yearStyle(
                   selectedYear === item,
-                  careerSizeConverter().yearFontSize
+                  careerSizeConverter().yearFontSize,
+                  isMobile
                 )}
                 key={item}
                 onClick={() => {
@@ -73,19 +76,41 @@ export default function Career() {
                     const { width, height } = convertValue;
                     return (
                       <div key={value.title}>
-                        <div
-                          css={careerStyle(width, height)}
-                          onClick={() => {
-                            handleClick(value.title);
-                          }}
-                        >
-                          <BoldText
-                            size={fontSizeTransfer(20)}
-                          >{`${value.period}  |  ${value.title}`}</BoldText>
-                          <BoldText size={fontSizeTransfer(20)}>
-                            {value.category}
-                          </BoldText>
-                        </div>
+                        {isMobile ? (
+                          <div
+                            css={careerStyle(width, height, isMobile)}
+                            onClick={() => {
+                              handleClick(value.title);
+                            }}
+                          >
+                            <div>
+                              <BoldText size={fontSizeTransfer(20)}>
+                                {value.period}
+                              </BoldText>
+                              <BoldText size={fontSizeTransfer(20)}>
+                                {`| ${value.title}`}
+                              </BoldText>
+                            </div>
+                            <BoldText size={fontSizeTransfer(20)}>
+                              {value.category}
+                            </BoldText>
+                          </div>
+                        ) : (
+                          <div
+                            css={careerStyle(width, height)}
+                            onClick={() => {
+                              handleClick(value.title);
+                            }}
+                          >
+                            <BoldText
+                              size={fontSizeTransfer(20)}
+                            >{`${value.period}  |  ${value.title}`}</BoldText>
+                            <BoldText size={fontSizeTransfer(20)}>
+                              {value.category}
+                            </BoldText>
+                          </div>
+                        )}
+
                         <div
                           css={{
                             display: isOpen ? "flex" : "none",
@@ -159,8 +184,8 @@ const row = {
   justifyContent: "space-around",
 };
 
-const yearStyle = (isSelected: boolean, size: number) => ({
-  paddingLeft: "16px",
+const yearStyle = (isSelected: boolean, size: number, isMobile: boolean) => ({
+  paddingLeft: isMobile ? "4px" : "16px",
   borderLeft: isSelected ? "3px solid white" : "none",
   color: isSelected ? "white" : "#9B9B9B",
   fontSize: isSelected ? `${size}px` : `${size - 4}px`,
@@ -171,11 +196,11 @@ const yearStyle = (isSelected: boolean, size: number) => ({
   },
 });
 
-const yearTab = {
+const yearTab = (isMobile: boolean) => ({
   display: "flex",
   flexDirection: "column" as const,
-  gap: "8px",
-};
+  gap: isMobile ? "8px" : "8px",
+});
 
 const careerBox = {
   display: "flex",
@@ -183,12 +208,17 @@ const careerBox = {
   height: "50vh",
 };
 
-const careerStyle = (width: number, height: number) => ({
+const careerStyle = (
+  width: number,
+  height: string | number,
+  isMobile?: boolean
+) => ({
   display: "flex",
+  flexDirection: isMobile ? ("row" as const) : ("column" as const),
   justifyContent: "space-between",
   alignItems: "center",
   width: `${width}px`,
-  height: `${height}px`,
+  height: typeof height === "string" ? height : `${height}px`,
   background: "#4B4B4B",
   padding: "8px 16px",
   color: "white",
@@ -202,10 +232,10 @@ const explainStyle = (
   isOpen: boolean,
   size: number,
   width: number,
-  height: number
+  height: number | string
 ) => ({
   width: `${width}px`,
-  minHeight: `${height}px`,
+  minHeight: typeof height === "string" ? height : `${height}px`,
   background: "#4B4B4B",
   padding: "8px 16px",
   color: "white",
