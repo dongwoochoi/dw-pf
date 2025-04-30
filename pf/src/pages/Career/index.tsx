@@ -58,7 +58,7 @@ export default function Career() {
             );
           })}
         </div>
-        <div css={careerBox(careerSizeConverter().boxHeight)}>
+        <div css={careerBox(careerSizeConverter().boxHeight, isMobile)}>
           <Swiper
             onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
             spaceBetween={50}
@@ -202,9 +202,9 @@ const yearTab = (isMobile: boolean) => ({
   gap: isMobile ? "8px" : "8px",
 });
 
-const careerBox = (height: number) => ({
+const careerBox = (height: number, isMobile: boolean) => ({
   display: "flex",
-  width: "auto",
+  width: isMobile ? "200px" : "auto",
   height: `${height}px`,
 });
 

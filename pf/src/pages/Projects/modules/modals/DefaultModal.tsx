@@ -63,7 +63,7 @@ export default function DefaultModal({
 
   const shuffledColors = shuffleArray(colors);
 
-  const handleImgModeal = (img: string) => {
+  const handleImgModal = (img: string) => {
     handleImgModalAtom(img);
   };
 
@@ -132,7 +132,9 @@ export default function DefaultModal({
                           right: "1%",
                           bottom: "20%",
                           fontSize: `${
-                            projectModalSizeConverter().font.category - 8
+                            isMobile
+                              ? 8
+                              : projectModalSizeConverter().font.category - 8
                           }px`,
                         }}
                       >
@@ -246,7 +248,7 @@ export default function DefaultModal({
                     css={imgStyle(isMobile)}
                     src={item.img}
                     onClick={() => {
-                      handleImgModeal(item.img);
+                      handleImgModal(item.img);
                     }}
                     alt={item.title}
                   />
@@ -290,7 +292,7 @@ const rightHeader = (gap: number) => ({
   fontFamily: "agro",
   fontSize: "24px",
   color: "white",
-  justifyContent: "center",
+  justifyContent: "flex-start",
 });
 
 const titleStyle = (fontSize: number) => ({
@@ -298,6 +300,7 @@ const titleStyle = (fontSize: number) => ({
   color: "white",
   fontSize: `${fontSize}px`,
   marginBottom: "16px",
+  lineHeight: "36px",
 });
 
 const content = (isMobile: boolean) => ({
@@ -317,6 +320,8 @@ const contentTextBox = (isMobile: boolean) => ({
 const tagBox = {
   display: "flex",
   flexDirection: "row" as const,
+  flexWrap: "wrap" as const,
+  width: "73vw",
   gap: "8px",
 };
 const tagStyle = (
@@ -376,8 +381,8 @@ const imgContent = {
 };
 
 const imgStyle = (isMobile: boolean) => ({
-  width: isMobile ? "327pox" : "400px",
-  height: isMobile ? "112px" : "190px",
+  width: isMobile ? "327px" : "400px",
+  height: isMobile ? "155px" : "190px",
   cursor: "pointer",
   "&:hover": { filter: "brightness(1.2)" },
 });

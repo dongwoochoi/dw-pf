@@ -172,7 +172,7 @@ export default function useMeasurement() {
     }
     return {
       yearFontSize: 24,
-      width: 250,
+      width: 200,
       height: "auto",
       boxHeight: 250,
     };
@@ -367,7 +367,7 @@ export default function useMeasurement() {
     }
     return {
       headerGap: 8,
-      headerMarginBottom: 0,
+      headerMarginBottom: 8,
       font: {
         title: 36,
         boldSize: 16,
