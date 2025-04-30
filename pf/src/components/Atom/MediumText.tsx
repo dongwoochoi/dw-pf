@@ -12,16 +12,16 @@ export default function MediumText({
   size = 20,
   ...props
 }: PropsType) {
-  const { isPc } = useResponsive();
+  const { isPc, isMobile } = useResponsive();
   return (
-    <p css={textStyle(isPc, size)} {...props}>
+    <p css={textStyle(isPc, size, isMobile)} {...props}>
       {children}
     </p>
   );
 }
 
-const textStyle = (isPc: boolean, size: number) => ({
+const textStyle = (isPc: boolean, size: number, isMobile: boolean) => ({
   fontFamily: "agroL",
-  fontSize: isPc ? `${size}px` : `${size - 4}px`,
+  fontSize: isPc ? `${size}px` : isMobile ? `${size - 12}px` : `${size - 4}px`,
   color: "white",
 });

@@ -5,6 +5,7 @@ import LightText from "../../../../components/Atom/LightText";
 import MediumText from "../../../../components/Atom/MediumText";
 import { ImageModalAtom } from "../../../../jotai/Modal/imageModalAtom";
 import useMeasurement from "../../../../hooks/useMeasurement";
+import useResponsive from "../../../../hooks/useResponsive";
 
 interface PropsType {
   oneLineIntroduce: string;
@@ -52,6 +53,7 @@ export default function DefaultModal({
     "#5A6168",
     "#3E4349",
   ];
+  const { isMobile } = useResponsive();
   const { projectModalSizeConverter } = useMeasurement();
   const handleImgModalAtom = useSetAtom(ImageModalAtom);
 
@@ -68,7 +70,9 @@ export default function DefaultModal({
   return (
     <div css={wrapper}>
       <p css={titleStyle(projectModalSizeConverter().font.title)}>{title}</p>
-      <div css={header(projectModalSizeConverter().headerMarginBottom)}>
+      <div
+        css={header(projectModalSizeConverter().headerMarginBottom, isMobile)}
+      >
         <div css={leftHeader(projectModalSizeConverter().headerGap)}>
           <LightText css={{ whiteSpace: "nowrap" }}>한줄 소개</LightText>
           <LightText css={{ whiteSpace: "nowrap" }}>진행상태</LightText>
@@ -84,7 +88,8 @@ export default function DefaultModal({
                   key={item}
                   css={tagStyle(
                     shuffledColors[index],
-                    projectModalSizeConverter().tag
+                    projectModalSizeConverter().tag,
+                    isMobile
                   )}
                 >
                   {item}
@@ -94,28 +99,29 @@ export default function DefaultModal({
           </div>
         </div>
       </div>
-      <div css={content}>
+      <div css={content(isMobile)}>
         <div css={introduce}>
           <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
             소개
           </BorderBottomTitle>
-          <div css={contentTextBox}>
+          <div css={contentTextBox(isMobile)}>
             <LightText>{introducingText}</LightText>
           </div>
         </div>
       </div>
-      <div css={content}>
+      <div css={content(isMobile)}>
         <div css={introduce}>
           <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
             주요 작업 내용
           </BorderBottomTitle>
-          <div css={contentTextBox}>
+          <div css={contentTextBox(isMobile)}>
             {mainFunction.map((item) => {
               return (
                 <div>
                   <div
                     css={categoryStyle(
-                      projectModalSizeConverter().font.category
+                      projectModalSizeConverter().font.category,
+                      isMobile
                     )}
                   >
                     <p>{item.workCategory}</p>
@@ -139,12 +145,18 @@ export default function DefaultModal({
                       marginLeft: "40px",
                       display: "flex",
                       flexDirection: "column",
-                      gap: "8px",
+                      gap: isMobile ? "4px" : "8px",
                     }}
                   >
                     {item.workedContend.map((text) => {
                       if (text === "") {
-                        return <div css={{ marginBottom: "16px" }}>{text}</div>;
+                        return (
+                          <div
+                            css={{ marginBottom: isMobile ? "8px" : "16px" }}
+                          >
+                            {text}
+                          </div>
+                        );
                       }
                       return (
                         <li>
@@ -163,7 +175,7 @@ export default function DefaultModal({
             <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
               트러블 슈팅
             </BorderBottomTitle>
-            <div css={contentTextBox}>
+            <div css={contentTextBox(isMobile)}>
               {troubleShooting?.map((item) => {
                 return (
                   <div
@@ -174,7 +186,8 @@ export default function DefaultModal({
                   >
                     <div
                       css={categoryStyle(
-                        projectModalSizeConverter().font.category
+                        projectModalSizeConverter().font.category,
+                        isMobile
                       )}
                     >
                       {item.title}
@@ -230,7 +243,7 @@ export default function DefaultModal({
               return (
                 <div css={imgContent}>
                   <img
-                    css={imgStyle}
+                    css={imgStyle(isMobile)}
                     src={item.img}
                     onClick={() => {
                       handleImgModeal(item.img);
@@ -251,10 +264,10 @@ export default function DefaultModal({
 }
 
 const wrapper = {};
-const header = (marginBottom: number) => ({
+const header = (marginBottom: number, isMobile: boolean) => ({
   display: "flex",
   flexDirection: "row" as const,
-  gap: "60px",
+  gap: isMobile ? "24px" : "60px",
   paddingBottom: "16px",
   borderBottom: "1px solid #727272",
   marginBottom: `${marginBottom}px`,
@@ -287,19 +300,19 @@ const titleStyle = (fontSize: number) => ({
   marginBottom: "16px",
 });
 
-const content = {
+const content = (isMobile: boolean) => ({
   display: "flex",
   flexDirection: "column" as const,
   gap: "40px",
-  padding: "16px",
-};
+  padding: isMobile ? "4px" : "16px",
+});
 
-const contentTextBox = {
-  padding: "16px",
+const contentTextBox = (isMobile: boolean) => ({
+  padding: isMobile ? "8px" : "16px",
   display: "flex",
   flexDirection: "column" as const,
-  gap: "40px",
-};
+  gap: isMobile ? "16px" : "40px",
+});
 
 const tagBox = {
   display: "flex",
@@ -308,7 +321,8 @@ const tagBox = {
 };
 const tagStyle = (
   color: string,
-  tag: { fontSize: number; padding: number; height: number }
+  tag: { fontSize: number; padding: number; height: number },
+  isMobile: boolean
 ) => ({
   padding: `${tag.padding}px`,
   display: "flex",
@@ -320,12 +334,12 @@ const tagStyle = (
   fontSize: `${tag.fontSize}px`,
   fontFamily: "agroM",
   background: color,
-  borderRadius: "5px",
+  borderRadius: isMobile ? "3px" : "5px",
 });
 
 const introduce = {};
 
-const categoryStyle = (fontSize: number) => ({
+const categoryStyle = (fontSize: number, isMobile: boolean) => ({
   display: "flex",
   flexDirection: "row" as const,
   position: "relative" as const,
@@ -335,7 +349,7 @@ const categoryStyle = (fontSize: number) => ({
   fontWeight: "600",
   padding: "8px",
   background: "#717172",
-  marginBottom: "16px",
+  marginBottom: isMobile ? "8px" : "16px",
   fontFamily: "agroL",
 });
 
@@ -361,12 +375,12 @@ const imgContent = {
   gap: "8px",
 };
 
-const imgStyle = {
-  width: "400px",
-  height: "190px",
+const imgStyle = (isMobile: boolean) => ({
+  width: isMobile ? "327pox" : "400px",
+  height: isMobile ? "112px" : "190px",
   cursor: "pointer",
   "&:hover": { filter: "brightness(1.2)" },
-};
+});
 
 const imgTitle = (size: number) => ({
   color: "white",

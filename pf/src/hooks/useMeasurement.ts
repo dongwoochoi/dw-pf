@@ -151,6 +151,7 @@ export default function useMeasurement() {
         yearFontSize: 40,
         width: 800,
         height: 60,
+        boxHeight: 800,
       };
     }
     if (isLaptop) {
@@ -158,19 +159,22 @@ export default function useMeasurement() {
         yearFontSize: 40,
         width: 800,
         height: 45,
+        boxHeight: 800,
       };
     }
     if (isTablet) {
       return {
         yearFontSize: 24,
         width: 500,
-        height: 25,
+        height: 30,
+        boxHeight: 500,
       };
     }
     return {
       yearFontSize: 24,
       width: 250,
       height: "auto",
+      boxHeight: 250,
     };
   };
 
@@ -278,8 +282,8 @@ export default function useMeasurement() {
       };
     }
     return {
-      title: 32,
-      text: 16,
+      title: 16,
+      text: 10,
       tagPadding: "0px 4px",
     };
   };
@@ -300,12 +304,12 @@ export default function useMeasurement() {
     if (isTablet) {
       return {
         width: 300,
-        hoverHeight: 172.52,
+        hoverHeight: 142.52,
       };
     }
     return {
-      width: 500,
-      hoverHeight: 250,
+      width: 278,
+      hoverHeight: 131.2,
     };
   };
 
@@ -362,18 +366,18 @@ export default function useMeasurement() {
       };
     }
     return {
-      headerGap: 24,
-      headerMarginBottom: 24,
+      headerGap: 8,
+      headerMarginBottom: 0,
       font: {
-        title: 60,
-        boldSize: 36,
-        category: 16,
-        imgTitle: 12,
+        title: 36,
+        boldSize: 16,
+        category: 10,
+        imgTitle: 8,
       },
       tag: {
-        fontSize: 20,
-        padding: 8,
-        height: 22,
+        fontSize: 8,
+        padding: 2,
+        height: 12,
       },
     };
   };

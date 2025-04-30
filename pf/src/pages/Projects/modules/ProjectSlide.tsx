@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css";
 import ProjectCard from "./ProjectCard";
 import { MutableRefObject } from "react";
+import useResponsive from "../../../hooks/useResponsive";
 
 export default function ProjectSlide({
   structure,
@@ -22,10 +23,11 @@ export default function ProjectSlide({
     favicon: string;
   }[];
 }) {
+  const { isMobile } = useResponsive();
   return (
-    <div css={wrapper}>
+    <div css={wrapper(isMobile)}>
       <Swiper
-        css={swiperContainer}
+        css={swiperContainer(isMobile)}
         onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
         spaceBetween={16}
         direction="horizontal"
@@ -33,6 +35,7 @@ export default function ProjectSlide({
           clickable: true,
         }}
         breakpoints={{
+          300: { slidesPerView: 1 },
           600: { slidesPerView: 1.5 },
           900: { slidesPerView: 1.7 },
           1100: { slidesPerView: 2.2 },
@@ -74,16 +77,17 @@ export default function ProjectSlide({
   );
 }
 
-const wrapper = {
+const wrapper = (isMobile: boolean) => ({
   position: "relative" as const,
   display: "flex",
   overflow: "visible",
   flexDirection: "row" as const,
   alignItems: "center",
-};
+  justifyContent: isMobile ? "center" : "",
+});
 
-const swiperContainer = {
+const swiperContainer = (isMobile: boolean) => ({
   width: "100%",
-  height: "550px",
+  height: isMobile ? "310px" : "550px",
   maxWidth: "2400px",
-};
+});

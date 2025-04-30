@@ -32,7 +32,7 @@ const wrapper = {
   boxSizing: "border-box" as const,
   width: "85%",
   maxWidth: "1400px",
-  height: "800px",
+  height: "auto",
 };
 
 const titleTextStyle = {

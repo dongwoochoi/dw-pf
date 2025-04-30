@@ -4,6 +4,7 @@ import { useState } from "react";
 import useProjectModal from "../../../hooks/useProjectModal";
 import { PROJECT_MODAL_STRUCTURE } from "../structure";
 import useMeasurement from "../../../hooks/useMeasurement";
+import useResponsive from "../../../hooks/useResponsive";
 
 interface PropsType {
   title: string;
@@ -20,6 +21,7 @@ export default function ProjectCard({
   tag,
   img,
 }: PropsType) {
+  const { isMobile } = useResponsive();
   const { projectSizeConverter, projectFontSizeConverter } = useMeasurement();
   const [isHover, setIsHover] = useState<boolean>(false);
   const { setProjectModal } = useProjectModal();
@@ -29,14 +31,18 @@ export default function ProjectCard({
 
   return (
     <div
-      onMouseEnter={() => setIsHover(true)}
-      onPointerLeave={() => setIsHover(false)}
+      css={{
+        width: projectSizeConverter().width,
+        height: projectSizeConverter().width,
+      }}
+      onMouseEnter={isMobile ? () => {} : () => setIsHover(true)}
+      onPointerLeave={isMobile ? () => {} : () => setIsHover(false)}
     >
       <div
         css={hoverSection(
           isHover,
           projectSizeConverter().width,
-          projectSizeConverter().hoverHeight
+          projectSizeConverter().hoverHeight + 5
         )}
       >
         <p css={hoverTitle(projectFontSizeConverter().title)}>{title}</p>
@@ -45,7 +51,12 @@ export default function ProjectCard({
 
       <div css={wrapper(projectSizeConverter().width)}>
         <div
-          css={imgSection(img, isHover, projectSizeConverter().width)}
+          css={imgSection(
+            img,
+            isHover,
+            projectSizeConverter().width,
+            projectSizeConverter().hoverHeight
+          )}
           onClick={() => {
             setProjectModal(modalJSX);
           }}
@@ -88,11 +99,17 @@ const wrapper = (width: number) => ({
   borderRadius: "5px",
   background: "#4B4B4B",
   boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+  boxSizing: "border-box" as const,
 });
 
-const imgSection = (img: string, isHover: boolean, width: number) => ({
+const imgSection = (
+  img: string,
+  isHover: boolean,
+  width: number,
+  height: number
+) => ({
   width: `${width - 8}px`,
-  height: "250px",
+  minHeight: `${height}px`,
   backgroundImage: `url(${img})`,
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
@@ -101,7 +118,7 @@ const imgSection = (img: string, isHover: boolean, width: number) => ({
 });
 
 const explainSection = {
-  height: "250px",
+  height: "50%",
   display: "flex",
   flexDirection: "column" as const,
   justifyContent: "space-around",

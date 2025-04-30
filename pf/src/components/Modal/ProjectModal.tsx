@@ -5,8 +5,10 @@ import Modal from "../Modal";
 import { icons } from "../../assets/icon";
 import { useEffect, useRef } from "react";
 import { modalDepthAtom } from "../../jotai/modalDepthAtom";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function ProjectModal() {
+  const { isMobile } = useResponsive();
   const [alertContent, handleModal] = useAtom(ProjectModalAtom);
   const modalRef = useRef<any>(null);
   const [depth, setDepth] = useAtom(modalDepthAtom);
@@ -34,8 +36,13 @@ export default function ProjectModal() {
 
   return (
     <Modal open={!!alertContent}>
-      <section css={wrapper} ref={modalRef}>
-        <img css={closeBtn} src={icons.x} onClick={handleClose} alt="close" />
+      <section css={wrapper(isMobile)} ref={modalRef}>
+        <img
+          css={closeBtn(isMobile)}
+          src={icons.x}
+          onClick={handleClose}
+          alt="close"
+        />
         <div css={topWrapper}>
           <div css={styledContent}>
             <span>{alertContent}</span>
@@ -46,11 +53,11 @@ export default function ProjectModal() {
   );
 }
 
-const wrapper = {
+const wrapper = (isMobile: boolean) => ({
   position: "relative" as const,
-  width: `80vw`,
-  height: `80vh`,
-  padding: "40px",
+  width: isMobile ? "100vw" : `80vw`,
+  height: isMobile ? "100vh" : `80vh`,
+  padding: isMobile ? "16px" : "40px",
   background: "#2c2c2c",
   borderRadius: "5px",
   boxShadow: "0px 2px 6px 2px #00000026",
@@ -69,7 +76,7 @@ const wrapper = {
   "&::-webkit-scrollbar-track:": {
     backgroundColor: "transparent",
   },
-};
+});
 
 const topWrapper = {
   display: "flex",
@@ -85,14 +92,14 @@ const styledContent = {
   wordBreak: "keep-all" as const,
 };
 
-const closeBtn = {
-  width: "48px",
-  height: "48px",
+const closeBtn = (isMobile: boolean) => ({
+  width: isMobile ? "24px" : "48px",
+  height: isMobile ? "24px" : "48px",
   position: "sticky" as const,
-  top: "-0%",
+  top: "0%",
   left: "95%",
   cursor: "pointer",
   background: "#BFBFBF",
   borderRadius: "24px",
   zIndex: 999,
-};
+});

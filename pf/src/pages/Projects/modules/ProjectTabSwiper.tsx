@@ -8,8 +8,10 @@ import ProjectSlide from "./ProjectSlide";
 import { MAIN_PROJECT_STRUCTURE, SUB_PROJECT_STRUCTURE } from "../structure";
 import { icons } from "../../../assets/icon";
 import useMeasurement from "../../../hooks/useMeasurement";
+import useResponsive from "../../../hooks/useResponsive";
 
 const ProjectTabSwiper = () => {
+  const { isMobile } = useResponsive();
   const { swiperSizeConverter } = useMeasurement();
   const swiperRef = useRef<SwiperClass | null>(null);
   const projectSwiperRef1 = useRef<any>(null);
@@ -45,18 +47,21 @@ const ProjectTabSwiper = () => {
           alignItems: "center",
         }}
       >
-        <img
-          css={sliderNavigationLeft}
-          src={icons.arrowLeft}
-          onClick={() =>
-            currentIndex === 0
-              ? projectSwiperRef1.current?.slidePrev()
-              : projectSwiperRef2.current?.slidePrev()
-          }
-          alt="leftArrow"
-        />
+        {isMobile ? null : (
+          <img
+            css={sliderNavigationLeft}
+            src={icons.arrowLeft}
+            onClick={() =>
+              currentIndex === 0
+                ? projectSwiperRef1.current?.slidePrev()
+                : projectSwiperRef2.current?.slidePrev()
+            }
+            alt="leftArrow"
+          />
+        )}
+
         <Swiper
-          css={swiperContainer}
+          css={swiperContainer(isMobile)}
           onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
           allowTouchMove={false}
           spaceBetween={50}
@@ -76,16 +81,18 @@ const ProjectTabSwiper = () => {
             />
           </SwiperSlide>
         </Swiper>
-        <img
-          css={sliderNavigationRight}
-          src={icons.arrowRight}
-          onClick={() =>
-            currentIndex === 0
-              ? projectSwiperRef1.current?.slideNext()
-              : projectSwiperRef2.current?.slideNext()
-          }
-          alt="rightArrow"
-        />
+        {isMobile ? null : (
+          <img
+            css={sliderNavigationRight}
+            src={icons.arrowRight}
+            onClick={() =>
+              currentIndex === 0
+                ? projectSwiperRef1.current?.slideNext()
+                : projectSwiperRef2.current?.slideNext()
+            }
+            alt="rightArrow"
+          />
+        )}
       </div>
       <Global
         styles={css`
@@ -108,11 +115,11 @@ const wrapper = {
   width: "100%",
 };
 
-const swiperContainer = {
+const swiperContainer = (isMobile: boolean) => ({
   width: "100%",
-  height: "550px",
-  minWidth: "400px",
-};
+  height: isMobile ? "310px" : "550px",
+  minWidth: isMobile ? "278px" : "400px",
+});
 
 const btnBox = {
   display: "flex",

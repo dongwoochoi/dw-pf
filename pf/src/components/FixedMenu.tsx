@@ -4,8 +4,10 @@ import { icons } from "../assets/icon";
 import useFixedMenu from "../hooks/useFixedMenu";
 import { Tooltip } from "react-tooltip";
 import useMeasurement from "../hooks/useMeasurement";
+import useResponsive from "../hooks/useResponsive";
 
 export default function FixedMenu() {
+  const { isMobile } = useResponsive();
   const { fixedMenuTransfer } = useMeasurement();
   const responsiveValue = fixedMenuTransfer();
 
@@ -50,7 +52,7 @@ export default function FixedMenu() {
   };
 
   return (
-    <div css={wrapper}>
+    <div css={wrapper(isMobile)}>
       <div css={iconBox(responsiveValue.size)} onClick={handleOpen}>
         <img
           css={icon(responsiveValue.icon)}
@@ -107,14 +109,15 @@ export default function FixedMenu() {
   );
 }
 
-const wrapper = {
+const wrapper = (isMobile: boolean) => ({
   position: "fixed" as const,
   display: "flex",
   flexDirection: "column" as const,
   gap: "12px",
-  bottom: "40px",
-  right: "40px",
-};
+  bottom: isMobile ? "16px" : "40px",
+  right: isMobile ? "16px" : "40px",
+  zIndex: "999",
+});
 
 const iconBox = (size: number) => ({
   display: "flex",

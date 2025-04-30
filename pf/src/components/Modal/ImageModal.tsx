@@ -5,8 +5,10 @@ import Modal from "../Modal";
 import { icons } from "../../assets/icon";
 import { useEffect, useRef } from "react";
 import { modalDepthAtom } from "../../jotai/modalDepthAtom";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function ImageModal() {
+  const { isMobile } = useResponsive();
   const [alertContent, handleModal] = useAtom(ImageModalAtom);
   const imgModalRef = useRef<any>(null);
   const [depth, setDepth] = useAtom(modalDepthAtom);
@@ -36,8 +38,13 @@ export default function ImageModal() {
   return (
     <Modal open={!!alertContent}>
       <section css={wrapper} ref={imgModalRef}>
-        <div css={closeBackground}>
-          <img css={closeBtn} src={icons.x} onClick={handleClose} alt="close" />
+        <div css={closeBackground(isMobile)}>
+          <img
+            css={closeBtn(isMobile)}
+            src={icons.x}
+            onClick={handleClose}
+            alt="close"
+          />
         </div>
         <div css={topWrapper}>
           <div css={styledContent}>
@@ -71,22 +78,22 @@ const styledContent = {
   wordBreak: "keep-all" as const,
 };
 
-const closeBtn = {
-  width: "48px",
-  height: "48px",
-};
+const closeBtn = (isMobile: boolean) => ({
+  width: isMobile ? "24px" : "48px",
+  height: isMobile ? "24px" : "48px",
+});
 
-const closeBackground = {
+const closeBackground = (isMobile: boolean) => ({
   position: "absolute" as const,
   cursor: "pointer",
-  top: "60px",
-  right: "60px",
+  top: "12px",
+  right: "36px",
   zIndex: "5",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: "52px",
-  height: "52px",
+  width: isMobile ? "24px" : "52px",
+  height: isMobile ? "24px" : "52px",
   background: "#6B6B6B",
   borderRadius: "50px",
-};
+});
