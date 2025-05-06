@@ -63,9 +63,7 @@ export const SUB_PROJECT_STRUCTURE = [
   {
     title: "Idea Connection",
     team: "GDSC (Google Developer Student Club)",
-    text: `"좋은 아이디어는 어디에서나 나올 수 있다” 라는 슬로건으로 
-            누구나 만들어낸 아이디어를 등록해 여유있는 자본을 가진 기업/기관/사업가/투자자와 매칭해 
-            실사용이 이루어 질 수 있게 하는 서비스`,
+    text: `아이디어와 자본을 연결해 실현을 돕는 플랫폼`,
     tag: ["React", "GCP", "Google_oauth_API", "Google_transfet_API"],
     img: Projects.ideaConection,
     favicon: "",

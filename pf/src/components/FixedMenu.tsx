@@ -130,6 +130,7 @@ const iconBox = (size: number) => ({
   padding: "8px",
   cursor: "pointer",
   "&:hover": { background: "#CFCFCF", scale: "1.1", transition: "0.3s" },
+  boxShadow: "0px 2px 6px 2px #00000026",
 });
 
 const icon = (size: number) => ({

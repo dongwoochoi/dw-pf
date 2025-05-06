@@ -58,6 +58,7 @@ const wrapper = (margin: string, top: number) => ({
   height: "100%",
   background: "#393939",
   borderRadius: "15px",
+  boxShadow: "0px 2px 6px 2px #00000026",
 });
 
 const menuBorder = (paddingValue: number) => ({

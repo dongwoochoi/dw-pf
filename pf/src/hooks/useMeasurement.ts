@@ -265,6 +265,7 @@ export default function useMeasurement() {
         title: 32,
         text: 16,
         tagPadding: "0px 4px",
+        lineHeight: "18px",
       };
     }
     if (isLaptop) {
@@ -272,6 +273,7 @@ export default function useMeasurement() {
         title: 28,
         text: 12,
         tagPadding: "0px 4px",
+        lineHeight: "14px",
       };
     }
     if (isTablet) {
@@ -279,12 +281,14 @@ export default function useMeasurement() {
         title: 24,
         text: 10,
         tagPadding: "0px 4px",
+        lineHeight: "12px",
       };
     }
     return {
       title: 16,
       text: 10,
       tagPadding: "0px 4px",
+      lineHeight: "12px",
     };
   };
 
@@ -407,9 +411,9 @@ export default function useMeasurement() {
       };
     }
     return {
-      width: 300,
-      height: 360,
-      fontSize: 60,
+      width: 150,
+      height: 190,
+      fontSize: 36,
     };
   };
 

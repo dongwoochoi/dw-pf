@@ -67,7 +67,14 @@ export default function ProjectCard({
             <p
               css={teamStyle(projectFontSizeConverter().text)}
             >{`at ${team}`}</p>
-            <p css={textStyle(projectFontSizeConverter().text)}>{text}</p>
+            <p
+              css={textStyle(
+                projectFontSizeConverter().text,
+                projectFontSizeConverter().lineHeight
+              )}
+            >
+              {text}
+            </p>
           </div>
           <div css={tagBox}>
             {tag.map((item) => {
@@ -187,6 +194,7 @@ const hoverTitle = (fontSize: number) => ({
   textAlign: "center" as const,
 });
 
-const textStyle = (fontSize: number) => ({
+const textStyle = (fontSize: number, lineHeight: string) => ({
   fontSize: `${fontSize}px`,
+  lineHeight,
 });
