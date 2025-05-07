@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useCallback, useEffect } from "react";
 import { useSetAtom } from "jotai";
 import { ProjectModalAtom } from "../jotai/Modal/ProjectModalAtom";

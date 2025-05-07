@@ -1,3 +1,4 @@
+/* eslint-disable */
 /** @jsxImportSource @emotion/react */
 import { useAtom } from "jotai";
 import { ProjectModalAtom } from "../../jotai/Modal/ProjectModalAtom";

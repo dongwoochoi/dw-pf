@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import useMeasurement from "../../hooks/useMeasurement";
 import { BaseTypes } from "../../types/common";
 
 interface PropsType extends BaseTypes {

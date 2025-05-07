@@ -2,7 +2,6 @@
 import { EmotionJSX } from "@emotion/react/dist/declarations/src/jsx-namespace";
 import SideBar from "./SideBar";
 import useMeasurement from "../hooks/useMeasurement";
-import MSideBar from "./MSideBar";
 import useResponsive from "../hooks/useResponsive";
 
 interface PropsType {
