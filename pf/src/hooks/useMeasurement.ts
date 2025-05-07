@@ -151,7 +151,7 @@ export default function useMeasurement() {
         yearFontSize: 40,
         width: 800,
         height: 60,
-        boxHeight: 800,
+        boxHeight: 400,
       };
     }
     if (isLaptop) {
@@ -159,22 +159,22 @@ export default function useMeasurement() {
         yearFontSize: 40,
         width: 800,
         height: 45,
-        boxHeight: 800,
+        boxHeight: 300,
       };
     }
     if (isTablet) {
       return {
-        yearFontSize: 24,
+        yearFontSize: 28,
         width: 500,
-        height: 30,
-        boxHeight: 500,
+        height: 38,
+        boxHeight: 250,
       };
     }
     return {
       yearFontSize: 24,
       width: 200,
       height: "auto",
-      boxHeight: 250,
+      boxHeight: 300,
     };
   };
 
@@ -196,7 +196,7 @@ export default function useMeasurement() {
       };
     }
     return {
-      height: 250,
+      height: 300,
     };
   };
 

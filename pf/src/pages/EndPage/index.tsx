@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { endPageImg } from "../../assets/img";
 import useMeasurement from "../../hooks/useMeasurement";
+import FadeComponent from "../../components/FadeComponent";
 
 export default function EndPage() {
   const { endSizeConverter } = useMeasurement();
@@ -18,25 +19,33 @@ export default function EndPage() {
 
   return (
     <div css={wrapper}>
-      <img
-        css={imgStyle(endSizeConverter().width, endSizeConverter().height)}
-        src={showFirst ? endPageImg.bye1 : endPageImg.bye2}
-        alt="toggle"
-      />
-
-      <p css={titleTextStyle(endSizeConverter().fontSize)}>Thank You!</p>
+      <FadeComponent>
+        <div css={layout}>
+          {" "}
+          <img
+            css={imgStyle(endSizeConverter().width, endSizeConverter().height)}
+            src={showFirst ? endPageImg.bye1 : endPageImg.bye2}
+            alt="toggle"
+          />
+          <p css={titleTextStyle(endSizeConverter().fontSize)}>Thank You!</p>
+        </div>
+      </FadeComponent>
     </div>
   );
 }
 
 const wrapper = {
+  width: "100%",
+
+  background: "white",
+};
+
+const layout = {
   display: "flex",
   flexDirection: "column" as const,
-  width: "100%",
   height: "100vh",
   alignItems: "center",
   justifyContent: "center",
-  background: "white",
 };
 
 const titleTextStyle = (fontSize: number) => ({

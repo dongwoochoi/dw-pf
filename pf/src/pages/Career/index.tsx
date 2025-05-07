@@ -10,6 +10,7 @@ import { css, Global } from "@emotion/react";
 import useMeasurement from "../../hooks/useMeasurement";
 import BoldText from "../../components/Atom/BoldText";
 import useResponsive from "../../hooks/useResponsive";
+import FadeComponent from "../../components/FadeComponent";
 
 export default function Career() {
   const { isMobile } = useResponsive();
@@ -33,142 +34,146 @@ export default function Career() {
   };
   const swiperRef = useRef<any>(null);
   return (
-    <div css={wrapper} ref={ref} id="career" key="career">
-      <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
-        Career
-      </BoldText>
-      <div css={row}>
-        <div css={yearTab(isMobile)}>
-          {YEARS_STRUCTURE.map((item, i) => {
-            return (
-              <div
-                css={yearStyle(
-                  selectedYear === item,
-                  careerSizeConverter().yearFontSize,
-                  isMobile
-                )}
-                key={item}
-                onClick={() => {
-                  handleYear(item);
-                  handleTabClick(i);
-                }}
-              >
-                {item}
-              </div>
-            );
-          })}
-        </div>
-        <div css={careerBox(careerSizeConverter().boxHeight, isMobile)}>
-          <Swiper
-            onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
-            spaceBetween={50}
-            slidesPerView={1}
-            direction="vertical"
-            allowTouchMove={false}
-          >
-            {YEARS_STRUCTURE.map((item) => {
+    <FadeComponent>
+      <div css={wrapper} ref={ref} id="career" key="career">
+        <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
+          Career
+        </BoldText>
+        <div css={row}>
+          <div css={yearTab(isMobile)}>
+            {YEARS_STRUCTURE.map((item, i) => {
               return (
-                <SwiperSlide>
-                  {CAREER_STRUCTURE.filter(
-                    (item) => item.year === selectedYear
-                  ).map((value) => {
-                    const isOpen = clickedCareer.includes(value.title);
-                    const { width, height } = convertValue;
-                    return (
-                      <div key={value.title}>
-                        {isMobile ? (
-                          <div
-                            css={careerStyle(width, height, isMobile)}
-                            onClick={() => {
-                              handleClick(value.title);
-                            }}
-                          >
-                            <div>
-                              {/* <BoldText size={fontSizeTransfer(20)}>
-                                {value.period}
-                              </BoldText> */}
-                              <BoldText size={fontSizeTransfer(18)}>
-                                {`${value.title}`}
-                              </BoldText>
-                            </div>
-                            <BoldText size={fontSizeTransfer(18)}>
-                              {value.category}
-                            </BoldText>
-                          </div>
-                        ) : (
-                          <div
-                            css={careerStyle(width, height)}
-                            onClick={() => {
-                              handleClick(value.title);
-                            }}
-                          >
-                            <BoldText
-                              size={fontSizeTransfer(20)}
-                            >{`${value.period}  |  ${value.title}`}</BoldText>
-                            <BoldText size={fontSizeTransfer(20)}>
-                              {value.category}
-                            </BoldText>
-                          </div>
-                        )}
-
-                        <div
-                          css={{
-                            display: isOpen ? "flex" : "none",
-                            alignItems: "center",
-                            margin: "4px 0",
-                          }}
-                        >
-                          <li
-                            css={{
-                              color: "white",
-                              fontSize: `${fontSizeTransfer(20)}px`,
-                            }}
-                          ></li>
-                          <div
-                            css={explainStyle(
-                              isOpen,
-                              fontSizeTransfer(18),
-                              width,
-                              height
-                            )}
-                          >
-                            <p>{isMobile ? value.period : ""}</p>
-                            <p>
-                              {isMobile ? `| ${value.explain}` : value.explain}
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          css={{
-                            marginBottom: "16px",
-                            width: "1px",
-                            height: "1px",
-                          }}
-                        ></div>
-                      </div>
-                    );
-                  })}
-                </SwiperSlide>
+                <div
+                  css={yearStyle(
+                    selectedYear === item,
+                    careerSizeConverter().yearFontSize,
+                    isMobile
+                  )}
+                  key={item}
+                  onClick={() => {
+                    handleYear(item);
+                    handleTabClick(i);
+                  }}
+                >
+                  {item}
+                </div>
               );
             })}
-          </Swiper>
-          <Global
-            styles={css`
-              .swiper {
-                list-style: disc;
-              }
-            `}
-          />
+          </div>
+          <div css={careerBox(careerSizeConverter().boxHeight, isMobile)}>
+            <Swiper
+              onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
+              spaceBetween={50}
+              slidesPerView={1}
+              direction="vertical"
+              allowTouchMove={false}
+            >
+              {YEARS_STRUCTURE.map((item) => {
+                return (
+                  <SwiperSlide>
+                    {CAREER_STRUCTURE.filter(
+                      (item) => item.year === selectedYear
+                    ).map((value) => {
+                      const isOpen = clickedCareer.includes(value.title);
+                      const { width, height } = convertValue;
+                      return (
+                        <div key={value.title}>
+                          {isMobile ? (
+                            <div
+                              css={careerStyle(width, height, isMobile)}
+                              onClick={() => {
+                                handleClick(value.title);
+                              }}
+                            >
+                              <div>
+                                {/* <BoldText size={fontSizeTransfer(20)}>
+                                    {value.period}
+                                  </BoldText> */}
+                                <BoldText size={fontSizeTransfer(18)}>
+                                  {`${value.title}`}
+                                </BoldText>
+                              </div>
+                              <BoldText size={fontSizeTransfer(18)}>
+                                {value.category}
+                              </BoldText>
+                            </div>
+                          ) : (
+                            <div
+                              css={careerStyle(width, height)}
+                              onClick={() => {
+                                handleClick(value.title);
+                              }}
+                            >
+                              <BoldText
+                                size={fontSizeTransfer(20)}
+                              >{`${value.period}  |  ${value.title}`}</BoldText>
+                              <BoldText size={fontSizeTransfer(20)}>
+                                {value.category}
+                              </BoldText>
+                            </div>
+                          )}
+
+                          <div
+                            css={{
+                              display: isOpen ? "flex" : "none",
+                              alignItems: "center",
+                              margin: "4px 0",
+                            }}
+                          >
+                            <li
+                              css={{
+                                color: "white",
+                                fontSize: `${fontSizeTransfer(20)}px`,
+                              }}
+                            ></li>
+                            <div
+                              css={explainStyle(
+                                isOpen,
+                                fontSizeTransfer(18),
+                                width,
+                                height
+                              )}
+                            >
+                              <p>{isMobile ? value.period : ""}</p>
+                              <p>
+                                {isMobile
+                                  ? `| ${value.explain}`
+                                  : value.explain}
+                              </p>
+                            </div>
+                          </div>
+                          <div
+                            css={{
+                              marginBottom: "16px",
+                              width: "1px",
+                              height: "1px",
+                            }}
+                          ></div>
+                        </div>
+                      );
+                    })}
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <Global
+              styles={css`
+                .swiper {
+                  list-style: disc;
+                }
+              `}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </FadeComponent>
   );
 }
 
 const wrapper = {
   display: "flex",
   flexDirection: "column" as const,
-  width: "85%",
+  width: "75vw",
   maxWidth: "1400px",
   height: "auto",
   alignItems: "center",
@@ -207,7 +212,7 @@ const yearTab = (isMobile: boolean) => ({
 
 const careerBox = (height: number, isMobile: boolean) => ({
   display: "flex",
-  width: isMobile ? "200px" : "auto",
+  width: isMobile ? "50vw" : "auto",
   height: `${height}px`,
 });
 
@@ -220,7 +225,7 @@ const careerStyle = (
   flexDirection: isMobile ? ("row" as const) : ("row" as const),
   justifyContent: "space-between",
   alignItems: "center",
-  width: `${width}px`,
+  width: `50vw`,
   height: typeof height === "string" ? height : `${height}px`,
   background: "#4B4B4B",
   padding: "8px 16px",
@@ -237,7 +242,7 @@ const explainStyle = (
   width: number,
   height: number | string
 ) => ({
-  width: `${width}px`,
+  width: `50vw`,
   minHeight: typeof height === "string" ? height : `${height}px`,
   background: "#4B4B4B",
   padding: "8px 16px",

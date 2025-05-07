@@ -5,6 +5,7 @@ import { refAtom } from "../../jotai/refAtom";
 import ProjectTabSwiper from "./modules/ProjectTabSwiper";
 import BoldText from "../../components/Atom/BoldText";
 import useMeasurement from "../../hooks/useMeasurement";
+import FadeComponent from "../../components/FadeComponent";
 
 export default function Projects() {
   const { titleFontSizeTransfer } = useMeasurement();
@@ -22,7 +23,9 @@ export default function Projects() {
       <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
         Projects
       </BoldText>
-      <ProjectTabSwiper />
+      <FadeComponent>
+        <ProjectTabSwiper />
+      </FadeComponent>
     </div>
   );
 }
