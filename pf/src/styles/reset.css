@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+@media (min-width: 360px) and (max-width: 599px) {
+  * {
+    line-height: 12px;
+  }
+}
+
+/* 600px ~ 1152px */
+@media (min-width: 600px) and (max-width: 1152px) {
+  * {
+    line-height: 18px;
+  }
+}
+
+/* 1153px ~ 1599px */
+@media (min-width: 1153px) and (max-width: 1599px) {
+  * {
+    line-height: 24px;
+  }
+}
+
+/* 1600px 이상 */
+@media (min-width: 1600px) {
+  * {
+    line-height: 36px;
+  }
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+:root {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-wrap: break-word;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+html,
+body {
+  scrollbar-width: none;
+  height: 100%;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  line-height: inherit;
+  word-break: keep-all;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button,
+input {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: 0;
+  outline: 0;
+}
+
+button,
+textarea,
+input:disabled {
+  background-color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+textarea {
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.Toastify__toast {
+  padding: 0 !important;
+}
