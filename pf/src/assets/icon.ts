@@ -1,4 +1,4 @@
-import arrowUp from "/Users/dong99woo/My_Dev/portfolio/pf/src/assets/icons/arrow_up.png";
+import arrowUp from "./icons/arrow_up.png";
 import mail from "./icons/mail.png";
 import spec from "./icons/spec.png";
 import kebabMenu from "./icons/kebabMenu.png";
