@@ -5,12 +5,14 @@ import useFixedMenu from "../hooks/useFixedMenu";
 import { Tooltip } from "react-tooltip";
 import useMeasurement from "../hooks/useMeasurement";
 import useResponsive from "../hooks/useResponsive";
+import { useAtom } from "jotai";
+import { introduceAtom } from "../jotai/Modal/introduceModalAtom";
 
 export default function FixedMenu() {
   const { isMobile } = useResponsive();
   const { fixedMenuTransfer } = useMeasurement();
   const responsiveValue = fixedMenuTransfer();
-
+  const [isModalOpen, handleModalOpen] = useAtom(introduceAtom);
   const { isOpen, handleOpen } = useFixedMenu();
   const toastMessage = () => {
     toast(
@@ -76,6 +78,9 @@ export default function FixedMenu() {
       </div>
       <div
         css={iconButton(isOpen, responsiveValue.gap, 0, responsiveValue.size)}
+        onClick={() => {
+          handleModalOpen(!isModalOpen);
+        }}
         data-tooltip-id="dropdown-tooltip"
         data-tooltip-content="페이지 정보"
         data-tooltip-variant="light"

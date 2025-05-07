@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import FixedMenu from "./components/FixedMenu";
 import ImageModal from "./components/Modal/ImageModal";
+import IntroduceModal from "./components/Modal/IntroduceModal";
 import ProjectModal from "./components/Modal/ProjectModal";
 import ScrollLayout from "./components/ScrollLayout";
 import useResponsive from "./hooks/useResponsive";
@@ -34,6 +35,7 @@ function App() {
       <FixedMenu />
       <ProjectModal />
       <ImageModal />
+      <IntroduceModal />
     </div>
   );
 }
