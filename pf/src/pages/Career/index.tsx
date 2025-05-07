@@ -33,7 +33,7 @@ export default function Career() {
   };
   const swiperRef = useRef<any>(null);
   return (
-    <div css={wrapper} ref={ref} id="career">
+    <div css={wrapper} ref={ref} id="career" key="career">
       <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
         Career
       </BoldText>
@@ -84,14 +84,14 @@ export default function Career() {
                             }}
                           >
                             <div>
-                              <BoldText size={fontSizeTransfer(20)}>
+                              {/* <BoldText size={fontSizeTransfer(20)}>
                                 {value.period}
-                              </BoldText>
-                              <BoldText size={fontSizeTransfer(20)}>
-                                {`| ${value.title}`}
+                              </BoldText> */}
+                              <BoldText size={fontSizeTransfer(18)}>
+                                {`${value.title}`}
                               </BoldText>
                             </div>
-                            <BoldText size={fontSizeTransfer(20)}>
+                            <BoldText size={fontSizeTransfer(18)}>
                               {value.category}
                             </BoldText>
                           </div>
@@ -127,12 +127,15 @@ export default function Career() {
                           <div
                             css={explainStyle(
                               isOpen,
-                              fontSizeTransfer(20),
+                              fontSizeTransfer(18),
                               width,
                               height
                             )}
                           >
-                            {value.explain}
+                            <p>{isMobile ? value.period : ""}</p>
+                            <p>
+                              {isMobile ? `| ${value.explain}` : value.explain}
+                            </p>
                           </div>
                         </div>
                         <div

@@ -101,7 +101,7 @@ const ProjectTabSwiper = () => {
           }
           .css-s2udyd {
             flex-wrap: wrap;
-            height: 100%;
+
             align-items: center;
             justify-content: center;
           }

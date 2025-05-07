@@ -117,7 +117,7 @@ export default function DefaultModal({
           <div css={contentTextBox(isMobile)}>
             {mainFunction.map((item) => {
               return (
-                <div>
+                <div key={item.workCategory}>
                   <div
                     css={categoryStyle(
                       projectModalSizeConverter().font.category,

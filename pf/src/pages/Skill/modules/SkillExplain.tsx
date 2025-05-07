@@ -21,7 +21,7 @@ export default function SkillExport() {
       <ul css={textContent(isMobile)}>
         {skillExplain?.map((item) => {
           return (
-            <div css={{ display: "flex" }}>
+            <div css={{ display: "flex" }} key={item}>
               <li></li>
               <p css={text(fontSizeTransfer(20))}>{item}</p>
             </div>
