@@ -137,7 +137,6 @@ const titleTextStyle = {
 
 const row = (isMobile: boolean) => ({
   width: "100%",
-  // height: "600px",
   marginTop: "40px",
   display: "flex",
   flexDirection: isMobile ? ("column" as const) : ("row" as const),

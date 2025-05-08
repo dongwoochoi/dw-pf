@@ -33,8 +33,6 @@ code {
 }
 
 li {
-  text-indent: -1.5em; /* 마커 위치 기준으로 들여쓰기 */
-  padding-left: 1.5em; /* 전체 들여쓰기 */
   color: white;
   /* list-style-position: outside;
   display: flex;
