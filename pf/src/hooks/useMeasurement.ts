@@ -1,7 +1,7 @@
 import useResponsive from "./useResponsive";
 
 export default function useMeasurement() {
-  const { isPc, isLaptop, isTablet } = useResponsive();
+  const { isPc, isLaptop, isTablet, isMobile } = useResponsive();
 
   // -------------------------- 공용 부분 --------------------------
   const fontSizeTransfer = (size: number) => {
@@ -148,33 +148,74 @@ export default function useMeasurement() {
   const careerSizeConverter = () => {
     if (isPc) {
       return {
+        gap: 80,
+        boxWidth: 650,
         yearFontSize: 40,
         width: 800,
         height: 60,
-        boxHeight: 400,
+        boxHeight: 750,
       };
     }
     if (isLaptop) {
       return {
+        gap: 60,
+        boxWidth: 550,
         yearFontSize: 40,
         width: 800,
         height: 45,
-        boxHeight: 300,
+        boxHeight: 580,
       };
     }
     if (isTablet) {
       return {
+        gap: 60,
+        boxWidth: 400,
         yearFontSize: 28,
         width: 500,
         height: 38,
-        boxHeight: 250,
+        boxHeight: 550,
       };
     }
     return {
+      gap: 40,
+      boxWidth: 280,
       yearFontSize: 24,
       width: 200,
       height: "auto",
-      boxHeight: 300,
+      boxHeight: 350,
+    };
+  };
+
+  const careerFontSizeConverter = () => {
+    if (isPc) {
+      return {
+        periodFontSize: 24,
+        headFontSize: 36,
+        subFontSize: 24,
+        liFontSize: 20,
+      };
+    }
+    if (isLaptop) {
+      return {
+        periodFontSize: 18,
+        headFontSize: 32,
+        subFontSize: 18,
+        liFontSize: 14,
+      };
+    }
+    if (isTablet) {
+      return {
+        periodFontSize: 16,
+        headFontSize: 26,
+        subFontSize: 16,
+        liFontSize: 12,
+      };
+    }
+    return {
+      periodFontSize: 12,
+      headFontSize: 20,
+      subFontSize: 12,
+      liFontSize: 10,
     };
   };
 
@@ -254,7 +295,7 @@ export default function useMeasurement() {
       };
     }
     return {
-      width: 300,
+      width: 280,
     };
   };
 
@@ -418,6 +459,7 @@ export default function useMeasurement() {
   };
 
   return {
+    isMobile,
     titleFontSizeTransfer,
     fontSizeTransfer,
     sideBarWidth,
@@ -428,6 +470,7 @@ export default function useMeasurement() {
     aboutMainGapSizeConverter,
     sideBarTopTransfer,
     careerSizeConverter,
+    careerFontSizeConverter,
     swiperSizeConverter,
     explainSizeConverter,
     skillSizeConverter,
