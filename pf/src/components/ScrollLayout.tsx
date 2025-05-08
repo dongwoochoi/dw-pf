@@ -37,5 +37,5 @@ const content = (sidebarWidth: number, isMobile: boolean) => ({
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "center" as const,
-  gap: "40px",
+  gap: isMobile ? "40px" : "100px",
 });

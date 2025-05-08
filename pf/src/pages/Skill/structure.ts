@@ -131,7 +131,7 @@ export const SKILL_EXPLAIN_STRUECTURE = [
   },
   {
     id: "Discord",
-    text: ["Discord를 통한 일정관리 및 소통을 하며 협업한 경헙이 있습니다."],
+    text: ["Discord를 통한 일정관리 및 협업 경험이 있습니다."],
   },
   {
     id: "Slack",

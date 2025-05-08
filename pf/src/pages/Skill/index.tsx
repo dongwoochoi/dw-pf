@@ -7,6 +7,7 @@ import SkillExport from "./modules/SkillExplain";
 import BoldText from "../../components/Atom/BoldText";
 import useMeasurement from "../../hooks/useMeasurement";
 import useResponsive from "../../hooks/useResponsive";
+import FadeComponent from "../../components/FadeComponent";
 
 export default function Skill() {
   const { isMobile } = useResponsive();
@@ -30,15 +31,19 @@ export default function Skill() {
         <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
           Skills
         </BoldText>
-        <TabSwiper />
+        <FadeComponent>
+          <TabSwiper />
+        </FadeComponent>
       </div>
-      <SkillExport />
+      <FadeComponent>
+        <SkillExport />
+      </FadeComponent>
     </div>
   );
 }
 
 const wrapper = (height: number, isMobile: boolean) => ({
-  paddingLeft: "40px",
+  paddingLeft: isMobile ? "0px" : "40px",
   boxSizing: "border-box" as const,
   width: "85%",
   height: `${height}px`,

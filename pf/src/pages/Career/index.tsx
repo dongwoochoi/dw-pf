@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { refAtom } from "../../jotai/refAtom";
 import { useSetAtom } from "jotai";
-import { CAREER_STRUCTURE, YEARS_STRUCTURE } from "./structure";
+import { YEARS_STRUCTURE } from "./structure";
 import useCareer from "./useCareer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
@@ -11,13 +11,15 @@ import useMeasurement from "../../hooks/useMeasurement";
 import BoldText from "../../components/Atom/BoldText";
 import useResponsive from "../../hooks/useResponsive";
 import FadeComponent from "../../components/FadeComponent";
+import Deu from "./modules/explains/deu";
+import Kristin from "./modules/explains/kristin";
+import DeuOther from "./modules/explains/deuOther";
+import Others from "./modules/explains/others";
 
 export default function Career() {
   const { isMobile } = useResponsive();
-  const { careerSizeConverter, titleFontSizeTransfer, fontSizeTransfer } =
-    useMeasurement();
-  const convertValue = careerSizeConverter();
-  const { selectedYear, clickedCareer, handleYear, handleClick } = useCareer();
+  const { careerSizeConverter, titleFontSizeTransfer } = useMeasurement();
+  const { selectedYear, handleYear } = useCareer();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
   setAtom((prev) => {
@@ -39,7 +41,7 @@ export default function Career() {
         <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
           Career
         </BoldText>
-        <div css={row}>
+        <div css={row(isMobile)}>
           <div css={yearTab(isMobile)}>
             {YEARS_STRUCTURE.map((item, i) => {
               return (
@@ -60,101 +62,50 @@ export default function Career() {
               );
             })}
           </div>
-          <div css={careerBox(careerSizeConverter().boxHeight, isMobile)}>
+
+          <div
+            css={careerBox(
+              careerSizeConverter().boxWidth,
+              careerSizeConverter().boxHeight,
+              isMobile
+            )}
+          >
             <Swiper
               onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
               spaceBetween={50}
               slidesPerView={1}
-              direction="vertical"
               allowTouchMove={false}
             >
-              {YEARS_STRUCTURE.map((item) => {
-                return (
-                  <SwiperSlide>
-                    {CAREER_STRUCTURE.filter(
-                      (item) => item.year === selectedYear
-                    ).map((value) => {
-                      const isOpen = clickedCareer.includes(value.title);
-                      const { width, height } = convertValue;
-                      return (
-                        <div key={value.title}>
-                          {isMobile ? (
-                            <div
-                              css={careerStyle(width, height, isMobile)}
-                              onClick={() => {
-                                handleClick(value.title);
-                              }}
-                            >
-                              <div>
-                                {/* <BoldText size={fontSizeTransfer(20)}>
-                                    {value.period}
-                                  </BoldText> */}
-                                <BoldText size={fontSizeTransfer(18)}>
-                                  {`${value.title}`}
-                                </BoldText>
-                              </div>
-                              <BoldText size={fontSizeTransfer(18)}>
-                                {value.category}
-                              </BoldText>
-                            </div>
-                          ) : (
-                            <div
-                              css={careerStyle(width, height)}
-                              onClick={() => {
-                                handleClick(value.title);
-                              }}
-                            >
-                              <BoldText
-                                size={fontSizeTransfer(20)}
-                              >{`${value.period}  |  ${value.title}`}</BoldText>
-                              <BoldText size={fontSizeTransfer(20)}>
-                                {value.category}
-                              </BoldText>
-                            </div>
-                          )}
-
-                          <div
-                            css={{
-                              display: isOpen ? "flex" : "none",
-                              alignItems: "center",
-                              margin: "4px 0",
-                            }}
-                          >
-                            <li
-                              css={{
-                                color: "white",
-                                fontSize: `${fontSizeTransfer(20)}px`,
-                              }}
-                            ></li>
-                            <div
-                              css={explainStyle(
-                                isOpen,
-                                fontSizeTransfer(18),
-                                width,
-                                height
-                              )}
-                            >
-                              <p>{isMobile ? value.period : ""}</p>
-                              <p>
-                                {isMobile
-                                  ? `| ${value.explain}`
-                                  : value.explain}
-                              </p>
-                            </div>
-                          </div>
-                          <div
-                            css={{
-                              marginBottom: "16px",
-                              width: "1px",
-                              height: "1px",
-                            }}
-                          ></div>
-                        </div>
-                      );
-                    })}
-                  </SwiperSlide>
-                );
-              })}
+              <SwiperSlide>
+                <div
+                  css={{
+                    display: "flex",
+                    width: "auto",
+                    height: "100%",
+                    flexDirection: "column",
+                    alignItems: isMobile ? "center" : "",
+                    gap: `${careerSizeConverter().gap}px`,
+                  }}
+                >
+                  <Deu />
+                  <Kristin />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div
+                  css={{
+                    display: "flex",
+                    width: "auto",
+                    height: "100%",
+                    flexDirection: "column",
+                    alignItems: isMobile ? "center" : "",
+                    gap: `${careerSizeConverter().gap}px`,
+                  }}
+                >
+                  <DeuOther />
+                  <Others />
+                </div>
+              </SwiperSlide>
             </Swiper>
             <Global
               styles={css`
@@ -184,21 +135,30 @@ const titleTextStyle = {
   marginTop: "60px",
 };
 
-const row = {
+const row = (isMobile: boolean) => ({
   width: "100%",
   // height: "600px",
   marginTop: "40px",
   display: "flex",
+  flexDirection: isMobile ? ("column" as const) : ("row" as const),
   justifyContent: "space-around",
-};
+});
 
 const yearStyle = (isSelected: boolean, size: number, isMobile: boolean) => ({
-  paddingLeft: isMobile ? "4px" : "16px",
-  borderLeft: isSelected ? "3px solid white" : "none",
-  color: isSelected ? "white" : "#9B9B9B",
-  fontSize: isSelected ? `${size}px` : `${size - 4}px`,
+  padding: isMobile ? "4px 6px" : " 0 0 0 16px",
+  borderLeft: isMobile ? "none" : isSelected ? "3px solid white" : "none",
+  color: isMobile
+    ? isSelected
+      ? "black"
+      : "white"
+    : isSelected
+    ? "white"
+    : "#9B9B9B",
+  fontSize: isMobile ? "16px" : isSelected ? `${size}px` : `${size - 4}px`,
   fontWeight: "600",
+  background: isMobile ? (isSelected ? "#FCFCFC" : "#727272") : "none",
   cursor: "pointer",
+  borderRadius: isMobile ? "5px" : "none",
   "&: hover": {
     color: "#CFCFCF",
   },
@@ -206,49 +166,14 @@ const yearStyle = (isSelected: boolean, size: number, isMobile: boolean) => ({
 
 const yearTab = (isMobile: boolean) => ({
   display: "flex",
-  flexDirection: "column" as const,
+  flexDirection: isMobile ? ("row" as const) : ("column" as const),
+  justifyContent: isMobile ? "flex-start" : "",
+  marginBottom: isMobile ? "16px" : "",
   gap: isMobile ? "8px" : "8px",
 });
 
-const careerBox = (height: number, isMobile: boolean) => ({
+const careerBox = (width: number, height: number, isMobile: boolean) => ({
   display: "flex",
-  width: isMobile ? "50vw" : "auto",
+  width: isMobile ? "" : `${width}px`,
   height: `${height}px`,
-});
-
-const careerStyle = (
-  width: number,
-  height: string | number,
-  isMobile?: boolean
-) => ({
-  display: "flex",
-  flexDirection: isMobile ? ("row" as const) : ("row" as const),
-  justifyContent: "space-between",
-  alignItems: "center",
-  width: `50vw`,
-  height: typeof height === "string" ? height : `${height}px`,
-  background: "#4B4B4B",
-  padding: "8px 16px",
-  color: "white",
-  borderRadius: "5px",
-  cursor: "pointer",
-  "&:hover": { background: "#727272" },
-  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.5)",
-});
-
-const explainStyle = (
-  isOpen: boolean,
-  size: number,
-  width: number,
-  height: number | string
-) => ({
-  width: `50vw`,
-  minHeight: typeof height === "string" ? height : `${height}px`,
-  background: "#4B4B4B",
-  padding: "8px 16px",
-  color: "white",
-  fontSize: `${size}px`,
-  borderRadius: "5px",
-  fontFamily: "agroL",
-  marginTop: "8px",
 });
