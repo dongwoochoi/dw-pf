@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+/* eslint-disable */
 import { useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";

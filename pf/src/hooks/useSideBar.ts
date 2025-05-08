@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useAtomValue, useSetAtom } from "jotai";
 
 import { refAtom } from "../jotai/refAtom";

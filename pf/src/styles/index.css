@@ -1,22 +1,23 @@
 @font-face {
   font-family: "agroL";
-  src: url("./fonts/SB\ 어그로OTF\ L.otf") format("opentype");
-  font-weight: 300; /* medium은 일반적으로 500의 폰트 가중치에 해당합니다. */
-  font-style: light;
-}
-@font-face {
-  font-family: "agroM";
-  src: url("./fonts/SB\ 어그로OTF\ M.otf") format("opentype");
-  font-weight: 500; /* medium은 일반적으로 500의 폰트 가중치에 해당합니다. */
-  font-style: medium;
-}
-@font-face {
-  font-family: "agro";
-  src: url("./fonts/SB\ 어그로OTF\ B.otf") format("opentype");
-  font-weight: 800; /* medium은 일반적으로 500의 폰트 가중치에 해당합니다. */
-  font-style: bold;
+  src: url("./fonts/SB_Eoguro_OTF_L.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: "agroM";
+  src: url("./fonts/SB_Eoguro_OTF_M.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "agro";
+  src: url("./fonts/SB_Eoguro_OTF_B.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -32,6 +33,8 @@ code {
 }
 
 li {
+  text-indent: -1.5em; /* 마커 위치 기준으로 들여쓰기 */
+  padding-left: 1.5em; /* 전체 들여쓰기 */
   color: white;
   /* list-style-position: outside;
   display: flex;

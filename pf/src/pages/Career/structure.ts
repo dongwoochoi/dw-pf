@@ -1,13 +1,4 @@
-export const YEARS_STRUCTURE = [
-  "2018",
-  "2019",
-  "2020",
-  "2021",
-  "2022",
-  "2023",
-  //   "2024",
-  //   "2025",
-];
+export const YEARS_STRUCTURE = ["Dev_Career", "Other_Career"];
 
 export const CAREER_STRUCTURE = [
   {

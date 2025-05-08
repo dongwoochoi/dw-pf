@@ -4,7 +4,7 @@
   font: inherit;
   color: inherit;
 }
-
+/* 
 @media (min-width: 360px) and (max-width: 599px) {
   * {
     line-height: 12px;
@@ -12,27 +12,26 @@
 }
 
 /* 600px ~ 1152px */
-@media (min-width: 600px) and (max-width: 1152px) {
+/* @media (min-width: 600px) and (max-width: 1152px) {
   * {
     line-height: 18px;
   }
-}
+} */
 
 /* 1153px ~ 1599px */
-@media (min-width: 1153px) and (max-width: 1599px) {
+/* @media (min-width: 1153px) and (max-width: 1599px) {
   * {
     line-height: 24px;
   }
-}
+} */
 
 /* 1600px 이상 */
-@media (min-width: 1600px) {
+/* @media (min-width: 1600px) {
   * {
     line-height: 36px;
   }
-}
-
-*,
+} */
+*/ *,
 :after,
 :before {
   box-sizing: border-box;

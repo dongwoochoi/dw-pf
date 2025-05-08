@@ -6,8 +6,10 @@ import ProjectTabSwiper from "./modules/ProjectTabSwiper";
 import BoldText from "../../components/Atom/BoldText";
 import useMeasurement from "../../hooks/useMeasurement";
 import FadeComponent from "../../components/FadeComponent";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function Projects() {
+  const { isMobile } = useResponsive();
   const { titleFontSizeTransfer } = useMeasurement();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
@@ -19,7 +21,7 @@ export default function Projects() {
   });
 
   return (
-    <div css={wrapper} ref={ref} id="projects">
+    <div css={wrapper(isMobile)} ref={ref} id="projects">
       <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
         Projects
       </BoldText>
@@ -30,13 +32,13 @@ export default function Projects() {
   );
 }
 
-const wrapper = {
-  paddingLeft: "40px",
+const wrapper = (isMobile: boolean) => ({
+  paddingLeft: isMobile ? "0px" : "40px",
   boxSizing: "border-box" as const,
-  width: "85%",
+  width: isMobile ? "280px" : "85%",
   maxWidth: "1400px",
   height: "auto",
-};
+});
 
 const titleTextStyle = {
   marginBottom: "16px",

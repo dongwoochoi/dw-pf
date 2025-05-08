@@ -15,13 +15,12 @@ export default function EndPage() {
     }, 1000);
 
     return () => clearInterval(timer); // 컴포넌트 언마운트 시 타이머 정리
-  }, [1000]);
+  }, []);
 
   return (
     <div css={wrapper}>
       <FadeComponent>
         <div css={layout}>
-          {" "}
           <img
             css={imgStyle(endSizeConverter().width, endSizeConverter().height)}
             src={showFirst ? endPageImg.bye1 : endPageImg.bye2}

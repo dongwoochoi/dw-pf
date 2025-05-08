@@ -36,7 +36,7 @@ export default function ProjectSlide({
         }}
         breakpoints={{
           300: { slidesPerView: 1 },
-          600: { slidesPerView: 1.5 },
+          600: { slidesPerView: 1 },
           900: { slidesPerView: 1.7 },
           1100: { slidesPerView: 2.2 },
           1200: { slidesPerView: 1.8 },
@@ -48,13 +48,21 @@ export default function ProjectSlide({
         {structure.map((item) => {
           return (
             <SwiperSlide key={item.title}>
-              <ProjectCard
-                title={item.title}
-                team={item.team}
-                text={item.text}
-                tag={item.tag}
-                img={item.img}
-              />
+              <div
+                css={{
+                  width: "1005",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <ProjectCard
+                  title={item.title}
+                  team={item.team}
+                  text={item.text}
+                  tag={item.tag}
+                  img={item.img}
+                />
+              </div>
             </SwiperSlide>
           );
         })}

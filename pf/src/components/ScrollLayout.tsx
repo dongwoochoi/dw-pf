@@ -2,7 +2,6 @@
 import { EmotionJSX } from "@emotion/react/dist/declarations/src/jsx-namespace";
 import SideBar from "./SideBar";
 import useMeasurement from "../hooks/useMeasurement";
-import MSideBar from "./MSideBar";
 import useResponsive from "../hooks/useResponsive";
 
 interface PropsType {
@@ -38,5 +37,5 @@ const content = (sidebarWidth: number, isMobile: boolean) => ({
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "center" as const,
-  gap: "40px",
+  gap: isMobile ? "40px" : "100px",
 });
