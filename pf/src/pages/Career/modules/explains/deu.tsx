@@ -51,8 +51,7 @@ export default function Deu() {
           </CustomLi>
           <CustomLi>SQL과 데이터 모델링을 통한 데이터 베이스 학습</CustomLi>
           <CustomLi>
-            R과 Python을 이용한 데이터 분석, 시각화, 텍스트 마이닝, 웹 크롤링
-            학습
+            R과 Python을 이용한 데이터 분석, 텍스트 마이닝, 웹 크롤링 학습
           </CustomLi>
           <CustomLi>PyTorch를 활용한 딥러닝 모델 구현 학습</CustomLi>
           <CustomLi>UI/UX 디자인과 기초 디자인 이론 학습</CustomLi>
