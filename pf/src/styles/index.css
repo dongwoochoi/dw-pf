@@ -46,3 +46,14 @@ body.modal-wrapper-opened {
 body.img-modal-wrapper-opened {
   overflow: hidden;
 }
+
+.cursor {
+  display: inline-block;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

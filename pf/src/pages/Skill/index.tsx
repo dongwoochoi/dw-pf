@@ -52,6 +52,7 @@ const wrapper = (height: number, isMobile: boolean) => ({
   flexDirection: isMobile ? ("column" as const) : ("row" as const),
   justifyContent: "space-around",
   alignItems: "center",
+  minHeight: "100vh",
 });
 
 const leftContent = (width: number) => ({

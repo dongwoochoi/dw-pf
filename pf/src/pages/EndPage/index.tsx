@@ -35,14 +35,17 @@ export default function EndPage() {
 
 const wrapper = {
   width: "100%",
-
+  height: "100vh",
+  display: "flex",
+  flexDirection: "column" as const,
+  alignItems: "center",
+  justifyContent: "center",
   background: "white",
 };
 
 const layout = {
   display: "flex",
   flexDirection: "column" as const,
-  height: "100vh",
   alignItems: "center",
   justifyContent: "center",
 };

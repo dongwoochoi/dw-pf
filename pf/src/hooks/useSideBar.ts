@@ -46,7 +46,7 @@ export default function useSideBar() {
           return newState;
         });
       },
-      { threshold: 0.7 }
+      { threshold: 0.4 }
     );
 
     sections.forEach(({ ref }) => {

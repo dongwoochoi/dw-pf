@@ -39,9 +39,10 @@ export default function ProjectSlide({
           600: { slidesPerView: 1 },
           900: { slidesPerView: 1.7 },
           1100: { slidesPerView: 2.2 },
-          1200: { slidesPerView: 1.8 },
+          1200: { slidesPerView: 1.6 },
+          1400: { slidesPerView: 1.8 },
           1610: { slidesPerView: 2.2 },
-          1800: { slidesPerView: 2.5 },
+          1800: { slidesPerView: 2.2 },
         }}
         modules={[Pagination]}
       >

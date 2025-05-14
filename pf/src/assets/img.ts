@@ -9,6 +9,9 @@ import GitLogo from "./imgs/logos/git.jpg";
 import FigmaLogo from "./imgs/logos/figma.png";
 import DiscordLogo from "./imgs/logos/discord.png";
 
+import MainBackground from "./imgs/mainPage/main.jpg";
+import MainPicture from "./imgs/mainPage/mainPicture.png";
+
 import kristag from "./imgs/projects/kristag.png";
 import lg from "./imgs/projects/lg.jpg";
 import sinple from "./imgs/projects/sinple.png";
@@ -119,4 +122,9 @@ export const Lg_Modal = {
 
 export const Image = {
   Me,
+};
+
+export const MainImage = {
+  MainBackground,
+  MainPicture,
 };
