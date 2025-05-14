@@ -35,9 +35,10 @@ export default function Projects() {
 const wrapper = (isMobile: boolean) => ({
   paddingLeft: isMobile ? "0px" : "40px",
   boxSizing: "border-box" as const,
-  width: isMobile ? "280px" : "85%",
-  maxWidth: "1400px",
+  width: isMobile ? "280px" : "75%",
+  maxWidth: "1200px",
   height: "auto",
+  minHeight: "100vh",
 });
 
 const titleTextStyle = {

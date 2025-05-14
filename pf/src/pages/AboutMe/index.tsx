@@ -69,6 +69,7 @@ const wrapper = {
   textAlign: "center" as const,
   width: "85%",
   height: "auto",
+  minHeight: "100vh",
 };
 
 const titleTextStyle = {

@@ -32,52 +32,52 @@ export default function useMeasurement() {
 
   const sideBarWidth = () => {
     if (isPc) {
-      return 260;
+      return 250;
     }
     if (isLaptop) {
       return 200;
     }
     if (isTablet) {
-      return 100;
+      return 130;
     }
     return 150;
   };
 
   const sideBarFontSizeTransfer = () => {
     if (isPc) {
-      return 24;
+      return 52;
     }
     if (isLaptop) {
-      return 20;
+      return 42;
     }
     if (isTablet) {
-      return 12;
+      return 28;
     }
     return 16;
   };
 
   const sideBarMarginTransfer = () => {
     if (isPc) {
-      return "200px 40px 200px -40px";
+      return "100px 40px 0px -40px";
     }
     if (isLaptop) {
-      return "150px 40px 150px -40px";
+      return "100px 40px 0px -40px";
     }
     if (isTablet) {
-      return "100px 40px 100px -40px";
+      return "50px 20px 0px -40px";
     }
-    return "100px 40px 100px -40px";
+    return "100px 40px 0px -40px";
   };
 
   const sideBarTopTransfer = () => {
     if (isPc) {
-      return 200;
+      return 100;
     }
     if (isLaptop) {
-      return 200;
+      return 50;
     }
     if (isTablet) {
-      return 100;
+      return 30;
     }
     return 200;
   };
@@ -116,6 +116,56 @@ export default function useMeasurement() {
   };
 
   // -------------------------- 메인 부분 --------------------------
+  const mainPictureSizeConverter = () => {
+    if (isPc) {
+      return 600;
+    }
+    if (isLaptop) {
+      return 400;
+    }
+    if (isTablet) {
+      return 300;
+    }
+    return 200;
+  };
+
+  const mainFontSizeConverter = () => {
+    if (isPc) {
+      return {
+        hi: 48,
+        mainTitle: 56,
+      };
+    }
+    if (isLaptop) {
+      return {
+        hi: 44,
+        mainTitle: 48,
+      };
+    }
+    if (isTablet) {
+      return {
+        hi: 28,
+        mainTitle: 32,
+      };
+    }
+    return {
+      hi: 22,
+      mainTitle: 28,
+    };
+  };
+
+  const typingFontSize = () => {
+    if (isPc) {
+      return 28;
+    }
+    if (isLaptop) {
+      return 24;
+    }
+    if (isTablet) {
+      return 20;
+    }
+    return 16;
+  };
 
   // -------------------------- About_Me 부분 --------------------------
   const myPictureSizeConverter = () => {
@@ -427,6 +477,31 @@ export default function useMeasurement() {
     };
   };
 
+  const swiperArrowSizeConverter = () => {
+    if (isPc) {
+      return {
+        height: "80px",
+        position: 120,
+      };
+    }
+    if (isLaptop) {
+      return {
+        height: "50px",
+        position: 60,
+      };
+    }
+    if (isTablet) {
+      return {
+        height: "30px",
+        position: 40,
+      };
+    }
+    return {
+      height: "80px",
+      position: 120,
+    };
+  };
+
   // -------------------------- End 부분 --------------------------
 
   const endSizeConverter = () => {
@@ -464,6 +539,9 @@ export default function useMeasurement() {
     fontSizeTransfer,
     sideBarWidth,
     myPictureSizeConverter,
+    typingFontSize,
+    mainPictureSizeConverter,
+    mainFontSizeConverter,
     sideBarFontSizeTransfer,
     fixedMenuTransfer,
     sideBarMarginTransfer,
@@ -477,6 +555,7 @@ export default function useMeasurement() {
     projectSizeConverter,
     projectFontSizeConverter,
     projectModalSizeConverter,
+    swiperArrowSizeConverter,
     endSizeConverter,
   };
 }

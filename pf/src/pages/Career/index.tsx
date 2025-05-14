@@ -129,6 +129,7 @@ const wrapper = {
   height: "auto",
   alignItems: "center",
   justifyContent: "center",
+  minHeight: "100vh",
 };
 
 const titleTextStyle = {

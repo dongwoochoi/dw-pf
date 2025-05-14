@@ -12,7 +12,7 @@ import useResponsive from "../../../hooks/useResponsive";
 
 const ProjectTabSwiper = () => {
   const { isMobile } = useResponsive();
-  const { swiperSizeConverter } = useMeasurement();
+  const { swiperSizeConverter, swiperArrowSizeConverter } = useMeasurement();
   const swiperRef = useRef<SwiperClass | null>(null);
   const projectSwiperRef1 = useRef<any>(null);
   const projectSwiperRef2 = useRef<any>(null);
@@ -23,7 +23,6 @@ const ProjectTabSwiper = () => {
       setCurrentIndex(index);
     }
   };
-
   return (
     <div css={wrapper}>
       <div css={btnBox}>
@@ -49,7 +48,10 @@ const ProjectTabSwiper = () => {
       >
         {isMobile ? null : (
           <img
-            css={sliderNavigationLeft}
+            css={sliderNavigationLeft(
+              swiperArrowSizeConverter().height,
+              swiperArrowSizeConverter().position
+            )}
             src={icons.arrowLeft}
             onClick={() =>
               currentIndex === 0
@@ -83,7 +85,10 @@ const ProjectTabSwiper = () => {
         </Swiper>
         {isMobile ? null : (
           <img
-            css={sliderNavigationRight}
+            css={sliderNavigationRight(
+              swiperArrowSizeConverter().height,
+              swiperArrowSizeConverter().position
+            )}
             src={icons.arrowRight}
             onClick={() =>
               currentIndex === 0
@@ -138,18 +143,18 @@ const btnStyle = (isClicked: boolean, fontSize: number) => ({
   "&:hover": { background: "#9B9B9B" },
 });
 
-const sliderNavigationLeft = {
+const sliderNavigationLeft = (height: string, position: number) => ({
   position: "absolute" as const,
-  left: "-120px",
-  height: "80px",
+  left: `${-position}px`,
+  height,
   cursor: "pointer",
-};
+});
 
-const sliderNavigationRight = {
+const sliderNavigationRight = (height: string, position: number) => ({
   position: "absolute" as const,
-  height: "80px",
-  right: "-120px",
+  height,
+  right: `${-position}px`,
   cursor: "pointer",
-};
+});
 
 export default ProjectTabSwiper;

@@ -25,13 +25,13 @@ function App() {
     <div>
       <ToastContainer />
       <MainPage />
-      <div>
-        <div css={glassContent} />
-        <ScrollLayout
-          contentArray={[<AboutMe />, <Career />, <Skill />, <Projects />]}
-        />
-      </div>
-      <EndPage />,
+
+      {/* <div css={glassContent} /> */}
+      <ScrollLayout
+        contentArray={[<AboutMe />, <Career />, <Skill />, <Projects />]}
+      />
+
+      <EndPage />
       <FixedMenu />
       <ProjectModal />
       <ImageModal />
@@ -40,10 +40,10 @@ function App() {
   );
 }
 
-const glassContent = {
-  width: "100%",
-  height: "100vh",
-  backgroundColor: "transparent",
-};
+// const glassContent = {
+//   width: "100%",
+//   height: "100vh",
+//   backgroundColor: "transparent",
+// };
 
 export default App;

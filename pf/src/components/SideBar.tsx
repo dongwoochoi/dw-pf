@@ -3,12 +3,22 @@ import useMeasurement from "../hooks/useMeasurement";
 import useSideBar from "../hooks/useSideBar";
 
 export default function SideBar() {
-  const { sideBarFontSizeTransfer, sideBarMarginTransfer, sideBarTopTransfer } =
-    useMeasurement();
+  const {
+    sideBarFontSizeTransfer,
+    sideBarMarginTransfer,
+    sideBarTopTransfer,
+    sideBarWidth,
+  } = useMeasurement();
   const { handleScrollTo, visibleSection, ref } = useSideBar();
   return (
-    <div css={wrapper(sideBarMarginTransfer(), sideBarTopTransfer())}>
-      <div css={menuBorder(sideBarFontSizeTransfer())}>
+    <div
+      css={wrapper(
+        sideBarWidth(),
+        sideBarMarginTransfer(),
+        sideBarTopTransfer()
+      )}
+    >
+      <div css={menuBorder(visibleSection?.aboutMe, sideBarFontSizeTransfer())}>
         <p
           css={fontStyle(visibleSection?.aboutMe, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.aboutMeRef)}
@@ -16,7 +26,11 @@ export default function SideBar() {
           About Me
         </p>
       </div>
-      <div css={{ ...menuBorder(sideBarFontSizeTransfer()) }}>
+      <div
+        css={{
+          ...menuBorder(visibleSection?.career, sideBarFontSizeTransfer()),
+        }}
+      >
         <p
           css={fontStyle(visibleSection?.career, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.careerRef)}
@@ -24,7 +38,7 @@ export default function SideBar() {
           Career
         </p>
       </div>
-      <div css={menuBorder(sideBarFontSizeTransfer())}>
+      <div css={menuBorder(visibleSection?.skills, sideBarFontSizeTransfer())}>
         <p
           css={fontStyle(visibleSection?.skills, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.skillRef)}
@@ -33,7 +47,10 @@ export default function SideBar() {
         </p>
       </div>
       <div
-        css={{ ...menuBorder(sideBarFontSizeTransfer()), borderBottom: "none" }}
+        css={{
+          ...menuBorder(visibleSection?.projects, sideBarFontSizeTransfer()),
+          borderBottom: "none",
+        }}
       >
         <p
           css={fontStyle(visibleSection?.projects, sideBarFontSizeTransfer())}
@@ -46,25 +63,20 @@ export default function SideBar() {
   );
 }
 
-const wrapper = (margin: string, top: number) => ({
-  width: "260px",
+const wrapper = (width: number, margin: string, top: number) => ({
+  width: `${width}px`,
   margin,
   position: "sticky" as const,
   top: `${top}px`,
   display: "flex",
   flexDirection: "column" as const,
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100%",
-  background: "#393939",
-  borderRadius: "15px",
-  boxShadow: "0px 2px 6px 2px #00000026",
+  height: "100vh",
 });
 
-const menuBorder = (paddingValue: number) => ({
-  textAlign: "center" as const,
-  borderBottom: "1px solid #CFCFCF",
-  padding: `${paddingValue}px 0`,
+const menuBorder = (isVisible: boolean, paddingValue: number) => ({
+  scale: isVisible ? 1.2 : 1,
+  transition: "all 0.5s",
+  // padding: `${paddingValue}px 0`,
 });
 
 const fontStyle = (isVisible: boolean, size: number) => ({
