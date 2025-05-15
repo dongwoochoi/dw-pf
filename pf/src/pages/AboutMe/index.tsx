@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { refAtom } from "../../jotai/refAtom";
 import { useSetAtom } from "jotai";
 import { Image } from "../../assets/img";
@@ -7,12 +7,15 @@ import LightText from "../../components/Atom/LightText";
 import useMeasurement from "../../hooks/useMeasurement";
 import BoldText from "../../components/Atom/BoldText";
 import FadeComponent from "../../components/FadeComponent";
+import { ABOUTME_STRUCTURE } from "./structure";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function AboutMe() {
   const {
     myPictureSizeConverter,
     titleFontSizeTransfer,
     aboutMainGapSizeConverter,
+    QNAConverter,
   } = useMeasurement();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
@@ -23,6 +26,8 @@ export default function AboutMe() {
     };
   });
 
+  const [isSelected, setIsSelected] = useState<string>("연차");
+  const { isMobile } = useResponsive();
   return (
     <div css={wrapper} ref={ref} id="aboutMe">
       <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
@@ -30,31 +35,60 @@ export default function AboutMe() {
       </BoldText>
       <FadeComponent>
         <div css={contentWrapper(aboutMainGapSizeConverter())}>
-          <img
-            css={picture(myPictureSizeConverter())}
-            src={Image.Me}
-            alt="me"
-          />
-          <div css={textContent}>
-            <LightText>안녕하세요! 프론트엔드 개발자 최동우 입니다.</LightText>
-            <br />
+          <div css={pictureContent}>
+            <img
+              css={picture(myPictureSizeConverter())}
+              src={Image.Face}
+              alt="me"
+            />
             <LightText>
-              대학 전공과정을 공부하면서 동적인 구현과 사용자의 행동에
-              즉각반응하는 프론트엔드에 매력을 느끼고 프론트엔드의 꿈을 가지고
-              여러 프로젝트를 경험하였습니다.
+              👋  안녕하세요! 프론트엔드 개발자 최동우 입니다.
             </LightText>
-            <br />
-            <LightText>
-              저는 사용자 경험을 최우선으로 생각하며, 유지보수성 및 확장성을
-              고려한 개발을 지향합니다.
-            </LightText>
-            <br />
-            <LightText>
-              또한 팀원 또는 구성원과 함께 일하는 것을 즐깁니다. 누군가와 함께
-              힘을 합쳐 일을 하여 목적을 달성하고 성과를 이루어 내는것에 많은
-              뿌듯함을 느끼며 다양한 성향의 사람들과 인간관계에 있어 합의점을
-              맞추어 좋은 관계를 가지는 것에 자신있습니다!
-            </LightText>
+          </div>
+          <div css={textBox(QNAConverter().mainPadding, QNAConverter().gap)}>
+            <div css={keywordBox(isMobile)}>
+              {ABOUTME_STRUCTURE.map((item) => {
+                return (
+                  <div
+                    css={keywordStyle(
+                      QNAConverter().fontSize,
+                      QNAConverter().subPadding,
+                      isSelected === item.keyword,
+                      isMobile
+                    )}
+                    onClick={() => {
+                      setIsSelected(item.keyword);
+                    }}
+                  >
+                    {item.keyword}
+                  </div>
+                );
+              })}
+            </div>
+            <div
+              css={questionStyle(
+                QNAConverter().fontSize,
+                QNAConverter().lineHeight,
+                true
+              )}
+            >
+              Q.
+              {
+                ABOUTME_STRUCTURE.find((item) => item.keyword === isSelected)
+                  ?.question
+              }
+            </div>
+            <div
+              css={questionStyle(
+                QNAConverter().fontSize,
+                QNAConverter().lineHeight
+              )}
+            >
+              {
+                ABOUTME_STRUCTURE.find((item) => item.keyword === isSelected)
+                  ?.answer
+              }
+            </div>
           </div>
         </div>
       </FadeComponent>
@@ -80,17 +114,68 @@ const titleTextStyle = {
 const contentWrapper = (gap: number) => ({
   display: "flex",
   gap: `${gap}px`,
+  flexDirection: "column" as const,
   justifyContent: "center",
   alignItems: "center",
 });
 
-const picture = (myPictureSizeConverter: number) => ({
-  width: `${myPictureSizeConverter}px`,
+const pictureContent = () => ({
+  display: "flex",
+  flexDirection: "column" as const,
+  justifyContent: "center",
+  alignItems: "center",
 });
 
-const textContent = {
+const picture = (size: number) => ({
+  width: `${size}px`,
+  borderRadius: "50%",
+  marginBottom: "3em",
+});
+
+const keywordBox = (isMobile: boolean) => ({
   display: "flex",
-  width: "50%",
-  flexDirection: "column" as const,
+  flexWrap: "wrap" as const,
+  gap: isMobile ? "4px" : "16px",
+});
+
+const keywordStyle = (
+  fontSize: number,
+  padding: string,
+  isSelected: boolean,
+  isMobile: boolean
+) => ({
+  color: isSelected ? "black" : "white",
+  background: isSelected ? "#FCFCFC" : "#727272",
+  fontFamily: "agroL",
+  fontSize: `${fontSize}px`,
+  padding: isMobile ? "4px 8px" : padding,
+  borderRadius: "20px",
+  cursor: "pointer",
+  "&:hover": { background: "#9B9B9B" },
+});
+
+const questionStyle = (
+  fontSize: number,
+  lineHeight: number,
+  isQ?: boolean
+) => ({
   textAlign: "start" as const,
-};
+  color: "white",
+  fontFamily: isQ ? "agroM" : "agroL",
+  fontSize: isQ ? `${fontSize + 4}px` : `${fontSize}px`,
+  // background: isQ ? "" : "#727272",
+  borderRadius: "5px",
+  width: "100%",
+  lineHeight: `${lineHeight}px`,
+});
+
+const textBox = (padding: string, gap: number) => ({
+  width: "70vw",
+  display: "flex",
+  flexDirection: "column" as const,
+  alignItems: "flex-start",
+  background: "#2C2C2C",
+  borderRadius: "15px",
+  padding,
+  gap: `${gap}px`,
+});

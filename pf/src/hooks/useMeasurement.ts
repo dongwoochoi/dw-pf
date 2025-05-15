@@ -170,10 +170,10 @@ export default function useMeasurement() {
   // -------------------------- About_Me 부분 --------------------------
   const myPictureSizeConverter = () => {
     if (isPc) {
-      return 400;
+      return 300;
     }
     if (isLaptop) {
-      return 300;
+      return 200;
     }
     if (isTablet) {
       return 150;
@@ -183,15 +183,52 @@ export default function useMeasurement() {
 
   const aboutMainGapSizeConverter = () => {
     if (isPc) {
-      return 100;
+      return 48;
     }
     if (isLaptop) {
-      return 100;
+      return 32;
     }
     if (isTablet) {
-      return 50;
+      return 24;
     }
-    return 50;
+    return 20;
+  };
+
+  const QNAConverter = () => {
+    if (isPc) {
+      return {
+        gap: 32,
+        fontSize: 24,
+        mainPadding: "24px 36px",
+        subPadding: "8px 16px",
+        lineHeight: 36,
+      };
+    }
+    if (isLaptop) {
+      return {
+        gap: 24,
+        fontSize: 20,
+        mainPadding: "24px 36px",
+        subPadding: "8px 16px",
+        lineHeight: 36,
+      };
+    }
+    if (isTablet) {
+      return {
+        gap: 12,
+        fontSize: 16,
+        mainPadding: "24px 36px",
+        subPadding: "8px 16px",
+        lineHeight: 28,
+      };
+    }
+    return {
+      gap: 12,
+      fontSize: 12,
+      mainPadding: "8px 16px",
+      subPadding: "8px 16px",
+      lineHeight: 20,
+    };
   };
 
   // -------------------------- Career 부분 --------------------------
@@ -546,6 +583,7 @@ export default function useMeasurement() {
     fixedMenuTransfer,
     sideBarMarginTransfer,
     aboutMainGapSizeConverter,
+    QNAConverter,
     sideBarTopTransfer,
     careerSizeConverter,
     careerFontSizeConverter,

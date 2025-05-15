@@ -9,7 +9,7 @@ import GitLogo from "./imgs/logos/git.jpg";
 import FigmaLogo from "./imgs/logos/figma.png";
 import DiscordLogo from "./imgs/logos/discord.png";
 
-import MainBackground from "./imgs/mainPage/main.jpg";
+import MainBackground from "./imgs/mainPage/main.jpeg";
 import MainPicture from "./imgs/mainPage/mainPicture.png";
 
 import kristag from "./imgs/projects/kristag.png";
@@ -25,6 +25,7 @@ import seoreuF from "./imgs/favicons/seoreuF.svg";
 import sinpleF from "./imgs/favicons/sinpleF.png";
 
 import Me from "./imgs/me.jpeg";
+import Face from "./imgs/face.jpeg";
 
 import bye1 from "./imgs//end/bye1.jpeg";
 import bye2 from "./imgs/end/bye2.jpeg";
@@ -122,6 +123,7 @@ export const Lg_Modal = {
 
 export const Image = {
   Me,
+  Face,
 };
 
 export const MainImage = {
