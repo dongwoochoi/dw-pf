@@ -6,6 +6,7 @@ type RefAtomType = {
   careerRef: React.RefObject<HTMLDivElement | null>;
   skillRef: React.RefObject<HTMLDivElement | null>;
   projectRef: React.RefObject<HTMLDivElement | null>;
+  boardRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export const refAtom = atom<RefAtomType>({
@@ -13,4 +14,5 @@ export const refAtom = atom<RefAtomType>({
   careerRef: createRef<HTMLDivElement>(),
   skillRef: createRef<HTMLDivElement>(),
   projectRef: createRef<HTMLDivElement>(),
+  boardRef: createRef<HTMLDivElement>(),
 });

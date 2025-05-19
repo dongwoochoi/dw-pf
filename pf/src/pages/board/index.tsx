@@ -2,16 +2,25 @@
 import useMeasurement from "../../hooks/useMeasurement";
 import FadeComponent from "../../components/FadeComponent";
 import BoldText from "../../components/Atom/BoldText";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { boardModalAtom } from "../../jotai/Modal/BoardModalAtom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useResponsive from "../../hooks/useResponsive";
 import { toast } from "react-toastify";
+import { refAtom } from "../../jotai/refAtom";
 
 export default function Board() {
+  const ref = useRef<HTMLDivElement>(null);
+  const setAtom = useSetAtom(refAtom);
+  setAtom((prev) => {
+    return {
+      ...prev,
+      boardRef: ref,
+    };
+  });
   const { isMobile } = useResponsive();
   const { titleFontSizeTransfer, boardSizeConverter } = useMeasurement();
-  const [isOpen, setBoardModal] = useAtom(boardModalAtom);
+  const setBoardModal = useSetAtom(boardModalAtom);
   const [postList, setPostList] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [maxPage, setMaxPage] = useState<number>(1);
@@ -63,7 +72,7 @@ export default function Board() {
   }, [currentPage]);
 
   return (
-    <div css={wrapper}>
+    <div css={wrapper} ref={ref} id="board">
       <FadeComponent>
         <div>
           <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>

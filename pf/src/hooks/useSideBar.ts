@@ -16,11 +16,13 @@ export default function useSideBar() {
     career: boolean;
     skills: boolean;
     projects: boolean;
+    board: boolean;
   }>({
     aboutMe: false,
     career: false,
     skills: false,
     projects: false,
+    board: false,
   });
 
   useEffect(() => {
@@ -33,6 +35,7 @@ export default function useSideBar() {
       { id: "career", ref: ref.careerRef },
       { id: "skills", ref: ref.skillRef },
       { id: "projects", ref: ref.projectRef },
+      { id: "board", ref: ref.boardRef },
     ];
 
     const observer = new IntersectionObserver(

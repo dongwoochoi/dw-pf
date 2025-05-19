@@ -49,7 +49,6 @@ export default function SideBar() {
       <div
         css={{
           ...menuBorder(visibleSection?.projects, sideBarFontSizeTransfer()),
-          borderBottom: "none",
         }}
       >
         <p
@@ -57,6 +56,18 @@ export default function SideBar() {
           onClick={() => handleScrollTo(ref.projectRef)}
         >
           Projects
+        </p>
+      </div>
+      <div
+        css={{
+          ...menuBorder(visibleSection?.board, sideBarFontSizeTransfer()),
+        }}
+      >
+        <p
+          css={fontStyle(visibleSection?.board, sideBarFontSizeTransfer())}
+          onClick={() => handleScrollTo(ref.boardRef)}
+        >
+          Board
         </p>
       </div>
     </div>
