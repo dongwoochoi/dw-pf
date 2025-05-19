@@ -56,12 +56,12 @@ export const ABOUTME_STRUCTURE = [
           wordBreak: "break-word" as const,
         }}
       >
-        "저는 <span css={highlight}>사용자 경험을 최우선으로 고려</span>하며,
+        저는 <span css={highlight}>사용자 경험을 최우선으로 고려</span>하며,
         사용자가 서비스를 이용하는 과정에서 불편함 없이 자연스럽게 인터랙션할 수
         있도록 신경 씁니다. 또한,{" "}
         <span css={highlight}>유지보수성과 확장성을 염두에 두고 개발</span>하여,
         향후 있을 수 있는 기능 수정이나 고도화에도 유연하게 대응할 수 있도록
-        설계하는 것을 지향합니다.",
+        설계하는 것을 지향합니다.,
       </p>
     ),
   },

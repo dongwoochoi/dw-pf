@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { boardModalAtom } from "../jotai/Modal/BoardModalAtom";
 import { Instance } from "../types/api";
 import axios from "axios";
+import { shouldRefetchAtom } from "../jotai/shouldRefetchAtom";
 
 export interface ApiErrorResponse {
   status: number;
@@ -37,7 +38,7 @@ export default function useBoard() {
   });
   const [writerIsNull, setWriterIsNull] = useState<boolean>(false);
   const [contentIsNull, setContentIsNull] = useState<boolean>(false);
-
+  const setShouldRefetch = useSetAtom(shouldRefetchAtom);
   const customAxios: Instance = async ({ method, body }) => {
     try {
       const response = await api({
@@ -65,7 +66,7 @@ export default function useBoard() {
       });
       localStorage.setItem("toast", "true");
       setModal(false);
-      window.location.reload();
+      setShouldRefetch(true);
     } catch (e) {
       alert("잠시후 다시 시도해주세요.");
       return console.error(e);

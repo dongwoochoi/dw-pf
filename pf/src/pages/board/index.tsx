@@ -2,16 +2,18 @@
 import useMeasurement from "../../hooks/useMeasurement";
 import FadeComponent from "../../components/FadeComponent";
 import BoldText from "../../components/Atom/BoldText";
-import { useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { boardModalAtom } from "../../jotai/Modal/BoardModalAtom";
 import { useEffect, useRef, useState } from "react";
 import useResponsive from "../../hooks/useResponsive";
 import { toast } from "react-toastify";
 import { refAtom } from "../../jotai/refAtom";
+import { shouldRefetchAtom } from "../../jotai/shouldRefetchAtom";
 
 export default function Board() {
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
+  const [needRefetch, setShouldRefetch] = useAtom(shouldRefetchAtom);
   setAtom((prev) => {
     return {
       ...prev,
@@ -57,7 +59,7 @@ export default function Board() {
       toastMessage();
       localStorage.setItem("toast", "false");
     }
-  }, []);
+  }, [needRefetch]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/api/posts/?page=${currentPage}`, {
@@ -67,9 +69,10 @@ export default function Board() {
       .then((data) => {
         setPostList(data.results);
         setMaxPage(data.count / 9 + 1);
+        setShouldRefetch(false);
       })
       .catch((err) => console.error("에러:", err));
-  }, [currentPage]);
+  }, [currentPage, needRefetch]);
 
   return (
     <div css={wrapper} ref={ref} id="board">
