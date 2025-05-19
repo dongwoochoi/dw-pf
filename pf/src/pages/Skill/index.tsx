@@ -50,7 +50,7 @@ const wrapper = (height: number, isMobile: boolean) => ({
   maxWidth: "1400px",
   display: "flex",
   flexDirection: isMobile ? ("column" as const) : ("row" as const),
-  justifyContent: "space-around",
+  justifyContent: isMobile ? "center" : "space-around",
   alignItems: "center",
   minHeight: "100vh",
 });

@@ -23,11 +23,11 @@ export default function ProjectSlide({
     favicon: string;
   }[];
 }) {
-  const { isMobile } = useResponsive();
+  const { isMobile, isTablet } = useResponsive();
   return (
     <div css={wrapper(isMobile)}>
       <Swiper
-        css={swiperContainer(isMobile)}
+        css={swiperContainer(isMobile, isTablet)}
         onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
         spaceBetween={16}
         direction="horizontal"
@@ -95,8 +95,8 @@ const wrapper = (isMobile: boolean) => ({
   justifyContent: isMobile ? "center" : "",
 });
 
-const swiperContainer = (isMobile: boolean) => ({
+const swiperContainer = (isMobile: boolean, isTablet: boolean) => ({
   width: "100%",
-  height: isMobile ? "310px" : "550px",
+  height: isMobile ? "310px" : isTablet ? "400px" : "550px",
   maxWidth: "2400px",
 });

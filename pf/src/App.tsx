@@ -1,11 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import FixedMenu from "./components/FixedMenu";
+import BoardModal from "./components/Modal/BoardModal";
 import ImageModal from "./components/Modal/ImageModal";
 import IntroduceModal from "./components/Modal/IntroduceModal";
 import ProjectModal from "./components/Modal/ProjectModal";
 import ScrollLayout from "./components/ScrollLayout";
 import useResponsive from "./hooks/useResponsive";
 import AboutMe from "./pages/AboutMe";
+import Board from "./pages/board";
 import Career from "./pages/Career";
 import EndPage from "./pages/EndPage";
 import MainPage from "./pages/Main";
@@ -28,7 +30,13 @@ function App() {
 
       {/* <div css={glassContent} /> */}
       <ScrollLayout
-        contentArray={[<AboutMe />, <Career />, <Skill />, <Projects />]}
+        contentArray={[
+          <AboutMe />,
+          <Career />,
+          <Skill />,
+          <Projects />,
+          <Board />,
+        ]}
       />
 
       <EndPage />
@@ -36,6 +44,7 @@ function App() {
       <ProjectModal />
       <ImageModal />
       <IntroduceModal />
+      <BoardModal />
     </div>
   );
 }

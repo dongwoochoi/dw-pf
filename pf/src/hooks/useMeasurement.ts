@@ -570,6 +570,93 @@ export default function useMeasurement() {
     };
   };
 
+  // -------------------------- Board 부분 --------------------------
+  const BoardFontSizeConverter = () => {
+    if (isPc) {
+      return {
+        modalFontSize: 20,
+        errorSize: 14,
+      };
+    }
+    if (isLaptop) {
+      return {
+        modalFontSize: 16,
+        errorSize: 12,
+      };
+    }
+    if (isTablet) {
+      return {
+        modalFontSize: 12,
+        errorSize: 10,
+      };
+    }
+    return {
+      modalFontSize: 10,
+      errorSize: 8,
+    };
+  };
+
+  const boardSizeConverter = () => {
+    if (isPc) {
+      return {
+        fontSize: {
+          defaultFont: 16,
+          littleFont: 12,
+          pagenationFont: 12,
+        },
+        layout: {
+          titleMarginTop: 60,
+          pagenationBtnWidth: 24,
+          pagenationBtnHeight: 28,
+          gridGap: 16,
+        },
+      };
+    }
+    if (isLaptop) {
+      return {
+        fontSize: {
+          defaultFont: 16,
+          littleFont: 12,
+          pagenationFont: 12,
+        },
+        layout: {
+          titleMarginTop: 60,
+          pagenationBtnWidth: 24,
+          pagenationBtnHeight: 28,
+          gridGap: 16,
+        },
+      };
+    }
+    if (isTablet) {
+      return {
+        fontSize: {
+          defaultFont: 12,
+          littleFont: 10,
+          pagenationFont: 10,
+        },
+        layout: {
+          titleMarginTop: 60,
+          pagenationBtnWidth: 20,
+          pagenationBtnHeight: 24,
+          gridGap: 8,
+        },
+      };
+    }
+    return {
+      fontSize: {
+        defaultFont: 12,
+        littleFont: 10,
+        pagenationFont: 10,
+      },
+      layout: {
+        titleMarginTop: 60,
+        pagenationBtnWidth: 20,
+        pagenationBtnHeight: 24,
+        gridGap: 4,
+      },
+    };
+  };
+
   return {
     isMobile,
     titleFontSizeTransfer,
@@ -595,5 +682,7 @@ export default function useMeasurement() {
     projectModalSizeConverter,
     swiperArrowSizeConverter,
     endSizeConverter,
+    BoardFontSizeConverter,
+    boardSizeConverter,
   };
 }

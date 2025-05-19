@@ -11,7 +11,7 @@ import useMeasurement from "../../../hooks/useMeasurement";
 import useResponsive from "../../../hooks/useResponsive";
 
 const ProjectTabSwiper = () => {
-  const { isMobile } = useResponsive();
+  const { isMobile, isTablet } = useResponsive();
   const { swiperSizeConverter, swiperArrowSizeConverter } = useMeasurement();
   const swiperRef = useRef<SwiperClass | null>(null);
   const projectSwiperRef1 = useRef<any>(null);
@@ -63,7 +63,7 @@ const ProjectTabSwiper = () => {
         )}
 
         <Swiper
-          css={swiperContainer(isMobile)}
+          css={swiperContainer(isMobile, isTablet)}
           onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
           allowTouchMove={false}
           spaceBetween={50}
@@ -120,9 +120,9 @@ const wrapper = {
   width: "100%",
 };
 
-const swiperContainer = (isMobile: boolean) => ({
+const swiperContainer = (isMobile: boolean, isTablet: boolean) => ({
   width: "100%",
-  height: isMobile ? "310px" : "550px",
+  height: isMobile ? "310px" : isTablet ? "400px" : "550px",
   minWidth: isMobile ? "278px" : "400px",
 });
 
