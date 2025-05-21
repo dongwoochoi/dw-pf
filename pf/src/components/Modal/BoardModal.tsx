@@ -179,8 +179,8 @@ const inputStyle = (fontSize: number) => ({
   border: "none",
   outline: "none",
   fontSize: `${fontSize}px`,
-  lineHeight: "1.2em", // 커서 위치를 텍스트에 맞춤
-  padding: "8px 0", // label 기준 위치 보정
+  lineHeight: "1.2em",
+  padding: "8px 0",
   color: "white",
   "&:focus ~ label, &:valid ~ label": {
     top: "-10px",

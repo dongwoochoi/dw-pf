@@ -75,7 +75,7 @@ export default function Board() {
   }, [currentPage, needRefetch]);
 
   return (
-    <div css={wrapper} ref={ref} id="board">
+    <div css={wrapper(isMobile)} ref={ref} id="board">
       <FadeComponent>
         <div>
           <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
@@ -142,16 +142,16 @@ export default function Board() {
   );
 }
 
-const wrapper = {
+const wrapper = (isMobile: boolean) => ({
   width: "100%",
   height: "auto",
-  minHeight: "100vh",
+  minHeight: isMobile ? "80vh" : "100vh",
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
   fontFamily: "agroL",
-};
+});
 
 const titleTextStyle = {
   marginTop: "60px",

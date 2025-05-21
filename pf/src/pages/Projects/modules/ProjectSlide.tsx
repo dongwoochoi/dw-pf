@@ -23,17 +23,20 @@ export default function ProjectSlide({
     favicon: string;
   }[];
 }) {
-  const { isMobile, isTablet } = useResponsive();
+  const { isMobile, isLaptop } = useResponsive();
   return (
     <div css={wrapper(isMobile)}>
       <Swiper
-        css={swiperContainer(isMobile, isTablet)}
+        css={swiperContainer(isMobile, isLaptop)}
         onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
         spaceBetween={16}
         direction="horizontal"
         pagination={{
           clickable: true,
         }}
+        nested={true}
+        passiveListeners={false}
+        touchStartPreventDefault={false}
         breakpoints={{
           300: { slidesPerView: 1 },
           600: { slidesPerView: 1 },
@@ -95,8 +98,8 @@ const wrapper = (isMobile: boolean) => ({
   justifyContent: isMobile ? "center" : "",
 });
 
-const swiperContainer = (isMobile: boolean, isTablet: boolean) => ({
+const swiperContainer = (isMobile: boolean, isLaptop: boolean) => ({
   width: "100%",
-  height: isMobile ? "310px" : isTablet ? "400px" : "550px",
+  height: isMobile ? "310px" : isLaptop ? "550px" : "400px",
   maxWidth: "2400px",
 });

@@ -269,7 +269,7 @@ export default function useMeasurement() {
       yearFontSize: 24,
       width: 200,
       height: "auto",
-      boxHeight: 350,
+      boxHeight: 450,
     };
   };
 

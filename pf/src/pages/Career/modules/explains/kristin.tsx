@@ -45,8 +45,8 @@ export default function Kristin() {
             fontSize: `${careerFontSizeConverter().liFontSize}px`,
           }}
         >
-          <CustomLi>SINPLE 유지보수 및 고도화 작업 진행</CustomLi>
-          <CustomLi>KrisTag 개발 진행</CustomLi>
+          <CustomLi>SINPLE 프로젝트 유지보수 및 고도화 작업 진행</CustomLi>
+          <CustomLi>KrisTag 프로젝트 개발 진행</CustomLi>
         </div>
       </div>
     </div>

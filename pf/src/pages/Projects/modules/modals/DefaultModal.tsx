@@ -265,7 +265,9 @@ export default function DefaultModal({
   );
 }
 
-const wrapper = {};
+const wrapper = {
+  lineHeight: 1.5,
+};
 const header = (marginBottom: number, isMobile: boolean) => ({
   display: "flex",
   flexDirection: "row" as const,

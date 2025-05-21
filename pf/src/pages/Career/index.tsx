@@ -37,7 +37,7 @@ export default function Career() {
   const swiperRef = useRef<any>(null);
   return (
     <FadeComponent>
-      <div css={wrapper} ref={ref} id="career" key="career">
+      <div css={wrapper(isMobile)} ref={ref} id="career" key="career">
         <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
           Career
         </BoldText>
@@ -81,14 +81,13 @@ export default function Career() {
                   css={{
                     display: "flex",
                     width: "auto",
-                    height: "100%",
                     flexDirection: "column",
                     alignItems: isMobile ? "center" : "",
                     gap: `${careerSizeConverter().gap}px`,
                   }}
                 >
-                  <Deu />
                   <Kristin />
+                  <Deu />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -96,7 +95,6 @@ export default function Career() {
                   css={{
                     display: "flex",
                     width: "auto",
-                    height: "100%",
                     flexDirection: "column",
                     alignItems: isMobile ? "center" : "",
                     gap: `${careerSizeConverter().gap}px`,
@@ -121,7 +119,7 @@ export default function Career() {
   );
 }
 
-const wrapper = {
+const wrapper = (isMobile: boolean) => ({
   display: "flex",
   flexDirection: "column" as const,
   width: "75vw",
@@ -129,8 +127,8 @@ const wrapper = {
   height: "auto",
   alignItems: "center",
   justifyContent: "center",
-  minHeight: "100vh",
-};
+  minHeight: isMobile ? "80vh" : "100vh",
+});
 
 const titleTextStyle = {
   marginTop: "60px",

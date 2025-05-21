@@ -29,7 +29,7 @@ export default function AboutMe() {
   const [isSelected, setIsSelected] = useState<string>("연차");
   const { isMobile } = useResponsive();
   return (
-    <div css={wrapper} ref={ref} id="aboutMe">
+    <div css={wrapper(isMobile)} ref={ref} id="aboutMe">
       <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
         About Me
       </BoldText>
@@ -96,15 +96,15 @@ export default function AboutMe() {
   );
 }
 
-const wrapper = {
+const wrapper = (isMobile: boolean) => ({
   display: "flex",
   flexDirection: "column" as const,
   justifyContent: "center",
   textAlign: "center" as const,
   width: "85%",
   height: "auto",
-  minHeight: "100vh",
-};
+  minHeight: isMobile ? "80vh" : "100vh",
+});
 
 const titleTextStyle = {
   marginTop: "60px",

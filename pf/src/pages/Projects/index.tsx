@@ -38,7 +38,7 @@ const wrapper = (isMobile: boolean) => ({
   width: isMobile ? "280px" : "75%",
   maxWidth: "1200px",
   height: "auto",
-  minHeight: "100vh",
+  minHeight: isMobile ? "80vh" : "100vh",
 });
 
 const titleTextStyle = {

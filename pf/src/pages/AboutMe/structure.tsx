@@ -11,7 +11,7 @@ const highlight = {
 export const ABOUTME_STRUCTURE = [
   {
     keyword: "연차",
-    question: "올해들어 몇년째 개발 겸험을 가지고 있는가?",
+    question: "올해들어 몇년째 개발 경험을 가지고 있는가?",
     answer: (
       <p
         css={{
