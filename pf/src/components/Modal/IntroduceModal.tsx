@@ -43,17 +43,13 @@ export default function IntroduceModal() {
               <p css={{ fontSize: fontSizeTransfer(28), marginBottom: "16px" }}>
                 페이지 정보
               </p>
-              <p css={{ fontSize: fontSizeTransfer(20) }}>
+              <p css={{ fontSize: fontSizeTransfer(20), fontFamily: "agorL" }}>
                 최종 수정일: 2025.05.14
               </p>
-              <pre css={{ fontSize: fontSizeTransfer(20) }}>
-                {`사용 기술 스택: 
-                React
-                TypeScript
-                Emotion
-                Jotai
-                그외 리엑트 라이브러리`}
-              </pre>
+              <p css={{ fontSize: fontSizeTransfer(20), fontFamily: "agorL" }}>
+                해당페이지는 React,TypeScript, Emotion을 기반으로 만들어
+                졌습니다.
+              </p>
             </div>
           </div>
         </div>

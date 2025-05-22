@@ -8,5 +8,6 @@ export default function useFixedMenu() {
   return {
     isOpen,
     handleOpen,
+    setIsOpen,
   };
 }

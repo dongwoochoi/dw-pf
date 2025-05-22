@@ -5,6 +5,7 @@ import kebabMenu from "./icons/kebabMenu.png";
 import x from "./icons/close.svg";
 import arrowLeft from "./icons/slider_arrow_left.png";
 import arrowRight from "./icons/slider_arrow_right.png";
+import github from "./icons/github.png";
 
 export const icons = {
   arrowUp,
@@ -14,4 +15,5 @@ export const icons = {
   x,
   arrowLeft,
   arrowRight,
+  github,
 };

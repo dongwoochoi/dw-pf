@@ -10,6 +10,25 @@ const highlight = {
 };
 export const ABOUTME_STRUCTURE = [
   {
+    keyword: "인적 사항",
+    question: "기본 인적사항을 알려주세요!",
+    answer: (
+      <p
+        css={{
+          whiteSpace: "pre-wrap",
+          wordBreak: "break-word" as const,
+        }}
+      >
+        <pre>
+          {`        생년월일|  99.07.02
+        최종학력|  동의대학교 산업ICT기술공학과 학사 졸업
+                  - (현) 인공지능학과
+        거주지|  부산광역시`}
+        </pre>
+      </p>
+    ),
+  },
+  {
     keyword: "연차",
     question: "올해들어 몇년째 개발 경험을 가지고 있는가?",
     answer: (
@@ -22,8 +41,8 @@ export const ABOUTME_STRUCTURE = [
         2018년도 대학입학 후 개발경험을 쌓기 시작하여 군 복무 기간 제외 꾸준히
         개발경험을 쌓았으며 실무경력은
         <span css={highlight}>
-          {currentYear}년 기준으로 {Number(currentYear) - 2023}년차{" "}
-        </span>{" "}
+          {currentYear}년 기준으로 {Number(currentYear) - 2023}년차
+        </span>
         입니다!
       </p>
     ),

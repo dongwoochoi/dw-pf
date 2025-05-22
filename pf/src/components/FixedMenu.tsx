@@ -5,11 +5,14 @@ import useFixedMenu from "../hooks/useFixedMenu";
 import { Tooltip } from "react-tooltip";
 import useMeasurement from "../hooks/useMeasurement";
 import useResponsive from "../hooks/useResponsive";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { introduceAtom } from "../jotai/Modal/introduceModalAtom";
+import { isEndPageAtom } from "../jotai/isEndPageAtom";
+import { useEffect } from "react";
 
 export default function FixedMenu() {
   const { isMobile } = useResponsive();
+  const isEnd = useAtomValue(isEndPageAtom);
   const { fixedMenuTransfer } = useMeasurement();
   const responsiveValue = fixedMenuTransfer();
   const [isModalOpen, handleModalOpen] = useAtom(introduceAtom);
@@ -54,7 +57,7 @@ export default function FixedMenu() {
   };
 
   return (
-    <div css={wrapper(isMobile)}>
+    <div css={wrapper(isMobile, isEnd)}>
       <div css={iconBox(responsiveValue.size)} onClick={handleOpen}>
         <img
           css={icon(responsiveValue.icon)}
@@ -100,6 +103,24 @@ export default function FixedMenu() {
           alt="arrowUp"
         />
       </div>
+      <div
+        css={iconButton(
+          isOpen,
+          responsiveValue.gap,
+          responsiveValue.gap,
+          responsiveValue.size
+        )}
+        onClick={scrollToTop}
+        data-tooltip-id="dropdown-tooltip"
+        data-tooltip-content="최상단으로 이동"
+        data-tooltip-variant="light"
+      >
+        <img
+          css={icon(responsiveValue.icon)}
+          src={icons.arrowUp}
+          alt="arrowUp"
+        />
+      </div>
       <Tooltip
         css={{ zIndex: 10, fontWeight: 600 }}
         id="dropdown-tooltip"
@@ -114,9 +135,9 @@ export default function FixedMenu() {
   );
 }
 
-const wrapper = (isMobile: boolean) => ({
+const wrapper = (isMobile: boolean, isEnd: boolean) => ({
   position: "fixed" as const,
-  display: "flex",
+  display: isEnd ? "none" : "flex",
   flexDirection: "column" as const,
   gap: "12px",
   bottom: isMobile ? "16px" : "40px",
