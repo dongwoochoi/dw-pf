@@ -47,7 +47,7 @@ export default function IntroduceModal() {
                 최종 수정일: 2025.05.14
               </p>
               <p css={{ fontSize: fontSizeTransfer(20), fontFamily: "agorL" }}>
-                해당페이지는 React,TypeScript, Emotion을 기반으로 만들어
+                해당페이지는 React, TypeScript, Emotion을 기반으로 만들어
                 졌습니다.
               </p>
             </div>

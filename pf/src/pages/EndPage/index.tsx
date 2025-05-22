@@ -125,7 +125,22 @@ export default function EndPage() {
             </p>
           )}
         </div>
-
+        <div css={isMobile ? mobileExplain : {}}>
+          <div
+            css={iconBox(responsiveValue.size)}
+            onClick={copyToClipboard}
+            data-tooltip-id="dropdown-tooltip"
+            data-tooltip-content="메일주소 복사하기"
+            data-tooltip-variant="light"
+          >
+            <img css={icon(responsiveValue.icon)} src={icons.mail} alt="main" />
+          </div>
+          {isMobile && (
+            <p css={{ color: "black", fontSize: "8px", fontFamily: "agroL" }}>
+              메일주소 복사
+            </p>
+          )}
+        </div>
         <div css={isMobile ? mobileExplain : {}}>
           <div
             css={iconBox(responsiveValue.size)}
@@ -141,22 +156,6 @@ export default function EndPage() {
           {isMobile && (
             <p css={{ color: "black", fontSize: "8px", fontFamily: "agroL" }}>
               페이지 정보
-            </p>
-          )}
-        </div>
-        <div css={isMobile ? mobileExplain : {}}>
-          <div
-            css={iconBox(responsiveValue.size)}
-            onClick={copyToClipboard}
-            data-tooltip-id="dropdown-tooltip"
-            data-tooltip-content="메일주소 복사하기"
-            data-tooltip-variant="light"
-          >
-            <img css={icon(responsiveValue.icon)} src={icons.mail} alt="main" />
-          </div>
-          {isMobile && (
-            <p css={{ color: "black", fontSize: "8px", fontFamily: "agroL" }}>
-              메일주소 복사
             </p>
           )}
         </div>
@@ -264,8 +263,8 @@ const iconBox = (size: number) => ({
 
 const btnWrapper = (height: number, isMobile: boolean) => ({
   position: isMobile ? ("relative" as const) : ("absolute" as const),
-  right: "10%",
-  bottom: "30%",
+  right: isMobile ? "" : "10%",
+  bottom: isMobile ? "" : "30%",
   height: `${height}px`,
   display: "flex",
   flexDirection: isMobile ? ("row" as const) : ("column" as const),

@@ -103,24 +103,6 @@ export default function FixedMenu() {
           alt="arrowUp"
         />
       </div>
-      <div
-        css={iconButton(
-          isOpen,
-          responsiveValue.gap,
-          responsiveValue.gap,
-          responsiveValue.size
-        )}
-        onClick={scrollToTop}
-        data-tooltip-id="dropdown-tooltip"
-        data-tooltip-content="최상단으로 이동"
-        data-tooltip-variant="light"
-      >
-        <img
-          css={icon(responsiveValue.icon)}
-          src={icons.arrowUp}
-          alt="arrowUp"
-        />
-      </div>
       <Tooltip
         css={{ zIndex: 10, fontWeight: 600 }}
         id="dropdown-tooltip"
