@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { useEffect, useState } from "react";
-import { endPageImg } from "../../assets/img";
+import { endPageImg, MainImage } from "../../assets/img";
 import useMeasurement from "../../hooks/useMeasurement";
 import FadeComponent from "../../components/FadeComponent";
 
@@ -14,7 +14,7 @@ export default function EndPage() {
       setShowFirst((prev) => !prev);
     }, 1000);
 
-    return () => clearInterval(timer); // 컴포넌트 언마운트 시 타이머 정리
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -26,21 +26,31 @@ export default function EndPage() {
             src={showFirst ? endPageImg.bye1 : endPageImg.bye2}
             alt="toggle"
           />
-          <p css={titleTextStyle(endSizeConverter().fontSize)}>Thank You!</p>
+          <p css={titleTextStyle(endSizeConverter().fontSize)}>
+            봐주셔서 감사합니다!
+          </p>
         </div>
       </FadeComponent>
+      <div css={btnWrapper}>
+        <p css={textBtn(endSizeConverter().fontSize)}>Mail</p>
+        <p css={textBtn(endSizeConverter().fontSize)}>GitHub</p>
+      </div>
     </div>
   );
 }
 
 const wrapper = {
   width: "100%",
-  height: "100vh",
+  height: "400vh",
+  maxHeight: "100vh",
   display: "flex",
-  flexDirection: "column" as const,
+  flexDirection: "row" as const,
   alignItems: "center",
   justifyContent: "center",
-  background: "white",
+  backgroundImage: `url(${MainImage.MainBackground})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
 };
 
 const layout = {
@@ -51,7 +61,7 @@ const layout = {
 };
 
 const titleTextStyle = (fontSize: number) => ({
-  fontFamily: "agro",
+  fontFamily: "agroL",
   fontSize: `${fontSize}px`,
   fontWeight: "800",
   marginTop: "60px",
@@ -59,5 +69,34 @@ const titleTextStyle = (fontSize: number) => ({
 
 const imgStyle = (width: number, height: number) => ({
   width: `${width}px`,
-  height: `${height}px8`,
+  height: `${height}px`,
+});
+
+const btnWrapper = {
+  display: "flex",
+  flexDirection: "column" as const,
+};
+
+const textBtn = (fontSize: number) => ({
+  fontSize: `${fontSize - 20}px`,
+  fontFamily: "agroM",
+  cursor: "pointer",
+  position: "relative" as const,
+  width: "auto",
+  display: "inline-block",
+  paddingBottom: "4px",
+  "&::after": {
+    content: '""',
+    position: "absolute" as const,
+    left: 0,
+    bottom: 0,
+    height: "5px",
+    backgroundColor: "black",
+    width: 0,
+    transition: "width 0.3s ease",
+  },
+
+  "&:hover::after": {
+    width: "100%",
+  },
 });

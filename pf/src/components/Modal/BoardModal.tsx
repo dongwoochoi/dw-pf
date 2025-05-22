@@ -1,6 +1,6 @@
 /* eslint-disable */
 /** @jsxImportSource @emotion/react */
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 
 import Modal from "../Modal";
 import { icons } from "../../assets/icon";
@@ -9,6 +9,8 @@ import useResponsive from "../../hooks/useResponsive";
 import useMeasurement from "../../hooks/useMeasurement";
 import { boardModalAtom } from "../../jotai/Modal/BoardModalAtom";
 import useBoard from "../../hooks/useBoard";
+import { isPostFetchingAtom } from "../../jotai/isPostFetchingAtom";
+import Spinner from "../Spinner";
 
 export default function BoardModal() {
   const {
@@ -25,6 +27,8 @@ export default function BoardModal() {
   const { isMobile } = useResponsive();
   const [alertContent, handleModal] = useAtom(boardModalAtom);
   const modalRef = useRef<any>(null);
+
+  const isFetching = useAtomValue(isPostFetchingAtom);
   const handleClose = () => {
     handleModal(false);
   };
@@ -118,23 +122,27 @@ export default function BoardModal() {
           </div>
         </div>
         <div css={{ display: "flex", justifyContent: "center" }}>
-          <div
-            css={{
-              display: "inline-block",
-              padding: "4px 8px",
-              color: "white",
-              borderRadius: "5px",
-              fontSize: `${BoardFontSizeConverter().modalFontSize}px`,
-              background: "#727272",
-              cursor: "pointer",
-              "&:hover": { background: "#9B9B9B" },
-            }}
-            onClick={() => {
-              submit(board);
-            }}
-          >
-            등록하기
-          </div>
+          {isFetching ? (
+            <Spinner />
+          ) : (
+            <div
+              css={{
+                display: "inline-block",
+                padding: "4px 8px",
+                color: "white",
+                borderRadius: "5px",
+                fontSize: `${BoardFontSizeConverter().modalFontSize}px`,
+                background: "#727272",
+                cursor: "pointer",
+                "&:hover": { background: "#9B9B9B" },
+              }}
+              onClick={() => {
+                submit(board);
+              }}
+            >
+              등록하기
+            </div>
+          )}
         </div>
       </section>
     </Modal>

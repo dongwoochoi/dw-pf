@@ -3,7 +3,7 @@ const currentYear = new Date().getFullYear();
 const highlight = {
   fontFamily: "agroM",
   fontSize: "inhirt",
-  background: "#2B3E50",
+  background: "#2C4860",
   padding: "2px 4px",
   borderRadius: "5px",
   margin: "0 4px",

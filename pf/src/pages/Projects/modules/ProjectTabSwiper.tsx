@@ -12,7 +12,6 @@ import useResponsive from "../../../hooks/useResponsive";
 
 const ProjectTabSwiper = () => {
   const { isMobile, isLaptop } = useResponsive();
-  console.log(isLaptop);
   const { swiperSizeConverter, swiperArrowSizeConverter } = useMeasurement();
   const swiperRef = useRef<SwiperClass | null>(null);
   const projectSwiperRef1 = useRef<any>(null);

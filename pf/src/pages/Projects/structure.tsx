@@ -27,7 +27,7 @@ export const MAIN_PROJECT_STRUCTURE = [
   },
   {
     title: "(주)서르 홈페이지 제작",
-    team: "Solo Project",
+    team: "Freelance Project",
     text: `(주)서르 사의 의뢰를 받아 홈페이지 제작`,
     tag: ["React", "Email.Js"],
     img: Projects.seoreu,
@@ -48,8 +48,8 @@ export const SUB_PROJECT_STRUCTURE = [
     title: "PortFolio",
     team: "Solo Project",
     text: `개인 포트폴리오 페이지 제작`,
-    tag: ["React"],
-    img: "",
+    tag: ["React", "TypeScript", "Emotion", "Jotai", "Django"],
+    img: Projects.pf,
     favicon: "",
   },
   {

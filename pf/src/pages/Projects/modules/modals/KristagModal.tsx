@@ -9,7 +9,7 @@ export default function KristagModal() {
       title={"KRISTAG"}
       status={"완료"}
       tags={["React", "TypeScript", "Jotai", "React-Query"]}
-      introducingText={`KRISTAG는 사내 데이터를 Labelling 할 수 있도록 제작된 인하우스툴로써 작업자가 의류 / 신발의 이미지를 해당하는 메타데이터로 태깅하고 관리하는 툴 입니다.`}
+      introducingText={`KRISTAG는 사내 데이터를 Labelling 할 수 있도록 제작된 인하우스툴로써 작업자가 의류 / 신발의 이미지를 해당하는 메타데이터로 태깅하고 관리하는 라벨링 툴 입니다.`}
       mainFunction={[
         {
           workCategory: "Atomic-Design-Pattern",
@@ -44,7 +44,7 @@ export default function KristagModal() {
         {
           title: "블로킹 기능 구현 이슈",
           problem:
-            "react-router-dom V6 의 history 객체 제거로 인해 blocking 함수가 사용불가한 상황",
+            "react-router-dom V5 에서 V6로 버전이 올라가는 과정에서 기존 history 객체 제거로 인해 blocking 함수가 사용불가한 상황",
           solution:
             "커스텀 훅을 통해 React Router의 useBlocker를 사용해 네비게이션을 감지하고, 전역 상태인 blockingAtom을 통해 차단 조건을 확인한 뒤, 조건에 따라 이동을 허용하거나 차단하는 로직을 구현",
         },
@@ -57,7 +57,7 @@ export default function KristagModal() {
         },
       ]}
       learned={
-        "이 프로젝트는 기본적으로 복잡한 데이터를 다루는 과정이 많았습니다. Depth가 3-4인 중첩 객체를 드롭다운으로 선택해야하는 메타데이터를 다루면서 많은 중복 코드가 발생하고 어려움을 느꼈는데 많은 복잡도가 있는 만큼 미리 정리와 분류가 필요하다는것을 직접적으로 깨닫게 되었고, 줌뷰어나 라벨링 워크플레이스 부분을 제작하며 캔버스 또는 많은 동적인 작업도 해볼 수 있어서 좋았습니다. 무엇보다 업데이트되는 라이브러리들의 변경사항에 대응하여보면서 앞으로 있을 많은 변화에 적응해 나갈때 필요한 경험과 자신감을 가지게 되었습니다."
+        "이 프로젝트는 기본적으로 복잡한 데이터를 다루는 과정이 많았습니다. Depth가 3-4인 중첩 객체를 드롭다운으로 선택해야하는 메타데이터를 다루면서 많은 중복 코드가 발생하고 어려움을 느꼈는데 많은 복잡도가 있는 만큼 미리 정리와 분류가 필요하다는것을 직접적으로 깨닫게 되었고, Zoom Viewer, 라벨링 워크플레이스 부분을 제작하며 캔버스 또는 많은 동적인 작업도 해볼 수 있어서 좋았습니다. 무엇보다 업데이트되는 라이브러리들의 변경사항에 대응하여보면서 앞으로 있을 많은 변화에 적응해 나갈때 필요한 경험과 자신감을 가지게 되었습니다."
       }
       introducingImg={[
         {

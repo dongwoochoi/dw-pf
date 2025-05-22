@@ -64,9 +64,20 @@ export default function ProjectCard({
         <div css={explainSection}>
           <div css={textSection}>
             <p css={titleStyle(projectFontSizeConverter().title)}>{title}</p>
-            <p
-              css={teamStyle(projectFontSizeConverter().text)}
-            >{`at ${team}`}</p>
+            <p css={teamStyle(projectFontSizeConverter().text)}>
+              at
+              <p
+                css={{
+                  color: "#DCDBD1",
+                  fontFamily: "agroM",
+                  borderBottom: "1px solid white",
+                  padding: "4px",
+                  // fontSize: `${projectFontSizeConverter().text + 2}px`,
+                }}
+              >
+                {team}
+              </p>
+            </p>
             <p
               css={textStyle(
                 projectFontSizeConverter().text,
@@ -142,6 +153,8 @@ const titleStyle = (fontSize: number) => ({
 });
 
 const teamStyle = (fontSize: number) => ({
+  display: "flex",
+  gap: "8px",
   fontSize: `${fontSize}px`,
   marginBottom: "16px",
 });

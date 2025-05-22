@@ -237,28 +237,40 @@ export default function DefaultModal({
           </div>
         ) : null}
         <div css={introduce}>
-          <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
-            관련 사진
-          </BorderBottomTitle>
-          <div css={imgContainer}>
-            {introducingImg?.map((item) => {
-              return (
-                <div css={imgContent}>
-                  <img
-                    css={imgStyle(isMobile)}
-                    src={item.img}
-                    onClick={() => {
-                      handleImgModal(item.img);
-                    }}
-                    alt={item.title}
-                  />
-                  <p css={imgTitle(projectModalSizeConverter().font.imgTitle)}>
-                    {item.title}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          {introducingImg && (
+            <>
+              {" "}
+              <BorderBottomTitle
+                size={projectModalSizeConverter().font.boldSize}
+              >
+                관련 사진
+              </BorderBottomTitle>
+              <div css={imgContainer}>
+                {introducingImg?.map((item) => {
+                  return (
+                    <div css={imgContent}>
+                      <img
+                        css={imgStyle(isMobile)}
+                        src={item.img}
+                        onClick={() => {
+                          handleImgModal(item.img);
+                        }}
+                        alt={item.title}
+                      />
+
+                      <p
+                        css={imgTitle(
+                          projectModalSizeConverter().font.imgTitle
+                        )}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -323,7 +335,7 @@ const tagBox = {
   display: "flex",
   flexDirection: "row" as const,
   flexWrap: "wrap" as const,
-  width: "73vw",
+  // width: "73vw",
   gap: "8px",
 };
 const tagStyle = (

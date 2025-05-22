@@ -19,6 +19,7 @@ import seoreu from "./imgs/projects/seoreu.png";
 import ideaConection from "./imgs/projects/ideaConection.png";
 import winterHack from "./imgs/projects/winterHack.png";
 import capStone from "./imgs/projects/youtube.jpg";
+import pf from "./imgs/projects/pf.png";
 
 import kristagF from "./imgs/favicons/kristagF.png";
 import seoreuF from "./imgs/favicons/seoreuF.svg";
@@ -27,8 +28,8 @@ import sinpleF from "./imgs/favicons/sinpleF.png";
 import Me from "./imgs/me.jpeg";
 import Face from "./imgs/face.jpeg";
 
-import bye1 from "./imgs//end/bye1.jpeg";
-import bye2 from "./imgs/end/bye2.jpeg";
+import bye1 from "./imgs//end/bye1.png";
+import bye2 from "./imgs/end/bye2.png";
 
 import Kristag_main from "./imgs/Modals/Kristag/main.png";
 import Kristag_labeling from "./imgs/Modals/Kristag/labeling.png";
@@ -74,6 +75,7 @@ export const Projects = {
   ideaConection,
   winterHack,
   capStone,
+  pf,
 };
 
 export const favicons = {

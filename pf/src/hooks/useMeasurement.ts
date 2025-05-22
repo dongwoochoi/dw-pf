@@ -546,27 +546,27 @@ export default function useMeasurement() {
       return {
         width: 300,
         height: 360,
-        fontSize: 60,
+        fontSize: 48,
       };
     }
     if (isLaptop) {
       return {
         width: 250,
         height: 300,
-        fontSize: 48,
+        fontSize: 36,
       };
     }
     if (isTablet) {
       return {
         width: 150,
         height: 190,
-        fontSize: 36,
+        fontSize: 24,
       };
     }
     return {
       width: 150,
       height: 190,
-      fontSize: 36,
+      fontSize: 20,
     };
   };
 

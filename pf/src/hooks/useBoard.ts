@@ -1,9 +1,10 @@
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { boardModalAtom } from "../jotai/Modal/BoardModalAtom";
 import { Instance } from "../types/api";
 import axios from "axios";
 import { shouldRefetchAtom } from "../jotai/shouldRefetchAtom";
+import { isPostFetchingAtom } from "../jotai/isPostFetchingAtom";
 
 export interface ApiErrorResponse {
   status: number;
@@ -38,6 +39,7 @@ export default function useBoard() {
   });
   const [writerIsNull, setWriterIsNull] = useState<boolean>(false);
   const [contentIsNull, setContentIsNull] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useAtom(isPostFetchingAtom);
   const setShouldRefetch = useSetAtom(shouldRefetchAtom);
   const customAxios: Instance = async ({ method, body }) => {
     try {
@@ -59,6 +61,8 @@ export default function useBoard() {
     if (value.content === "") {
       setContentIsNull(true);
     }
+    if (value.writer === "" || value.content === "") return;
+    setIsFetching(true);
     try {
       await customAxios({
         method: `post`,
@@ -70,17 +74,10 @@ export default function useBoard() {
     } catch (e) {
       alert("잠시후 다시 시도해주세요.");
       return console.error(e);
+    } finally {
+      setIsFetching(false);
     }
   };
-
-  useEffect(() => {
-    setBoard({
-      writer: "",
-      content: "",
-    });
-    setContentIsNull(false);
-    setWriterIsNull(false);
-  }, [isModalOpen]);
 
   const onChangeWriter = (value: string) => {
     setBoard((prev) => {

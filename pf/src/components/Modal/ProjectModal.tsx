@@ -56,8 +56,8 @@ export default function ProjectModal() {
 
 const wrapper = (isMobile: boolean) => ({
   position: "relative" as const,
-  width: isMobile ? "100vw" : `80vw`,
-  height: isMobile ? "100vh" : `80vh`,
+  width: isMobile ? "90vw" : `80vw`,
+  height: isMobile ? "90vh" : `80vh`,
   padding: isMobile ? "16px" : "40px",
   background: "#2c2c2c",
   borderRadius: "5px",
