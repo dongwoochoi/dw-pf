@@ -71,7 +71,6 @@ export default function ProjectCard({
                   color: "#DCDBD1",
                   fontFamily: "agroM",
                   borderBottom: "1px solid white",
-                  padding: "4px",
                   // fontSize: `${projectFontSizeConverter().text + 2}px`,
                 }}
               >
