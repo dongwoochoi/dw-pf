@@ -137,7 +137,7 @@ export default function BoardModal() {
                 "&:hover": { background: "#9B9B9B" },
               }}
               onClick={() => {
-                submit(board);
+                // submit(board);
               }}
             >
               등록하기
