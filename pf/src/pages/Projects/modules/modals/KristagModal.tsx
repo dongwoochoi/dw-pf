@@ -14,7 +14,7 @@ export default function KristagModal() {
         {
           workCategory: "Atomic-Design-Pattern",
           workedContend: [
-            "4단계 Atomic-Design-Pattern 을 사용하여 폴더 구조화",
+            "3단계 Atomic-Design-Pattern 을 사용하여 폴더 구조화",
           ],
         },
         {

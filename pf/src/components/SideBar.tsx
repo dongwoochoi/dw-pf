@@ -58,7 +58,7 @@ export default function SideBar() {
           Projects
         </p>
       </div>
-      <div
+      {/* <div
         css={{
           ...menuBorder(visibleSection?.board, sideBarFontSizeTransfer()),
         }}
@@ -69,7 +69,7 @@ export default function SideBar() {
         >
           Board
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }

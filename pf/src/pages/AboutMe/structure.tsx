@@ -19,12 +19,11 @@ export const ABOUTME_STRUCTURE = [
           wordBreak: "break-word" as const,
         }}
       >
-        <pre>
-          {`        생년월일|  99.07.02
-        최종학력|  동의대학교 산업ICT기술공학과 학사 졸업
-                  - (현) 인공지능학과
-        거주지|  부산광역시`}
-        </pre>
+        <p>생년월일| 99.07.02</p>
+        <p>
+          최종학력| 동의대학교 산업ICT기술공학과 학사 졸업 - (현) 인공지능학과
+        </p>
+        <p>거주지| 부산광역시</p>
       </p>
     ),
   },
@@ -43,7 +42,12 @@ export const ABOUTME_STRUCTURE = [
         <span css={highlight}>
           {currentYear}년 기준으로 {Number(currentYear) - 2023}년차
         </span>
-        입니다!
+        이며 2년간{" "}
+        <span css={highlight}>
+          프로젝트의 핵심기능을 담당하며 설계부터 구현까지 주도적으로 참여하며
+          리펙토링 및 재사용성 향상, 최적화 작업 경험
+        </span>
+        을 가지고 있습니다.
       </p>
     ),
   },

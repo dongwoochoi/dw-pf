@@ -53,6 +53,7 @@ const wrapper = (height: number, isMobile: boolean) => ({
   justifyContent: isMobile ? "center" : "space-around",
   alignItems: "center",
   minHeight: isMobile ? "50vh" : "80vh",
+  marginTop: isMobile ? "80px" : "",
 });
 
 const leftContent = (width: number) => ({

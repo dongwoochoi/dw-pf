@@ -35,7 +35,7 @@ function App() {
           <Career />,
           <Skill />,
           <Projects />,
-          <Board />,
+          // <Board />,
         ]}
       />
 

@@ -26,7 +26,7 @@ export default function AboutMe() {
     };
   });
 
-  const [isSelected, setIsSelected] = useState<string>("연차");
+  const [isSelected, setIsSelected] = useState<string>("인적 사항");
   const { isMobile } = useResponsive();
   return (
     <div css={wrapper(isMobile)} ref={ref} id="aboutMe">
@@ -148,6 +148,9 @@ const keywordStyle = (
   background: isSelected ? "#FCFCFC" : "#727272",
   fontFamily: "agroL",
   fontSize: `${fontSize}px`,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   padding: isMobile ? "4px 8px" : padding,
   borderRadius: "20px",
   cursor: "pointer",

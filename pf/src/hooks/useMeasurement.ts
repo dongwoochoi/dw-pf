@@ -517,7 +517,7 @@ export default function useMeasurement() {
   const swiperArrowSizeConverter = () => {
     if (isPc) {
       return {
-        height: "80px",
+        height: "60px",
         position: 120,
       };
     }
