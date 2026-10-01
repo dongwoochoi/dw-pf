@@ -37,7 +37,7 @@ export default function Kristin() {
             fontSize: `${careerFontSizeConverter().subFontSize}px`,
           }}
         >
-          | 개발팀의 프론트엔드 포지션 업무 담당
+          | 인턴(2023.07~2023.09) → 프론트엔드 주임(2023.10~2025.03)
         </p>
         <div
           css={{
@@ -55,5 +55,5 @@ export default function Kristin() {
 
 const fontStyle = {
   fontFamily: "agroL",
-  color: "white",
+  color: "var(--text-primary)",
 };

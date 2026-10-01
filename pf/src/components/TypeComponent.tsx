@@ -50,6 +50,7 @@ const TypeComponent = () => {
         fontSize: `${typingFontSize()}px`,
         fontFamily: "agroL",
         whiteSpace: "pre",
+        color: "black",
       }}
     >
       {text}

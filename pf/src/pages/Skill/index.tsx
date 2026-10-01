@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { refAtom } from "../../jotai/refAtom";
 import { useSetAtom } from "jotai";
 import TabSwiper from "./modules/TabSwiper";
@@ -11,8 +11,7 @@ import FadeComponent from "../../components/FadeComponent";
 
 export default function Skill() {
   const { isMobile } = useResponsive();
-  const { titleFontSizeTransfer, swiperSizeConverter, skillSizeConverter } =
-    useMeasurement();
+  const { titleFontSizeTransfer } = useMeasurement();
   const ref = useRef<HTMLDivElement>(null);
   const setAtom = useSetAtom(refAtom);
   setAtom((prev) => {
@@ -21,46 +20,61 @@ export default function Skill() {
       skillRef: ref,
     };
   });
+
+  // Swiper mis-measures its width when its container is sized with a CSS
+  // percentage (it reads a stale/partial layout and can end up with a
+  // multi-million-pixel slide width). Measuring the real pixel width
+  // ourselves and feeding Swiper a concrete number avoids that entirely.
+  const [wrapperWidth, setWrapperWidth] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const updateWidth = () => setWrapperWidth(el.clientWidth);
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  const cardWidth = Math.round(wrapperWidth * 0.85);
+
   return (
-    <div
-      css={wrapper(skillSizeConverter().height, isMobile)}
-      ref={ref}
-      id="skills"
-    >
-      <div css={leftContent(swiperSizeConverter().width)}>
-        <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
-          Skills
-        </BoldText>
-        <FadeComponent>
-          <TabSwiper />
-        </FadeComponent>
-      </div>
+    <div css={wrapper(isMobile)} ref={ref} id="skills">
+      <BoldText css={titleTextStyle} size={titleFontSizeTransfer()}>
+        Skills
+      </BoldText>
       <FadeComponent>
-        <SkillExport />
+        <div css={tabCard(cardWidth)}>
+          {cardWidth > 0 ? (
+            <TabSwiper key={Math.round(cardWidth / 20)} />
+          ) : null}
+        </div>
+      </FadeComponent>
+      <FadeComponent>
+        {cardWidth > 0 ? <SkillExport width={cardWidth} /> : null}
       </FadeComponent>
     </div>
   );
 }
 
-const wrapper = (height: number, isMobile: boolean) => ({
-  paddingLeft: isMobile ? "0px" : "40px",
+const wrapper = (isMobile: boolean) => ({
   boxSizing: "border-box" as const,
   width: "85%",
-  height: `${height}px`,
   maxWidth: "1400px",
   display: "flex",
-  flexDirection: isMobile ? ("column" as const) : ("row" as const),
-  justifyContent: isMobile ? "center" : "space-around",
+  flexDirection: "column" as const,
   alignItems: "center",
-  minHeight: isMobile ? "50vh" : "80vh",
-  marginTop: isMobile ? "80px" : "",
+  gap: isMobile ? "20px" : "24px",
+  padding: isMobile ? "60px 0" : "80px 0",
 });
 
-const leftContent = (width: number) => ({
-  display: "flex",
-  flexDirection: "column" as const,
+const tabCard = (width: number) => ({
   width: `${width}px`,
-  gap: "16px",
+  minHeight: "120px",
+  background: "var(--bg-surface)",
+  border: "1px solid var(--border-color)",
+  borderRadius: "16px",
+  padding: "24px",
+  boxSizing: "border-box" as const,
 });
 
 const titleTextStyle = {};

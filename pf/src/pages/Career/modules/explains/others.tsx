@@ -59,5 +59,5 @@ export default function Others() {
 
 const fontStyle = {
   fontFamily: "agroL",
-  color: "white",
+  color: "var(--text-primary)",
 };

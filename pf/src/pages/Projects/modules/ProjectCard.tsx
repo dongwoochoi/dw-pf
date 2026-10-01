@@ -68,9 +68,9 @@ export default function ProjectCard({
               at
               <p
                 css={{
-                  color: "#DCDBD1",
+                  color: "var(--text-secondary)",
                   fontFamily: "agroM",
-                  borderBottom: "1px solid white",
+                  borderBottom: "1px solid var(--border-color)",
                   // fontSize: `${projectFontSizeConverter().text + 2}px`,
                 }}
               >
@@ -114,8 +114,8 @@ const wrapper = (width: number) => ({
   width: `${width}px`,
   height: `${width}px`,
   borderRadius: "5px",
-  background: "#4B4B4B",
-  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+  background: "var(--bg-surface)",
+  boxShadow: "0 2px 6px var(--shadow-color)",
   boxSizing: "border-box" as const,
 });
 
@@ -143,7 +143,7 @@ const explainSection = {
 };
 
 const textSection = {
-  color: "white",
+  color: "var(--text-primary)",
 };
 
 const titleStyle = (fontSize: number) => ({
@@ -166,12 +166,12 @@ const tagBox = {
 
 const tagStyle = (fontSize: number, padding: string) => ({
   padding,
-  background: "#6D6D6D",
-  color: "#EAEAEA",
+  background: "var(--bg-muted)",
+  color: "var(--text-primary)",
   borderRadius: "5px",
   fontSize: `${fontSize}px`,
   fontFamily: "agroL",
-  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+  boxShadow: "0 2px 6px var(--shadow-color)",
 });
 
 const hoverText = (fontSize: number) => ({
@@ -185,7 +185,7 @@ const hoverSection = (isHover: boolean, width: number, height: number) => ({
   height: `${height}px`,
   padding: "8px",
   display: isHover ? "flex" : "none",
-  color: "white",
+  color: "#ffffff",
   position: "absolute" as const,
   top: "0",
   zIndex: "1",
@@ -199,7 +199,7 @@ const hoverSection = (isHover: boolean, width: number, height: number) => ({
 });
 
 const hoverTitle = (fontSize: number) => ({
-  color: "white",
+  color: "#ffffff",
   fontFamily: "agro",
   fontSize: `${fontSize}px`,
   fontWeight: "600",

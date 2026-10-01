@@ -8,7 +8,8 @@ import useResponsive from "../hooks/useResponsive";
 import { useAtom, useAtomValue } from "jotai";
 import { introduceAtom } from "../jotai/Modal/introduceModalAtom";
 import { isEndPageAtom } from "../jotai/isEndPageAtom";
-import { useEffect } from "react";
+import { CONTACT_EMAIL } from "../constants/contact";
+import { themeAtom } from "../jotai/themeAtom";
 
 export default function FixedMenu() {
   const { isMobile } = useResponsive();
@@ -17,6 +18,10 @@ export default function FixedMenu() {
   const responsiveValue = fixedMenuTransfer();
   const [isModalOpen, handleModalOpen] = useAtom(introduceAtom);
   const { isOpen, handleOpen } = useFixedMenu();
+  const [theme, setTheme] = useAtom(themeAtom);
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
   const toastMessage = () => {
     toast(
       () => {
@@ -45,7 +50,7 @@ export default function FixedMenu() {
   };
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText("dong99woo@gmail.com");
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
       toastMessage();
     } catch (err) {
       toast.error("복사에 실패했습니다.");
@@ -103,6 +108,24 @@ export default function FixedMenu() {
           alt="arrowUp"
         />
       </div>
+      <div
+        css={iconButton(
+          isOpen,
+          0,
+          responsiveValue.gap * 2,
+          responsiveValue.size
+        )}
+        onClick={toggleTheme}
+        data-tooltip-id="dropdown-tooltip"
+        data-tooltip-content={
+          theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"
+        }
+        data-tooltip-variant="light"
+      >
+        <span css={themeIcon(responsiveValue.icon)}>
+          {theme === "dark" ? "☀️" : "🌙"}
+        </span>
+      </div>
       <Tooltip
         css={{ zIndex: 10, fontWeight: 600 }}
         id="dropdown-tooltip"
@@ -131,18 +154,27 @@ const iconBox = (size: number) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  background: "white",
+  background: "var(--fab-bg)",
   width: `${size}px`,
   height: `${size}px`,
   borderRadius: "40px",
   cursor: "pointer",
-  "&:hover": { background: "#CFCFCF", scale: "1.1", transition: "0.3s" },
-  boxShadow: "0px 2px 6px 2px #00000026",
+  "&:hover": {
+    background: "var(--fab-bg-hover)",
+    scale: "1.1",
+    transition: "0.3s",
+  },
+  boxShadow: "0px 2px 6px 2px var(--shadow-color)",
 });
 
 const icon = (size: number) => ({
   width: `${size}px`,
   height: `${size}px`,
+});
+
+const themeIcon = (size: number) => ({
+  fontSize: `${size * 0.7}px`,
+  lineHeight: 1,
 });
 
 const iconButton = (

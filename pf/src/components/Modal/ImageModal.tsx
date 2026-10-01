@@ -64,7 +64,7 @@ const wrapper = {
   padding: "40px",
   background: "transparent",
   borderRadius: "5px",
-  boxShadow: "0px 2px 6px 2px #00000026",
+  boxShadow: "0px 2px 6px 2px var(--shadow-color)",
 };
 
 const topWrapper = {

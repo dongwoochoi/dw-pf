@@ -138,12 +138,12 @@ const btnBox = {
 const btnStyle = (isClicked: boolean, fontSize: number) => ({
   fontFamily: "agro",
   fontSize: `${fontSize}px`,
-  color: isClicked ? "black" : "white",
+  color: isClicked ? "var(--chip-selected-text)" : "var(--text-primary)",
   padding: "6px 10px",
   borderRadius: "5px",
-  background: isClicked ? "#FCFCFC" : "#727272",
+  background: isClicked ? "var(--chip-selected-bg)" : "var(--bg-muted)",
   cursor: "pointer",
-  "&:hover": { background: "#9B9B9B" },
+  "&:hover": { background: "var(--bg-muted-hover)" },
 });
 
 const sliderNavigationLeft = (height: string, position: number) => ({

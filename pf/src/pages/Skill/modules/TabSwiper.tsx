@@ -12,6 +12,7 @@ import {
 } from "../structure";
 import { useSetAtom } from "jotai";
 import { skillAtom } from "../../../jotai/skill";
+import { icons } from "../../../assets/icon";
 import useMeasurement from "../../../hooks/useMeasurement";
 import useResponsive from "../../../hooks/useResponsive";
 
@@ -19,6 +20,11 @@ const TabSwiper = () => {
   const { isMobile } = useResponsive();
   const { swiperSizeConverter } = useMeasurement();
   const swiperRef = useRef<any>(null);
+  const rowRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
   const setSelectedSkill = useSetAtom(skillAtom);
   const handleClick = (id: string) => {
     setSelectedSkill(id);
@@ -29,6 +35,14 @@ const TabSwiper = () => {
       swiperRef.current.slideTo(index);
       setCurrentIndex(index);
     }
+  };
+  const handleRowScroll = (direction: 1 | -1) => {
+    const el = rowRefs[currentIndex].current;
+    if (!el) return;
+    const step =
+      (swiperSizeConverter().circleSize + swiperSizeConverter().swiperGap) *
+      3;
+    el.scrollBy({ left: direction * step, behavior: "smooth" });
   };
 
   return (
@@ -50,104 +64,102 @@ const TabSwiper = () => {
           css={btnStyle(currentIndex === 2, swiperSizeConverter().tapFontSize)}
           onClick={() => handleTabClick(2)}
         >
-          Tool
+          Tool/Infra
         </div>
       </div>
 
-      <Swiper
-        css={swiperContainer}
-        onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
-        allowTouchMove={false}
-        spaceBetween={50}
-        slidesPerView={1}
-      >
-        <SwiperSlide>
-          <div
-            css={{
-              padding: "8px",
-              display: "flex",
-              gap: `${swiperSizeConverter().swiperGap}px`,
-              justifyContent: "flex-start",
-              minHeight: isMobile ? "50px" : "120px",
-            }}
-          >
-            {FRONT_SLIDE_STRUCTURE.map((item) => {
-              return (
-                <GaugeComponent
-                  key={item.logo}
-                  logo={item.logo}
-                  percent={item.percent}
-                  speed={item.speed}
-                  currentIndex={currentIndex}
-                  needFit={item.needFit}
-                  handleClick={() => handleClick(item.id)}
-                />
-              );
-            })}
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            css={{
-              padding: "8px",
-              display: "flex",
-              gap: `${swiperSizeConverter().swiperGap}px`,
-              justifyContent: "flex-start",
-              minHeight: isMobile ? "50px" : "120px",
-            }}
-          >
-            {BACK_SLIDE_STRUCTURE.map((item) => {
-              return (
-                <GaugeComponent
-                  key={item.logo}
-                  logo={item.logo}
-                  percent={item.percent}
-                  speed={item.speed}
-                  currentIndex={currentIndex}
-                  needFit={item.needFit}
-                  handleClick={() => handleClick(item.id)}
-                />
-              );
-            })}
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            css={{
-              padding: "8px",
-              display: "flex",
-              gap: `${swiperSizeConverter().swiperGap}px`,
-              justifyContent: "flex-start",
-              minHeight: isMobile ? "50px" : "120px",
-              flexWrap: "wrap",
-            }}
-          >
-            {TOOL_SLIDE_STRUCTURE.map((item) => {
-              return (
-                <GaugeComponent
-                  key={item.logo}
-                  logo={item.logo}
-                  percent={item.percent}
-                  currentIndex={currentIndex}
-                  speed={item.speed}
-                  needFit={item.needFit}
-                  handleClick={() => handleClick(item.id)}
-                />
-              );
-            })}
-          </div>
-        </SwiperSlide>
-      </Swiper>
+      <div css={rowWithArrows}>
+        <img
+          css={arrowStyle}
+          src={icons.arrowLeft}
+          onClick={() => handleRowScroll(-1)}
+          alt="이전"
+        />
+        <Swiper
+          css={swiperContainer}
+          onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
+          allowTouchMove={false}
+          spaceBetween={50}
+          slidesPerView={1}
+        >
+          <SwiperSlide>
+            <div
+              ref={rowRefs[0]}
+              css={scrollRow(
+                swiperSizeConverter().swiperGap,
+                swiperSizeConverter().circleSize
+              )}
+            >
+              {FRONT_SLIDE_STRUCTURE.map((item) => {
+                return (
+                  <GaugeComponent
+                    key={item.id}
+                    logo={item.logo}
+                    percent={item.percent}
+                    currentIndex={currentIndex}
+                    needFit={item.needFit}
+                    handleClick={() => handleClick(item.id)}
+                  />
+                );
+              })}
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              ref={rowRefs[1]}
+              css={scrollRow(
+                swiperSizeConverter().swiperGap,
+                swiperSizeConverter().circleSize
+              )}
+            >
+              {BACK_SLIDE_STRUCTURE.map((item) => {
+                return (
+                  <GaugeComponent
+                    key={item.id}
+                    logo={item.logo}
+                    percent={item.percent}
+                    currentIndex={currentIndex}
+                    needFit={item.needFit}
+                    handleClick={() => handleClick(item.id)}
+                  />
+                );
+              })}
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              ref={rowRefs[2]}
+              css={scrollRow(
+                swiperSizeConverter().swiperGap,
+                swiperSizeConverter().circleSize
+              )}
+            >
+              {TOOL_SLIDE_STRUCTURE.map((item) => {
+                return (
+                  <GaugeComponent
+                    key={item.id}
+                    logo={item.logo}
+                    percent={item.percent}
+                    currentIndex={currentIndex}
+                    needFit={item.needFit}
+                    handleClick={() => handleClick(item.id)}
+                  />
+                );
+              })}
+            </div>
+          </SwiperSlide>
+        </Swiper>
+        <img
+          css={arrowStyle}
+          src={icons.arrowRight}
+          onClick={() => handleRowScroll(1)}
+          alt="다음"
+        />
+      </div>
       <Global
         styles={css`
           .swiper {
             margin-left: 0 !important;
-          }
-          .css-s2udyd {
-            flex-wrap: wrap;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
           }
         `}
       />
@@ -157,30 +169,69 @@ const TabSwiper = () => {
 
 const wrapper = {
   width: "100%",
+  minWidth: 0,
+};
+
+const rowWithArrows = {
+  display: "flex",
+  alignItems: "center",
+  gap: "12px",
+  minWidth: 0,
+};
+
+const arrowStyle = {
+  width: "20px",
+  height: "20px",
+  flexShrink: 0,
+  cursor: "pointer",
+  opacity: 0.7,
+  "&:hover": { opacity: 1 },
 };
 
 const swiperContainer = {
   position: "relative" as const,
-  // width: "400px",
-  // height: "250px",
-  // minWidth: "400px",
+  width: "100%",
+  minWidth: 0,
 };
+
+const scrollRow = (gap: number, circleSize: number) => ({
+  display: "flex" as const,
+  flexWrap: "nowrap" as const,
+  overflowX: "auto" as const,
+  // setting overflow-x forces overflow-y to also clip, so the row needs
+  // enough headroom that the hover-scaled (1.2x) icon never touches the
+  // top/bottom edge.
+  overflowY: "hidden" as const,
+  scrollbarWidth: "none" as const,
+  gap: `${gap}px`,
+  padding: "4px 2px",
+  height: `${Math.ceil(circleSize * 1.3)}px`,
+  alignItems: "center",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+  // belt-and-suspenders: explicit margin in case flex `gap` isn't
+  // honored in some rendering context.
+  "& > *:not(:last-child)": {
+    marginRight: `${gap}px`,
+  },
+});
 
 const btnBox = (isMobile: boolean) => ({
   display: "flex",
   gap: "8px",
-  marginBottom: isMobile ? "8px" : "32px",
+  marginBottom: isMobile ? "8px" : "20px",
 });
 
 const btnStyle = (isClicked: boolean, fontSize: number) => ({
   fontFamily: "agro",
   fontSize: `${fontSize}px`,
-  color: isClicked ? "black" : "white",
+  color: isClicked ? "var(--chip-selected-text)" : "var(--text-primary)",
   padding: "6px 10px",
   borderRadius: "5px",
-  background: isClicked ? "#FCFCFC" : "#727272",
+  background: isClicked ? "var(--chip-selected-bg)" : "var(--bg-muted)",
   cursor: "pointer",
-  "&:hover": { background: "#9B9B9B" },
+  "&:hover": { background: "var(--bg-muted-hover)" },
 });
 
 export default TabSwiper;

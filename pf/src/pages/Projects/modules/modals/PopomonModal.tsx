@@ -1,0 +1,100 @@
+/** @jsxImportSource @emotion/react */
+import { Popomon_Modal } from "../../../../assets/img";
+import DefaultModal from "./DefaultModal";
+
+export default function PopomonModal() {
+  return (
+    <DefaultModal
+      oneLineIntroduce={"인플루언서 매칭 / 체험단 모집 플랫폼"}
+      title={"포포몬"}
+      status={"운영중"}
+      tags={["Next.js", "TypeScript", "Zustand", "PHP", "Chart.js", "SWR"]}
+      introducingText={`포포몬(Popomon)은 광고주가 체험단 및 인플루언서를 모집하는 캠페인을 올리고, 인플루언서가 캠페인에 지원·선정·리뷰 작성을 거쳐 부가 서비스를 이용할 수 있는 인플루언서 매칭 플랫폼입니다.`}
+      mainFunction={[
+        {
+          workCategory: "인플루언서 자동 매칭·선정 시스템(커넥트)",
+          workedContend: [
+            "광고주가 카테고리·지역·인플루언서 등급·우대사항 등 조건을 설정하면 예약된 시간에 조건에 맞는 지원자를 자동으로 추천·선정하는 기능의 프론트엔드 전체 설계 및 구현",
+            "타겟 조건설정 팝업, 카테고리/지역 셀렉터, 결과 반영 로직 구현",
+          ],
+        },
+        {
+          workCategory: "서비스 성능 개선",
+          workedContend: [
+            "메인페이지 API 호출 로직·순서 정리를 통한 페이지 로딩 속도 개선",
+          ],
+          atTroubleShooting: true,
+        },
+        {
+          workCategory: "데이터 시각화",
+          workedContend: [
+            "Chart.js 기반 선형 + 중첩 바형 그래프 복합 컴포넌트 구현",
+          ],
+        },
+        {
+          workCategory: "다국어 자동 번역 기능",
+          workedContend: [
+            "Google Translate 연동, 헤더 언어 선택 UI 신규 개발 (한/영/일/중 지원)",
+          ],
+        },
+        {
+          workCategory: "일정 관리(스케줄러) 기능",
+          workedContend: [
+            "방문 일정 등록·조회를 위한 캘린더 기반 스케줄 관리 페이지 신규 설계 및 구현",
+          ],
+        },
+        {
+          workCategory: "결제 서비스 개선",
+          workedContend: ["핵토 파이낸셜 연동 결제 프로세스 개선"],
+        },
+        {
+          workCategory: "레거시 코드 마이그레이션",
+          workedContend: ["레거시 PHP 시스템을 Next.js 기반으로 마이그레이션"],
+        },
+        {
+          workCategory: "신규 SNS 플랫폼(샤오홍슈) 연동",
+          workedContend: [
+            "회원가입/마이페이지 SNS 등록 폼, URL 유효성 검증(압축 URL 포함), 모집현황 페이지 반영까지 전체 플로우 구현",
+          ],
+        },
+        {
+          workCategory: "카카오 SDK 통합 관리 및 하이브리드 앱 대응",
+          workedContend: [
+            "카카오 JS SDK 공용 로더 구현으로 중복 초기화 방지, 카카오톡 공유하기/간편회원가입/알림톡 기능 유지보수",
+            "SDK 버전 변경 대응 과정에서 Android/iOS 네이티브 앱(Cordova 래핑) 환경을 감지해 Cordova 브릿지(푸시·SNS 호스트 스크립트)를 로드하는 구조를 실험적으로 구현/검증",
+          ],
+        },
+      ]}
+      troubleShooting={[
+        {
+          title: "메인페이지 초기 로딩 속도 저하",
+          problem:
+            "메인 페이지 진입 시 다수의 API가 동시에 호출되고 있었고 각 API 간 의존 관계가 명확히 분리되어 있지 않아, UI 렌더링에 반드시 필요한 데이터와 그렇지 않은 데이터가 뒤섞여 있는 상황. 이로 인해 초기 로딩 속도가 느리고 특정 API 호출 지연 시 이벤트가 블로킹되거나 전체 UI 렌더링이 지연되는 문제가 발생",
+          solution:
+            "React Query Devtools 및 네트워크 탭으로 메인페이지 진입 시 호출되는 API들의 의존 관계를 하나씩 추적한 뒤, UI 렌더링에 필수적인 데이터 / Skeleton UI로 대체 가능한 데이터 / 사용자 인터랙션 이후 호출 가능한 데이터로 분류. 필수 데이터를 우선 호출하도록 분리하고 나머지는 비동기 로딩 구조로 전환, 요청 개수 제한·페이지 단위 조회를 적용해 데이터 로딩 방식을 개선했습니다. 그 결과 Lighthouse 성능 점수 21점 → 62점(+41점)으로 향상되었고, 불필요한 API 호출 제거로 네트워크 부하를 줄였습니다.",
+        },
+      ]}
+      learned={
+        "화면 단위 최적화를 넘어 API 호출 흐름과 서비스 전반의 데이터 흐름을 설계하는 경험을 쌓을 수 있었고, PHP 백엔드 작업을 함께 맡으며 프론트엔드만으로는 보이지 않던 서비스 전체의 구조를 이해하게 되었습니다."
+      }
+      introducingImg={[
+        {
+          title: "메인 페이지",
+          img: Popomon_Modal.Popomon_main,
+        },
+        {
+          title: "지원자 관리 페이지",
+          img: Popomon_Modal.Popomon_applicants,
+        },
+        {
+          title: "캠페인 상세 화면",
+          img: Popomon_Modal.Popomon_campaignDetail,
+        },
+        {
+          title: "커넥트 관리 화면",
+          img: Popomon_Modal.Popomon_connect,
+        },
+      ]}
+    />
+  );
+}

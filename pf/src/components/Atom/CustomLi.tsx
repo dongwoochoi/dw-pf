@@ -29,7 +29,7 @@ const bullet = (size: number) =>
   ({
     width: `${size / 3}px`,
     height: `${size / 3}px`,
-    backgroundColor: "white",
+    backgroundColor: "var(--text-primary)",
     borderRadius: "50%",
     marginTop: "0.4em",
     flexShrink: 0,
@@ -37,7 +37,7 @@ const bullet = (size: number) =>
 
 const text = {
   flex: 1,
-  color: "white",
+  color: "var(--text-primary)",
   fontSize: "inherit",
 } as const;
 

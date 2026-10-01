@@ -85,5 +85,5 @@ export default function Deu() {
 
 const fontStyle = {
   fontFamily: "agroL",
-  color: "white",
+  color: "var(--text-primary)",
 };

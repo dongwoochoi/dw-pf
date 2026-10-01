@@ -3,7 +3,8 @@ const currentYear = new Date().getFullYear();
 const highlight = {
   fontFamily: "agroM",
   fontSize: "inhirt",
-  background: "#2C4860",
+  background: "var(--highlight-bg)",
+  color: "var(--highlight-text)",
   padding: "2px 4px",
   borderRadius: "5px",
   margin: "0 4px",
@@ -20,9 +21,7 @@ export const ABOUTME_STRUCTURE = [
         }}
       >
         <p>생년월일| 99.07.02</p>
-        <p>
-          최종학력| 동의대학교 산업ICT기술공학과 학사 졸업 - (현) 인공지능학과
-        </p>
+        <p>최종학력| 동의대학교 산업ICT기술공학과 학사 졸업</p>
         <p>거주지| 부산광역시</p>
       </p>
     ),
@@ -40,12 +39,12 @@ export const ABOUTME_STRUCTURE = [
         2018년도 대학입학 후 개발경험을 쌓기 시작하여 군 복무 기간 제외 꾸준히
         개발경험을 쌓았으며 실무경력은
         <span css={highlight}>
-          {currentYear}년 기준으로 {Number(currentYear) - 2023}년차
+          {currentYear}년 기준으로 {Number(currentYear) - 2022}년차
         </span>
-        이며 2년간{" "}
+        이며{" "}
         <span css={highlight}>
-          프로젝트의 핵심기능을 담당하며 설계부터 구현까지 주도적으로 참여하며
-          리펙토링 및 재사용성 향상, 최적화 작업 경험
+          여러 서비스의 핵심기능을 담당하며 설계부터 구현까지 주도적으로
+          참여하며 리펙토링 및 재사용성 향상, 최적화 작업 경험
         </span>
         을 가지고 있습니다.
       </p>
@@ -62,10 +61,40 @@ export const ABOUTME_STRUCTURE = [
         }}
       >
         프론트 작업시
-        <span css={highlight}>React와 TypeScript, Emotion</span>을 기반 으로
-        진행하였습니다. 컴포넌트 기반의 구조를 유지하며, 타입 안정성과 코드
-        유지보수를 위해 TypeScript를 적극 활용하였고, 스타일링은 Emotion을
-        사용하여 CSS-in-JS 방식으로 구성해 유지보수성과 재사용성을 높였습니다.
+        <span css={highlight}>React, Next.js, TypeScript</span>를 기반으로
+        진행하였고, 상태관리는{" "}
+        <span css={highlight}>Jotai, Recoil, Zustand</span>를, 데이터
+        페칭은 <span css={highlight}>React-Query, SWR</span>을 프로젝트
+        특성에 맞게 선택해 사용했습니다. 최근에는{" "}
+        <span css={highlight}>PHP 기반 백엔드 작업</span>도 함께 맡으며
+        화면뿐 아니라 서비스 전체 흐름을 보는 시야를 넓혀가고 있습니다.
+      </p>
+    ),
+  },
+  {
+    keyword: "AI 활용",
+    question: "실무에서 AI 도구를 어떻게 활용하시나요?",
+    answer: (
+      <p
+        css={{
+          whiteSpace: "pre-wrap",
+          wordBreak: "break-word" as const,
+        }}
+      >
+        <span css={highlight}>Claude Code 같은 AI 코딩 도구를 실무에 적극 도입</span>
+        해 레거시 코드 분석·리팩토링 속도를 끌어올려왔고, 최근에는 한 걸음 더
+        나아가{" "}
+        <span css={highlight}>
+          팀 단위의 AI 에이전트 활용 체계(사용 거버넌스, 업무 자동화, 노하우의
+          스킬화)
+        </span>
+        를 고민하며 팀 전체의 개발 생산성을 끌어올리는 일에 집중하고
+        있습니다. 개인적으로는{" "}
+        <span css={highlight}>
+          LLM 기반 자동매매 프로그램(Maru)을 코드를 직접 작성하지 않고
+          에이전트에게 전량 위임해 개발·운영
+        </span>
+        하며 에이전트 활용법을 실험하고 있습니다.
       </p>
     ),
   },
@@ -82,9 +111,10 @@ export const ABOUTME_STRUCTURE = [
         저는 <span css={highlight}>사용자 경험을 최우선으로 고려</span>하며,
         사용자가 서비스를 이용하는 과정에서 불편함 없이 자연스럽게 인터랙션할 수
         있도록 신경 씁니다. 또한,{" "}
-        <span css={highlight}>유지보수성과 확장성을 염두에 두고 개발</span>하여,
-        향후 있을 수 있는 기능 수정이나 고도화에도 유연하게 대응할 수 있도록
-        설계하는 것을 지향합니다.,
+        <span css={highlight}>지금 당장 단순하고 명확한 코드를 작성하는 것</span>
+        을 중요하게 생각합니다. 과도하게 미리 설계하기보다, 누가 보더라도(그게
+        저 자신이든, 팀원이든, AI 도구든) 안전하게 이해하고 수정할 수 있는
+        코드를 지향합니다.
       </p>
     ),
   },

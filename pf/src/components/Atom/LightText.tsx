@@ -1,26 +1,11 @@
-/** @jsxImportSource @emotion/react */
-import useMeasurement from "../../hooks/useMeasurement";
+import Typography from "./Typography";
 import { BaseTypes } from "../../types/common";
+
 interface PropsType extends BaseTypes {
   children: React.ReactNode;
   size?: number;
 }
 
-export default function LightText({
-  children,
-  size = 20,
-  ...props
-}: PropsType) {
-  const { fontSizeTransfer } = useMeasurement();
-  return (
-    <p css={textStyle(fontSizeTransfer(size))} {...props}>
-      {children}
-    </p>
-  );
+export default function LightText(props: PropsType) {
+  return <Typography variant="light" {...props} />;
 }
-
-const textStyle = (size: number) => ({
-  fontFamily: "agroL",
-  fontSize: `${size}px`,
-  color: "white",
-});

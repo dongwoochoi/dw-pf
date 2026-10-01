@@ -59,9 +59,9 @@ const wrapper = (isMobile: boolean) => ({
   width: isMobile ? "90vw" : `80vw`,
   height: isMobile ? "90vh" : `80vh`,
   padding: isMobile ? "16px" : "40px",
-  background: "#2c2c2c",
+  background: "var(--bg-surface)",
   borderRadius: "5px",
-  boxShadow: "0px 2px 6px 2px #00000026",
+  boxShadow: "0px 2px 6px 2px var(--shadow-color)",
   overflowY: "scroll" as const,
 
   /* 스크롤바 커스텀 */
@@ -70,7 +70,7 @@ const wrapper = (isMobile: boolean) => ({
   },
 
   "&::-webkit-scrollbar-thumb": {
-    backgroundColor: "#888",
+    backgroundColor: "var(--bg-muted)",
     borderRadius: "4px",
   },
 

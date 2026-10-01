@@ -11,6 +11,7 @@ import { icons } from "../../assets/icon";
 import { toast } from "react-toastify";
 import { introduceAtom } from "../../jotai/Modal/introduceModalAtom";
 import useResponsive from "../../hooks/useResponsive";
+import { CONTACT_EMAIL } from "../../constants/contact";
 
 export default function EndPage() {
   const { isMobile } = useResponsive();
@@ -52,13 +53,14 @@ export default function EndPage() {
   };
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText("dong99woo@gmail.com");
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
       toastMessage();
     } catch (err) {
       toast.error("복사에 실패했습니다.");
     }
   };
   useEffect(() => {
+    const node = endRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsEndVisible(entry.intersectionRatio >= 0.4);
@@ -68,16 +70,16 @@ export default function EndPage() {
       }
     );
 
-    if (endRef.current) {
-      observer.observe(endRef.current);
+    if (node) {
+      observer.observe(node);
     }
 
     return () => {
-      if (endRef.current) {
-        observer.unobserve(endRef.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
-  }, []);
+  }, [setIsEndVisible]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -201,7 +203,7 @@ export default function EndPage() {
           marginBottom: "8px",
         }}
       >
-        © 2025. 최동우 All rights reserved
+        © {new Date().getFullYear()}. 최동우 All rights reserved
       </p>
     </div>
   );
@@ -236,6 +238,7 @@ const titleTextStyle = (fontSize: number) => ({
   fontSize: `${fontSize}px`,
   fontWeight: "800",
   marginTop: "60px",
+  color: "black",
 });
 
 const imgStyle = (width: number, height: number) => ({
@@ -252,13 +255,17 @@ const iconBox = (size: number) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  background: "white",
+  background: "var(--fab-bg)",
   width: `${size}px`,
   height: `${size}px`,
   borderRadius: "40px",
   cursor: "pointer",
-  "&:hover": { background: "#CFCFCF", scale: "1.1", transition: "0.3s" },
-  boxShadow: "0px 2px 6px 2px #00000026",
+  "&:hover": {
+    background: "var(--fab-bg-hover)",
+    scale: "1.1",
+    transition: "0.3s",
+  },
+  boxShadow: "0px 2px 6px 2px var(--shadow-color)",
 });
 
 const btnWrapper = (height: number, isMobile: boolean) => ({

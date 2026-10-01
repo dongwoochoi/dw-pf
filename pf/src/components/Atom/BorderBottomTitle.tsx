@@ -15,8 +15,8 @@ export default function BorderBottomTitle({ children, size = 36 }: PropsType) {
 const textStyle = (size: number, isMobile: boolean) => ({
   fontFamily: "agro",
   fontSize: `${size}px`,
-  color: "white",
+  color: "var(--text-primary)",
   width: "auto",
   paddingBottom: isMobile ? "8px" : "16px",
-  borderBottom: "1px solid #727272",
+  borderBottom: "1px solid var(--border-color)",
 });

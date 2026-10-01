@@ -60,14 +60,14 @@ export default function SinpleModal() {
             "React-Query V5 버전의 출시를 앞두고 신규 버전에서 onError 함수의 제거예정을 압둔 상황에서 대부분의 api에서 사용중이던 onError 함수를 걷어내야하는 상황",
           //기존 에러처리 로직이 백엔드에서 코드를 보내주고 프론트에서 처리하던것을 설명해?
           solution:
-            "Query-Client 설정 레벨에서 전역적인 캐시 레벨의 onError 콜백에서 전역적으로 에러를 처리하는 함수를 생성하여 각 에러를 필터링하여 처리하는 방식으로 개선",
+            "React Query 팀의 공식 마이그레이션 가이드를 참고해 에러 처리 방식을 재설계 - 컴포넌트 내부 에러 및 UI 변경은 useEffect로 개별 처리하고, 전역 공통 에러는 QueryClient의 QueryCache 레벨에 Global Error Handler를 연동해 처리. React Query v5로 안정적으로 마이그레이션을 완료했고, 로컬/글로벌 에러 처리를 분리해 에러 핸들링 흐름을 명확히 했습니다.",
         },
         {
           title: "리랜더링 최적화",
           problem:
             "신발 관련 견적을 요청하고 받는 서비스 특성상 특정 페이지들에 상당히 많은 input, dropdown 이 존재하고 이들을 효율적이게 관리하기 위한 복잡하고 많은 상태들이 얽혀있고 이로 인해 리랜더링이 많이 발생하는 상황",
           solution:
-            "기존에 사용하던 Context API와 Reducer 기반의 전역 상태 관리를 걷어내고, Recoil을 도입하여 상태를 컴포넌트 단위가 아닌 독립적인 atom 단위로 관리함으로써 상태 의존성을 줄이고, 모듈성과 재사용성을 향상",
+            "Jotai / Zustand / Recoil을 비교 분석한 뒤 프로젝트 규모·생태계 안정성·React 호환성을 고려해 Recoil을 선택, 컴포넌트 단위가 아닌 atom 단위로 상태를 세분화해 의존성을 최소화하고 debounce 처리된 공용 Input 컴포넌트를 적용. React Profiler 기준 리렌더링 횟수 81% 감소, Lighthouse 성능 점수 62점 → 77점(+15점)을 달성했습니다.",
         },
       ]}
       learned={

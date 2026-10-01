@@ -1,4 +1,4 @@
-/** @jsxImportSource @emotion/react */
+import Typography from "./Typography";
 import { BaseTypes } from "../../types/common";
 
 interface PropsType extends BaseTypes {
@@ -6,16 +6,6 @@ interface PropsType extends BaseTypes {
   size?: number;
 }
 
-export default function BoldText({ children, size = 20, ...props }: PropsType) {
-  return (
-    <p css={textStyle(size)} {...props}>
-      {children}
-    </p>
-  );
+export default function BoldText(props: PropsType) {
+  return <Typography variant="bold" {...props} />;
 }
-
-const textStyle = (size: number) => ({
-  fontFamily: "agro",
-  fontSize: `${size}px`,
-  color: "white",
-});

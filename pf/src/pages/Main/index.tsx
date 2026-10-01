@@ -16,6 +16,7 @@ export default function MainPage() {
             fontFamily: "agroL",
             fontSize: `${mainFontSizeConverter().hi}px`,
             textAlign: "start",
+            color: "black",
           }}
         >
           안녕하세요!

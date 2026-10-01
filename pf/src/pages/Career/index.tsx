@@ -15,6 +15,7 @@ import Deu from "./modules/explains/deu";
 import Kristin from "./modules/explains/kristin";
 import DeuOther from "./modules/explains/deuOther";
 import Others from "./modules/explains/others";
+import WithUs from "./modules/explains/withUs";
 
 export default function Career() {
   const { isMobile } = useResponsive();
@@ -75,6 +76,7 @@ export default function Career() {
               spaceBetween={50}
               slidesPerView={1}
               allowTouchMove={false}
+              autoHeight
             >
               <SwiperSlide>
                 <div
@@ -86,6 +88,7 @@ export default function Career() {
                     gap: `${careerSizeConverter().gap}px`,
                   }}
                 >
+                  <WithUs />
                   <Kristin />
                   <Deu />
                 </div>
@@ -144,21 +147,29 @@ const row = (isMobile: boolean) => ({
 
 const yearStyle = (isSelected: boolean, size: number, isMobile: boolean) => ({
   padding: isMobile ? "4px 6px" : " 0 0 0 16px",
-  borderLeft: isMobile ? "none" : isSelected ? "3px solid white" : "none",
+  borderLeft: isMobile
+    ? "none"
+    : isSelected
+    ? "3px solid var(--text-primary)"
+    : "none",
   color: isMobile
     ? isSelected
-      ? "black"
-      : "white"
+      ? "var(--chip-selected-text)"
+      : "var(--text-primary)"
     : isSelected
-    ? "white"
-    : "#9B9B9B",
+    ? "var(--text-primary)"
+    : "var(--text-muted)",
   fontSize: isMobile ? "16px" : isSelected ? `${size}px` : `${size - 4}px`,
   fontWeight: "600",
-  background: isMobile ? (isSelected ? "#FCFCFC" : "#727272") : "none",
+  background: isMobile
+    ? isSelected
+      ? "var(--chip-selected-bg)"
+      : "var(--bg-muted)"
+    : "none",
   cursor: "pointer",
   borderRadius: isMobile ? "5px" : "none",
   "&: hover": {
-    color: "#CFCFCF",
+    color: "var(--text-secondary)",
   },
 });
 
@@ -173,5 +184,5 @@ const yearTab = (isMobile: boolean) => ({
 const careerBox = (width: number, height: number, isMobile: boolean) => ({
   display: "flex",
   width: isMobile ? "" : `${width}px`,
-  height: `${height}px`,
+  minHeight: `${height}px`,
 });

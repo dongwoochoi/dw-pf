@@ -1,13 +1,23 @@
-import TypeScriptLog from "./imgs/logos/ts.png";
-import SlackLogo from "./imgs/logos/slack.png";
-import ReactLogo from "./imgs/logos/react.jpeg";
-import PythonLogo from "./imgs/logos/python.png";
-import NotionLogo from "./imgs/logos/notion.png";
-import JavaScriptLogo from "./imgs/logos/js.png";
-import DJangoLogo from "./imgs/logos/jango.png";
-import GitLogo from "./imgs/logos/git.jpg";
-import FigmaLogo from "./imgs/logos/figma.png";
-import DiscordLogo from "./imgs/logos/discord.png";
+import TypeScriptLog from "./imgs/logos/ts.svg";
+import SlackLogo from "./imgs/logos/slack.svg";
+import ReactLogo from "./imgs/logos/react.svg";
+import PythonLogo from "./imgs/logos/python.svg";
+import NotionLogo from "./imgs/logos/notion.svg";
+import JavaScriptLogo from "./imgs/logos/js.svg";
+import DJangoLogo from "./imgs/logos/django.svg";
+import GitHubLogo from "./imgs/logos/github.svg";
+import FigmaLogo from "./imgs/logos/figma.svg";
+import DiscordLogo from "./imgs/logos/discord.svg";
+import NextJsLogo from "./imgs/logos/nextjs.svg";
+import ZustandLogo from "./imgs/logos/zustand.svg";
+import SwrLogo from "./imgs/logos/swr.svg";
+import AwsLogo from "./imgs/logos/aws.svg";
+import RedisLogo from "./imgs/logos/redis.svg";
+import MySqlLogo from "./imgs/logos/mysql.svg";
+import PhpLogo from "./imgs/logos/php.svg";
+import RecoilLogo from "./imgs/logos/recoil.svg";
+import ReactQueryLogo from "./imgs/logos/reactquery.svg";
+import JotaiLogo from "./imgs/logos/jotai.svg";
 
 import MainBackground from "./imgs/mainPage/main.jpeg";
 import MainPicture from "./imgs/mainPage/mainPicture.png";
@@ -20,12 +30,13 @@ import ideaConection from "./imgs/projects/ideaConection.png";
 import winterHack from "./imgs/projects/winterHack.png";
 import capStone from "./imgs/projects/youtube.jpg";
 import pf from "./imgs/projects/pf.png";
+import popomon from "./imgs/projects/popomon.png";
+import maru from "./imgs/projects/maru.svg";
 
 import kristagF from "./imgs/favicons/kristagF.png";
 import seoreuF from "./imgs/favicons/seoreuF.svg";
 import sinpleF from "./imgs/favicons/sinpleF.png";
 
-import Me from "./imgs/me.jpeg";
 import Face from "./imgs/face.jpeg";
 
 import bye1 from "./imgs//end/bye1.png";
@@ -53,6 +64,10 @@ import Lg_DataExport from "./imgs/Modals/LG/Lg_Data_export.png";
 import Lg_DataLabeling from "./imgs/Modals/LG/Lg_Data_labeling.png";
 import Lg_DataStatus from "./imgs/Modals/LG/Lg_Data_status.png";
 import Lg_DataWorks from "./imgs/Modals/LG/Lg_Works.png";
+import Popomon_main from "./imgs/Modals/Popomon/main.png";
+import Popomon_applicants from "./imgs/Modals/Popomon/applicants.png";
+import Popomon_campaignDetail from "./imgs/Modals/Popomon/campaignDetail.webp";
+import Popomon_connect from "./imgs/Modals/Popomon/connect.png";
 
 export const logos = {
   TypeScriptLog,
@@ -61,10 +76,20 @@ export const logos = {
   PythonLogo,
   NotionLogo,
   JavaScriptLogo,
-  GitLogo,
+  GitHubLogo,
   DJangoLogo,
   FigmaLogo,
   DiscordLogo,
+  NextJsLogo,
+  ZustandLogo,
+  SwrLogo,
+  AwsLogo,
+  RedisLogo,
+  MySqlLogo,
+  PhpLogo,
+  RecoilLogo,
+  ReactQueryLogo,
+  JotaiLogo,
 };
 
 export const Projects = {
@@ -76,6 +101,8 @@ export const Projects = {
   winterHack,
   capStone,
   pf,
+  popomon,
+  maru,
 };
 
 export const favicons = {
@@ -123,8 +150,14 @@ export const Lg_Modal = {
   Lg_DataWorks,
 };
 
+export const Popomon_Modal = {
+  Popomon_main,
+  Popomon_applicants,
+  Popomon_campaignDetail,
+  Popomon_connect,
+};
+
 export const Image = {
-  Me,
   Face,
 };
 

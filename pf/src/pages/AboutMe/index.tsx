@@ -144,8 +144,8 @@ const keywordStyle = (
   isSelected: boolean,
   isMobile: boolean
 ) => ({
-  color: isSelected ? "black" : "white",
-  background: isSelected ? "#FCFCFC" : "#727272",
+  color: isSelected ? "var(--chip-selected-text)" : "var(--text-primary)",
+  background: isSelected ? "var(--chip-selected-bg)" : "var(--bg-muted)",
   fontFamily: "agroL",
   fontSize: `${fontSize}px`,
   display: "flex",
@@ -154,7 +154,7 @@ const keywordStyle = (
   padding: isMobile ? "4px 8px" : padding,
   borderRadius: "20px",
   cursor: "pointer",
-  "&:hover": { background: "#9B9B9B" },
+  "&:hover": { background: "var(--bg-muted-hover)" },
 });
 
 const questionStyle = (
@@ -163,10 +163,9 @@ const questionStyle = (
   isQ?: boolean
 ) => ({
   textAlign: "start" as const,
-  color: "white",
+  color: "var(--text-primary)",
   fontFamily: isQ ? "agroM" : "agroL",
   fontSize: isQ ? `${fontSize + 4}px` : `${fontSize}px`,
-  // background: isQ ? "" : "#727272",
   borderRadius: "5px",
   width: "100%",
   lineHeight: `${lineHeight}px`,
@@ -177,7 +176,7 @@ const textBox = (padding: string, gap: number) => ({
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "flex-start",
-  background: "#2C2C2C",
+  background: "var(--bg-surface)",
   borderRadius: "15px",
   padding,
   gap: `${gap}px`,

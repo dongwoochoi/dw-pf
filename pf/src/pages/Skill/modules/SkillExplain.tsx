@@ -1,66 +1,91 @@
 /** @jsxImportSource @emotion/react */
 import { useAtomValue } from "jotai";
 import { skillAtom } from "../../../jotai/skill";
-import { SKILL_EXPLAIN_STRUECTURE } from "../structure";
+import {
+  BACK_SLIDE_STRUCTURE,
+  FRONT_SLIDE_STRUCTURE,
+  SKILL_EXPLAIN_STRUECTURE,
+  TOOL_SLIDE_STRUCTURE,
+} from "../structure";
 import useMeasurement from "../../../hooks/useMeasurement";
 import useResponsive from "../../../hooks/useResponsive";
+import CustomLi from "../../../components/Atom/CustomLi";
 
-export default function SkillExport() {
+const ALL_SKILLS = [
+  ...FRONT_SLIDE_STRUCTURE,
+  ...BACK_SLIDE_STRUCTURE,
+  ...TOOL_SLIDE_STRUCTURE,
+];
+
+export default function SkillExport({ width }: { width: number }) {
   const { isMobile } = useResponsive();
-  const { explainSizeConverter, fontSizeTransfer } = useMeasurement();
+  const { fontSizeTransfer, titleFontSizeTransfer } = useMeasurement();
   const selectedSkill = useAtomValue(skillAtom);
-  const skillName = SKILL_EXPLAIN_STRUECTURE.find(
-    (item) => item.id === selectedSkill
-  )?.id;
+  const skillLogo = ALL_SKILLS.find((item) => item.id === selectedSkill)
+    ?.logo;
   const skillExplain = SKILL_EXPLAIN_STRUECTURE.find(
     (item) => item.id === selectedSkill
   )?.text;
+
   return (
-    <div css={wrapper(explainSizeConverter().width, isMobile)}>
-      <p css={titleStyle(isMobile)}>{skillName}</p>
-      <ul css={textContent(isMobile)}>
+    <div css={wrapper(width, isMobile)}>
+      <div css={header(isMobile)}>
+        {skillLogo ? (
+          <img css={logoStyle(isMobile)} src={skillLogo} alt={selectedSkill} />
+        ) : null}
+        <p css={titleStyle(isMobile ? 24 : titleFontSizeTransfer() - 20)}>
+          {selectedSkill}
+        </p>
+      </div>
+      <div css={textContent(isMobile, fontSizeTransfer(18))}>
         {skillExplain?.map((item) => {
-          return (
-            <div css={{ display: "flex" }} key={item}>
-              <li></li>
-              <p css={text(fontSizeTransfer(20))}>{item}</p>
-            </div>
-          );
+          return <CustomLi key={item}>{item}</CustomLi>;
         })}
-      </ul>
+      </div>
     </div>
   );
 }
 
 const wrapper = (width: number, isMobile: boolean) => ({
   width: `${width}px`,
+  maxWidth: "100%",
   height: "auto",
-  background: "#1D1D1D",
-  borderRadius: "10px",
-  padding: "16px",
-  border: isMobile ? "1px solid white" : "",
-  marginTop: isMobile ? "16px" : "0px",
+  boxSizing: "border-box" as const,
+  background: "var(--bg-surface)",
+  borderRadius: "16px",
+  padding: isMobile ? "16px" : "24px",
+  border: "1px solid var(--border-color)",
 });
 
-const titleStyle = (isMobile: boolean) => ({
+const header = (isMobile: boolean) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: "12px",
+  paddingBottom: isMobile ? "8px" : "12px",
+  marginBottom: isMobile ? "16px" : "24px",
+  borderBottom: "1px solid var(--border-color)",
+});
+
+const titleStyle = (size: number) => ({
   fontFamily: "agro",
-  color: "white",
-  fontSize: isMobile ? "24px" : "40px",
-  marginBottom: "40px",
+  color: "var(--text-primary)",
+  fontSize: `${size}px`,
+  fontWeight: 800,
 });
 
-const text = (fontSize: number) => ({
-  fontFamily: "agroL",
-  fontWeight: "100",
-  color: "white",
-  fontSize: `${fontSize}px`,
-  whiteSpace: "pre-wrap",
-  wordBreak: "break-word" as const,
+const logoStyle = (isMobile: boolean) => ({
+  width: isMobile ? "32px" : "44px",
+  height: isMobile ? "32px" : "44px",
+  borderRadius: "10px",
+  flexShrink: 0,
+  objectFit: "cover" as const,
 });
 
-const textContent = (isMobile: boolean) => ({
+const textContent = (isMobile: boolean, fontSize: number) => ({
   display: "flex",
   flexDirection: "column" as const,
-  gap: isMobile ? "8px" : "16px",
-  marginLeft: isMobile ? "16px" : "0px",
+  gap: isMobile ? "10px" : "16px",
+  fontFamily: "agroL",
+  fontSize: `${fontSize}px`,
+  lineHeight: 1.5,
 });

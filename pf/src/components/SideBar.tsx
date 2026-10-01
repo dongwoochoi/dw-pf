@@ -58,18 +58,6 @@ export default function SideBar() {
           Projects
         </p>
       </div>
-      {/* <div
-        css={{
-          ...menuBorder(visibleSection?.board, sideBarFontSizeTransfer()),
-        }}
-      >
-        <p
-          css={fontStyle(visibleSection?.board, sideBarFontSizeTransfer())}
-          onClick={() => handleScrollTo(ref.boardRef)}
-        >
-          Board
-        </p>
-      </div> */}
     </div>
   );
 }
@@ -91,9 +79,9 @@ const menuBorder = (isVisible: boolean, paddingValue: number) => ({
 });
 
 const fontStyle = (isVisible: boolean, size: number) => ({
-  color: isVisible ? "white" : "#9B9B9B",
+  color: isVisible ? "var(--text-primary)" : "var(--text-muted)",
   fontSize: `${size}px`,
   fontWeight: 800,
   cursor: "pointer",
-  "&:hover": { color: "white" },
+  "&:hover": { color: "var(--text-primary)" },
 });

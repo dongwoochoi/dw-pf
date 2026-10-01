@@ -1,3 +1,66 @@
+:root {
+  --bg-base: #1d1d1d;
+  --bg-surface: #2c2c2c;
+  --bg-surface-alt: #393939;
+  --bg-muted: #727272;
+  --bg-muted-hover: #9b9b9b;
+
+  --text-primary: #ffffff;
+  --text-secondary: #cfcfcf;
+  --text-muted: #9b9b9b;
+  --text-on-accent: #ffffff;
+
+  --border-color: #4b4b4b;
+
+  --accent: #6c8cff;
+  --accent-strong: #5372e0;
+  --danger: #ff334b;
+
+  --highlight-bg: rgba(217, 164, 84, 0.18);
+  --highlight-text: #e8c27e;
+
+  --chip-selected-bg: #fcfcfc;
+  --chip-selected-text: #1a1a1a;
+
+  --shadow-color: rgba(0, 0, 0, 0.15);
+
+  /* fixed-contrast surface for dark-glyph icon buttons; intentionally
+     constant across themes so png icon assets stay legible */
+  --fab-bg: #ffffff;
+  --fab-bg-hover: #cfcfcf;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg-base: #f5f5f3;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #eeeeec;
+  --bg-muted: #e3e3e0;
+  --bg-muted-hover: #d3d3cf;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #4b4b4b;
+  --text-muted: #767672;
+  --text-on-accent: #ffffff;
+
+  --border-color: #dcdcd8;
+
+  --accent: #3d5fe0;
+  --accent-strong: #2c48c2;
+  --danger: #d5253c;
+
+  --highlight-bg: rgba(180, 120, 40, 0.12);
+  --highlight-text: #8a5a1e;
+
+  --chip-selected-bg: #1a1a1a;
+  --chip-selected-text: #ffffff;
+
+  --shadow-color: rgba(0, 0, 0, 0.08);
+
+  color-scheme: light;
+}
+
 @font-face {
   font-family: "agroL";
   src: url("./fonts/SB_Eoguro_OTF_L.otf") format("opentype");
@@ -25,6 +88,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
@@ -33,10 +99,7 @@ code {
 }
 
 li {
-  color: white;
-  /* list-style-position: outside;
-  display: flex;
-  align-items: center; */
+  color: var(--text-primary);
 }
 
 body.modal-wrapper-opened {

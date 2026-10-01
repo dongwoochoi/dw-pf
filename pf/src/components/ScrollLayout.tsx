@@ -26,7 +26,7 @@ export default function ScrollLayout({ contentArray }: PropsType) {
 const wrapper = {
   position: "relative" as const,
   display: "flex",
-  background: "#1D1D1D",
+  background: "var(--bg-base)",
   height: "100%",
 };
 

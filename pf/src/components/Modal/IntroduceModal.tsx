@@ -43,10 +43,10 @@ export default function IntroduceModal() {
               <p css={{ fontSize: fontSizeTransfer(28), marginBottom: "16px" }}>
                 페이지 정보
               </p>
-              <p css={{ fontSize: fontSizeTransfer(20), fontFamily: "agorL" }}>
-                최종 수정일: 2025.05.14
+              <p css={{ fontSize: fontSizeTransfer(20), fontFamily: "agroL" }}>
+                최종 수정일: 2026.10.01
               </p>
-              <p css={{ fontSize: fontSizeTransfer(20), fontFamily: "agorL" }}>
+              <p css={{ fontSize: fontSizeTransfer(20), fontFamily: "agroL" }}>
                 해당페이지는 React, TypeScript, Emotion을 기반으로 만들어
                 졌습니다.
               </p>
@@ -66,7 +66,7 @@ const wrapper = {
   padding: "40px",
   background: "transparent",
   borderRadius: "5px",
-  boxShadow: "0px 2px 6px 2px #00000026",
+  boxShadow: "0px 2px 6px 2px var(--shadow-color)",
 };
 
 const topWrapper = {
@@ -79,7 +79,7 @@ const topWrapper = {
 const styledContent = {
   whiteSpace: "pre-wrap" as const,
   wordBreak: "keep-all" as const,
-  color: "white",
+  color: "var(--text-primary)",
   fontFamily: "agro",
 };
 
@@ -99,5 +99,5 @@ const explainWrapper = {
   height: "100%",
   borderRadius: "5px",
   padding: "32px",
-  background: "#727272",
+  background: "var(--bg-surface)",
 };

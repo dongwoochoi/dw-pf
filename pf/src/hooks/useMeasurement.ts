@@ -307,82 +307,40 @@ export default function useMeasurement() {
   };
 
   // -------------------------- Skill 부분 --------------------------
-  const skillSizeConverter = () => {
-    if (isPc) {
-      return {
-        height: 400,
-      };
-    }
-    if (isLaptop) {
-      return {
-        height: 400,
-      };
-    }
-    if (isTablet) {
-      return {
-        height: 250,
-      };
-    }
-    return {
-      height: 300,
-    };
-  };
-
   const swiperSizeConverter = () => {
     if (isPc) {
       return {
-        width: 400,
+        width: 460,
         tapFontSize: 20,
         swiperGap: 36,
         circleSize: 100,
-        circleImgSize: 50,
+        circleImgSize: 44,
       };
     }
     if (isLaptop) {
       return {
-        width: 300,
+        width: 340,
         tapFontSize: 16,
         swiperGap: 24,
         circleSize: 75,
-        circleImgSize: 50,
+        circleImgSize: 40,
       };
     }
     if (isTablet) {
       return {
-        width: 250,
+        width: 280,
         tapFontSize: 12,
         swiperGap: 12,
         circleSize: 50,
-        circleImgSize: 30,
-      };
-    }
-    return {
-      width: 300,
-      tapFontSize: 12,
-      swiperGap: 12,
-      circleSize: 40,
-      circleImgSize: 25,
-    };
-  };
-
-  const explainSizeConverter = () => {
-    if (isPc) {
-      return {
-        width: 600,
-      };
-    }
-    if (isLaptop) {
-      return {
-        width: 400,
-      };
-    }
-    if (isTablet) {
-      return {
-        width: 350,
+        circleImgSize: 26,
       };
     }
     return {
       width: 280,
+      tapFontSize: 12,
+      swiperGap: 12,
+      circleSize: 40,
+      circleImgSize: 20,
     };
   };
 
@@ -675,8 +633,6 @@ export default function useMeasurement() {
     careerSizeConverter,
     careerFontSizeConverter,
     swiperSizeConverter,
-    explainSizeConverter,
-    skillSizeConverter,
     projectSizeConverter,
     projectFontSizeConverter,
     projectModalSizeConverter,

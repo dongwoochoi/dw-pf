@@ -285,7 +285,7 @@ const header = (marginBottom: number, isMobile: boolean) => ({
   flexDirection: "row" as const,
   gap: isMobile ? "24px" : "60px",
   paddingBottom: "16px",
-  borderBottom: "1px solid #727272",
+  borderBottom: "1px solid var(--border-color)",
   marginBottom: `${marginBottom}px`,
 });
 
@@ -295,7 +295,7 @@ const leftHeader = (gap: number) => ({
   gap: `${gap}px`,
   fontFamily: "agro",
   fontSize: "24px",
-  color: "white",
+  color: "var(--text-primary)",
   justifyContent: "center",
 });
 
@@ -305,13 +305,13 @@ const rightHeader = (gap: number) => ({
   gap: `${gap}px`,
   fontFamily: "agro",
   fontSize: "24px",
-  color: "white",
+  color: "var(--text-primary)",
   justifyContent: "flex-start",
 });
 
 const titleStyle = (fontSize: number) => ({
   fontFamily: "agro",
-  color: "white",
+  color: "var(--text-primary)",
   fontSize: `${fontSize}px`,
   marginBottom: "16px",
   lineHeight: "36px",
@@ -363,11 +363,11 @@ const categoryStyle = (fontSize: number, isMobile: boolean) => ({
   flexDirection: "row" as const,
   position: "relative" as const,
   alignItems: "flex-end",
-  color: "white",
+  color: "var(--text-primary)",
   fontSize: `${fontSize}px`,
   fontWeight: "600",
   padding: "8px",
-  background: "#717172",
+  background: "var(--bg-muted)",
   marginBottom: isMobile ? "8px" : "16px",
   fontFamily: "agroL",
 });
@@ -402,7 +402,7 @@ const imgStyle = (isMobile: boolean) => ({
 });
 
 const imgTitle = (size: number) => ({
-  color: "white",
+  color: "var(--text-primary)",
   textAlign: "center" as const,
   fontSize: `${size}px`,
 });

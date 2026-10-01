@@ -118,5 +118,5 @@ export default function DeuOther() {
 
 const fontStyle = {
   fontFamily: "agroL",
-  color: "white",
+  color: "var(--text-primary)",
 };

@@ -10,7 +10,6 @@ import useMeasurement from "../../../hooks/useMeasurement";
 interface PropsType {
   logo: string;
   percent: number;
-  speed: number;
   currentIndex: number;
   needFit?: boolean;
   handleClick: () => void;
@@ -19,7 +18,6 @@ interface PropsType {
 export default function GaugeComponent({
   logo,
   percent,
-  speed,
   currentIndex,
   needFit = false,
   handleClick,
@@ -56,8 +54,8 @@ export default function GaugeComponent({
         value={progress}
         strokeWidth={4}
         styles={buildStyles({
-          pathColor: "#DDDDDD",
-          trailColor: "#4B4B4B",
+          pathColor: "var(--accent)",
+          trailColor: "var(--bg-muted)",
         })}
       />
       <img
@@ -70,13 +68,17 @@ export default function GaugeComponent({
 }
 
 const wrapper = (size: number) => ({
+  position: "relative" as const,
+  flexShrink: 0,
   width: `${size}px`,
   height: `${size}px`,
   borderRadius: "200px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  background: "#1D1D1D",
+  background: "var(--bg-base)",
+  border: "1px solid var(--border-color)",
+  boxSizing: "border-box" as const,
   cursor: "pointer",
   "&: hover": {
     scale: "1.2",

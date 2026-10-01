@@ -7,8 +7,18 @@ import ProtFolioModal from "./modules/modals/PortFolioModal";
 import HackerTonModal from "./modules/modals/HackerTonModal";
 import IdeaModal from "./modules/modals/IdeaModal";
 import CapStoneModal from "./modules/modals/CapStoneModal";
+import PopomonModal from "./modules/modals/PopomonModal";
+import MaruModal from "./modules/modals/MaruModal";
 
 export const MAIN_PROJECT_STRUCTURE = [
+  {
+    title: "포포몬",
+    team: "WithUs Contents",
+    text: `인플루언서 매칭 / 체험단 모집 플랫폼`,
+    tag: ["Next.js", "TypeScript", "Zustand", "PHP", "Chart.js"],
+    img: Projects.popomon,
+    favicon: "",
+  },
   {
     title: "KRISTAG",
     team: "Kristin Company",
@@ -45,6 +55,14 @@ export const MAIN_PROJECT_STRUCTURE = [
 
 export const SUB_PROJECT_STRUCTURE = [
   {
+    title: "MARU",
+    team: "Personal Project",
+    text: `LLM 기반 주식 자동 매매 프로그램`,
+    tag: ["Python", "Claude Code", "Vibe Coding"],
+    img: Projects.maru,
+    favicon: "",
+  },
+  {
     title: "PortFolio",
     team: "Solo Project",
     text: `개인 포트폴리오 페이지 제작`,
@@ -79,6 +97,14 @@ export const SUB_PROJECT_STRUCTURE = [
 ];
 
 export const PROJECT_MODAL_STRUCTURE = [
+  {
+    title: "포포몬",
+    jsx: <PopomonModal />,
+  },
+  {
+    title: "MARU",
+    jsx: <MaruModal />,
+  },
   {
     title: "KRISTAG",
     jsx: <KristagModal />,
