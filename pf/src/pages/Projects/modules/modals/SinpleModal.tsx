@@ -28,16 +28,15 @@ export default function SinpleModal() {
           workedContend: [
             "코디네이터 페이지의 전국 공장지도 및 공장관리 페이지 생성 with 카카오맵",
             "견적 과정 축소 작업(5Step -> 3Step)",
+            "카테고리에 따라 AI 즉시 견적과 매니저 검토 견적으로 자동 분기, 가견적서 확인부터 공장 매칭·샘플 제작·최종 결제까지 전 단계를 상태 탭으로 추적할 수 있도록 설계",
+            "코디네이터는 지역·작업형태·작업품목으로 공장을 필터링해 탐색하고, 작업 단계별로 공장을 직접 선택해 매칭하는 공장관리 플로우 구현",
           ],
         },
         {
           workCategory: "리랜더링 최적화",
           workedContend: [
             "기존의 코드에서 Context_API와 Reducer를 활용하여 전역상태관리를 하였고 이때문에 같은 Context에 엮인 컴포넌트들이 값 변경시 모두 재랜더링 되는 현상 발생",
-            " -> ContextAPI를 걷어내고 Recoil을 도입함으로써 문제 해결",
-            "",
-            "인풋 입력시 해당페이지의 다른 state들이 함깨 재랜더링 되는 현상 발생",
-            " -> Debouncing 적용 및 인풋 커스터마이징으로 해결",
+            " -> ContextAPI를 걷어내고 Recoil을 도입, 컴포넌트 단위가 아닌 atom 단위로 상태를 세분화해 문제 해결",
           ],
           atTroubleShooting: true,
         },
@@ -67,7 +66,7 @@ export default function SinpleModal() {
           problem:
             "신발 관련 견적을 요청하고 받는 서비스 특성상 특정 페이지들에 상당히 많은 input, dropdown 이 존재하고 이들을 효율적이게 관리하기 위한 복잡하고 많은 상태들이 얽혀있고 이로 인해 리랜더링이 많이 발생하는 상황",
           solution:
-            "Jotai / Zustand / Recoil을 비교 분석한 뒤 프로젝트 규모·생태계 안정성·React 호환성을 고려해 Recoil을 선택, 컴포넌트 단위가 아닌 atom 단위로 상태를 세분화해 의존성을 최소화하고 debounce 처리된 공용 Input 컴포넌트를 적용. React Profiler 기준 리렌더링 횟수 81% 감소, Lighthouse 성능 점수 62점 → 77점(+15점)을 달성했습니다.",
+            "Jotai / Zustand / Recoil을 비교 분석한 뒤 프로젝트 규모·생태계 안정성·React 호환성을 고려해 Recoil을 선택, 컴포넌트 단위가 아닌 atom 단위로 상태를 세분화해 의존성을 최소화했습니다. React Profiler 기준 리렌더링 횟수 81% 감소, Lighthouse 성능 점수 62점 → 77점(+15점)을 달성했습니다.",
         },
       ]}
       learned={

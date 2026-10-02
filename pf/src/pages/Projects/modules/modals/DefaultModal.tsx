@@ -17,10 +17,6 @@ interface PropsType {
     title: string;
     img: string;
   }[];
-  featureFlow?: {
-    title: string;
-    steps: string[];
-  }[];
   mainFunction: {
     workCategory: string;
     workedContend: string[];
@@ -41,7 +37,6 @@ export default function DefaultModal({
   tags,
   introducingText,
   introducingImg,
-  featureFlow,
   mainFunction,
   troubleShooting,
   learned,
@@ -114,45 +109,6 @@ export default function DefaultModal({
           </div>
         </div>
       </div>
-      {featureFlow ? (
-        <div css={content(isMobile)}>
-          <div css={introduce}>
-            <BorderBottomTitle
-              size={projectModalSizeConverter().font.boldSize}
-            >
-              핵심 기능 플로우
-            </BorderBottomTitle>
-            <div css={contentTextBox(isMobile)}>
-              {featureFlow.map((flow) => {
-                return (
-                  <div key={flow.title}>
-                    <div
-                      css={categoryStyle(
-                        projectModalSizeConverter().font.category,
-                        isMobile
-                      )}
-                    >
-                      <p>{flow.title}</p>
-                    </div>
-                    <div css={{ marginLeft: "20px" }}>
-                      {flow.steps.map((step, index) => {
-                        const isLast = index === flow.steps.length - 1;
-                        return (
-                          <div key={step} css={flowStep(isLast)}>
-                            {!isLast && <div css={flowStepLine} />}
-                            <div css={flowStepNumber}>{index + 1}</div>
-                            <LightText>{step}</LightText>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      ) : null}
       <div css={content(isMobile)}>
         <div css={introduce}>
           <BorderBottomTitle size={projectModalSizeConverter().font.boldSize}>
@@ -415,38 +371,6 @@ const categoryStyle = (fontSize: number, isMobile: boolean) => ({
   marginBottom: isMobile ? "8px" : "16px",
   fontFamily: "agroL",
 });
-
-const flowStep = (isLast: boolean) => ({
-  display: "flex",
-  alignItems: "flex-start",
-  gap: "12px",
-  position: "relative" as const,
-  paddingBottom: isLast ? 0 : "20px",
-});
-
-const flowStepNumber = {
-  width: "26px",
-  height: "26px",
-  borderRadius: "50%",
-  background: "var(--accent)",
-  color: "#ffffff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "13px",
-  fontFamily: "agroM",
-  flexShrink: 0,
-  zIndex: 1,
-};
-
-const flowStepLine = {
-  position: "absolute" as const,
-  left: "12px",
-  top: "26px",
-  bottom: 0,
-  width: "2px",
-  background: "var(--border-color)",
-};
 
 const troubleContent = {
   display: "flex",
