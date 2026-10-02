@@ -13,7 +13,6 @@ import {
 import { useAtomValue, useSetAtom } from "jotai";
 import { skillAtom } from "../../../jotai/skill";
 import { visibleSectionAtom } from "../../../jotai/visibleSection";
-import { icons } from "../../../assets/icon";
 import useMeasurement from "../../../hooks/useMeasurement";
 import useResponsive from "../../../hooks/useResponsive";
 
@@ -86,13 +85,23 @@ const TabSwiper = () => {
         </div>
       </div>
 
-      <div css={rowWithArrows}>
-        <img
-          css={arrowStyle}
-          src={icons.arrowLeft}
+      <div css={rowWithArrows(isMobile)}>
+        <svg
+          css={arrowStyle(isMobile)}
           onClick={() => handleRowScroll(-1)}
-          alt="이전"
-        />
+          viewBox="0 0 24 24"
+          fill="none"
+          role="img"
+          aria-label="이전"
+        >
+          <path
+            d="M15 6l-6 6 6 6"
+            stroke="var(--text-primary)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
         <Swiper
           css={swiperContainer}
           onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
@@ -167,12 +176,22 @@ const TabSwiper = () => {
             </div>
           </SwiperSlide>
         </Swiper>
-        <img
-          css={arrowStyle}
-          src={icons.arrowRight}
+        <svg
+          css={arrowStyle(isMobile)}
           onClick={() => handleRowScroll(1)}
-          alt="다음"
-        />
+          viewBox="0 0 24 24"
+          fill="none"
+          role="img"
+          aria-label="다음"
+        >
+          <path
+            d="M9 6l6 6-6 6"
+            stroke="var(--text-primary)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
       <Global
         styles={css`
@@ -190,26 +209,25 @@ const wrapper = {
   minWidth: 0,
 };
 
-const rowWithArrows = {
+const rowWithArrows = (isMobile: boolean) => ({
   display: "flex",
   alignItems: "center",
-  gap: "12px",
+  gap: isMobile ? "6px" : "12px",
   minWidth: 0,
-};
+});
 
-const arrowStyle = {
-  width: "28px",
-  height: "28px",
+const arrowStyle = (isMobile: boolean) => ({
+  width: isMobile ? "20px" : "28px",
+  height: isMobile ? "20px" : "28px",
   flexShrink: 0,
   cursor: "pointer",
-  padding: "5px",
+  padding: isMobile ? "4px" : "5px",
   borderRadius: "50%",
   background: "var(--bg-muted)",
   boxSizing: "border-box" as const,
-  opacity: 1,
   transition: "background 0.2s",
   "&:hover": { background: "var(--bg-muted-hover)" },
-};
+});
 
 const swiperContainer = {
   position: "relative" as const,

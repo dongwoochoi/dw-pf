@@ -62,6 +62,10 @@ export default function WithUs() {
             다국어(한/영/일/중) 자동 번역 기능, 카카오 SDK 통합 관리 및
             하이브리드 앱(Cordova) 대응
           </CustomLi>
+          <CustomLi>
+            팀 단위 AI 에이전트 거버넌스 및 프로젝트 단위 업무 효율화 프롬프트
+            체계 설계·검증 진행 중
+          </CustomLi>
         </div>
       </div>
     </div>
