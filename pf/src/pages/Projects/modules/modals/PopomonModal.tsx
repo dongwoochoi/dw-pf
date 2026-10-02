@@ -34,7 +34,7 @@ export default function PopomonModal() {
         {
           workCategory: "다국어 자동 번역 기능",
           workedContend: [
-            "Google Translate 연동, 헤더 언어 선택 UI 신규 개발 (한/영/일/중 지원)",
+            "gTranslate 연동, 헤더 언어 선택 UI 신규 개발 (한/영/일/중 지원)",
           ],
         },
         {
