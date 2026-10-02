@@ -66,7 +66,7 @@ export const SUB_PROJECT_STRUCTURE = [
     title: "PortFolio",
     team: "Solo Project",
     text: `개인 포트폴리오 페이지 제작`,
-    tag: ["React", "TypeScript", "Emotion", "Jotai", "Django"],
+    tag: ["React", "TypeScript", "Emotion", "Jotai"],
     img: Projects.pf,
     favicon: "",
   },

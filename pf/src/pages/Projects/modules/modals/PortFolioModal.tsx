@@ -7,7 +7,7 @@ export default function ProtFolioModal() {
       oneLineIntroduce={"개인 포트폴리오 페이지"}
       title={"PortFolio"}
       status={"완료"}
-      tags={["React", "TypeScript", "Emotion", "Jotai", "Django"]}
+      tags={["React", "TypeScript", "Emotion", "Jotai"]}
       introducingText={`개인 포트폴리오 페이지 입니다.`}
       mainFunction={[
         {
@@ -22,10 +22,7 @@ export default function ProtFolioModal() {
         },
         {
           workCategory: "배포",
-          workedContend: [
-            "프론트엔드 - netlify 를 이용하여 배포",
-            "뱍앤드 - pythonAnyWhere 을 이용하여 배포",
-          ],
+          workedContend: ["netlify를 이용하여 배포"],
         },
       ]}
       troubleShooting={[

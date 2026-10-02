@@ -15,15 +15,5 @@ export default function useResponsive() {
     query: `(min-width: ${BREAK_POINT.desktop}px)`,
   });
 
-  const isTooSmall = useMediaQuery({
-    query: `(max-width: ${BREAK_POINT.min}px)`,
-  });
-
-  const isTooWide = useMediaQuery({
-    query: `(min-width: ${BREAK_POINT.max}px)`,
-  });
-
-  const isUnable = isTooSmall || isTooWide;
-
-  return { isPc, isTablet, isLaptop, isUnable, isMobile };
+  return { isPc, isTablet, isLaptop, isMobile };
 }
