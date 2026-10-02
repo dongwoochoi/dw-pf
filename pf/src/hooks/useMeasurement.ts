@@ -236,8 +236,8 @@ export default function useMeasurement() {
     if (isPc) {
       return {
         gap: 80,
-        boxWidth: 650,
-        yearFontSize: 40,
+        boxWidth: 580,
+        yearFontSize: 30,
         width: 800,
         height: 60,
         boxHeight: 750,
@@ -246,8 +246,8 @@ export default function useMeasurement() {
     if (isLaptop) {
       return {
         gap: 60,
-        boxWidth: 550,
-        yearFontSize: 40,
+        boxWidth: 520,
+        yearFontSize: 30,
         width: 800,
         height: 45,
         boxHeight: 580,
