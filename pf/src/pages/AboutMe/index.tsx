@@ -102,7 +102,7 @@ const wrapper = (isMobile: boolean) => ({
   justifyContent: "center",
   textAlign: "center" as const,
   width: "85%",
-  maxWidth: "1125px",
+  maxWidth: "850px",
   height: "auto",
   minHeight: isMobile ? "80vh" : "100vh",
 });
@@ -174,7 +174,7 @@ const questionStyle = (
 
 const textBox = (padding: string, gap: number) => ({
   width: "70vw",
-  maxWidth: "900px",
+  maxWidth: "100%",
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "flex-start",

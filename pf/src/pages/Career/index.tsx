@@ -126,7 +126,7 @@ const wrapper = (isMobile: boolean) => ({
   display: "flex",
   flexDirection: "column" as const,
   width: "75vw",
-  maxWidth: "1125px",
+  maxWidth: "850px",
   height: "auto",
   alignItems: "center",
   justifyContent: "center",
