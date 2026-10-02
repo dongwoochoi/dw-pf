@@ -25,10 +25,9 @@ export default function ProjectSlide({
     favicon: string;
   }[];
 }) {
-  const { isMobile, isLaptop } = useResponsive();
+  const { isMobile, isLaptop, isPc } = useResponsive();
   const { projectSizeConverter } = useMeasurement();
   const gap = isMobile ? 12 : 20;
-  const cardWidth = projectSizeConverter().width;
 
   // Swiper's own `slidesPerView: "auto"` measurement has proven unreliable
   // in this layout (it ended up rendering zero slides). Instead, measure
@@ -46,6 +45,21 @@ export default function ProjectSlide({
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // On PC/laptop, size the card off the measured container width (fixed
+  // at 2 columns) instead of a hardcoded breakpoint px value — a fixed
+  // card width vs. the page's 850px content cap was the exact mismatch
+  // that caused only 1 card to fit per view, and this stays correct if
+  // the cap ever changes again. Tablet/mobile keep the breakpoint value
+  // since they're already narrower than the cap and show 1 card anyway.
+  const useComputedWidth = isPc || isLaptop;
+  const cardWidth =
+    useComputedWidth && containerWidth > 0
+      ? Math.floor((containerWidth - gap) / 2)
+      : projectSizeConverter().width;
+  const hoverHeight = useComputedWidth
+    ? Math.round(cardWidth * 0.5)
+    : projectSizeConverter().hoverHeight;
 
   const slidesPerView =
     containerWidth > 0
@@ -86,6 +100,8 @@ export default function ProjectSlide({
                     text={item.text}
                     tag={item.tag}
                     img={item.img}
+                    width={cardWidth}
+                    hoverHeight={hoverHeight}
                   />
                 </div>
               </SwiperSlide>

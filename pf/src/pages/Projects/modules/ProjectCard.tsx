@@ -12,6 +12,8 @@ interface PropsType {
   text: string;
   tag: string[];
   img: string;
+  width: number;
+  hoverHeight: number;
 }
 
 export default function ProjectCard({
@@ -20,9 +22,11 @@ export default function ProjectCard({
   text,
   tag,
   img,
+  width,
+  hoverHeight,
 }: PropsType) {
   const { isMobile } = useResponsive();
-  const { projectSizeConverter, projectFontSizeConverter } = useMeasurement();
+  const { projectFontSizeConverter } = useMeasurement();
   const [isHover, setIsHover] = useState<boolean>(false);
   const { setProjectModal } = useProjectModal();
 
@@ -32,31 +36,20 @@ export default function ProjectCard({
   return (
     <div
       css={{
-        width: projectSizeConverter().width,
-        height: projectSizeConverter().width,
+        width,
+        height: width,
       }}
       onMouseEnter={isMobile ? () => {} : () => setIsHover(true)}
       onPointerLeave={isMobile ? () => {} : () => setIsHover(false)}
     >
-      <div
-        css={hoverSection(
-          isHover,
-          projectSizeConverter().width,
-          projectSizeConverter().hoverHeight + 5
-        )}
-      >
+      <div css={hoverSection(isHover, width, hoverHeight + 5)}>
         <p css={hoverTitle(projectFontSizeConverter().title)}>{title}</p>
         <p css={hoverText(projectFontSizeConverter().text)}>자세히 보기</p>
       </div>
 
-      <div css={wrapper(projectSizeConverter().width)}>
+      <div css={wrapper(width)}>
         <div
-          css={imgSection(
-            img,
-            isHover,
-            projectSizeConverter().width,
-            projectSizeConverter().hoverHeight
-          )}
+          css={imgSection(img, isHover, width, hoverHeight)}
           onClick={() => {
             setProjectModal(modalJSX);
           }}
