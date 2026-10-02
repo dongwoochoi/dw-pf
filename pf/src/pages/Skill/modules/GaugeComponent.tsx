@@ -45,7 +45,24 @@ export default function GaugeComponent({
   return (
     <div
       css={wrapper(swiperSizeConverter().circleSize)}
-      onClick={handleClick}
+      onClick={(e) => {
+        handleClick();
+        // Scroll just the clicked icon's own row (its direct parent) so
+        // the icon moves to the start of the visible area, revealing the
+        // following icons. Computed manually (instead of scrollIntoView)
+        // so it can never touch any other scroll container — e.g. a
+        // different tab's row, or the page itself.
+        const container = e.currentTarget.parentElement;
+        if (container) {
+          const itemRect = e.currentTarget.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+          const delta = itemRect.left - containerRect.left;
+          container.scrollTo({
+            left: container.scrollLeft + delta,
+            behavior: "smooth",
+          });
+        }
+      }}
       onMouseEnter={() => {
         setMousHoverCounter(mousHoverCounter + 1);
       }}

@@ -23,7 +23,7 @@ export default function SideBar() {
           css={fontStyle(visibleSection?.aboutMe, sideBarFontSizeTransfer())}
           onClick={() => handleScrollTo(ref.aboutMeRef)}
         >
-          About Me
+          About
         </p>
       </div>
       <div

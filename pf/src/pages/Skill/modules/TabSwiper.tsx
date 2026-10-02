@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
 import { Global, css } from "@emotion/react";
@@ -10,8 +10,9 @@ import {
   FRONT_SLIDE_STRUCTURE,
   TOOL_SLIDE_STRUCTURE,
 } from "../structure";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { skillAtom } from "../../../jotai/skill";
+import { visibleSectionAtom } from "../../../jotai/visibleSection";
 import { icons } from "../../../assets/icon";
 import useMeasurement from "../../../hooks/useMeasurement";
 import useResponsive from "../../../hooks/useResponsive";
@@ -30,11 +31,17 @@ const TabSwiper = () => {
     setSelectedSkill(id);
   };
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const resetRowScrollPositions = () => {
+    rowRefs.forEach((ref) => {
+      if (ref.current) ref.current.scrollLeft = 0;
+    });
+  };
   const handleTabClick = (index: number) => {
     if (swiperRef.current) {
       swiperRef.current.slideTo(index);
       setCurrentIndex(index);
     }
+    resetRowScrollPositions();
   };
   const handleRowScroll = (direction: 1 | -1) => {
     const el = rowRefs[currentIndex].current;
@@ -44,6 +51,17 @@ const TabSwiper = () => {
       3;
     el.scrollBy({ left: direction * step, behavior: "smooth" });
   };
+
+  // reset every row's scroll position once the Skills section itself
+  // scrolls out of view, so returning to it (or switching back to a
+  // tab) always starts from the beginning.
+  const isSectionVisible = useAtomValue(visibleSectionAtom);
+  useEffect(() => {
+    if (!isSectionVisible) {
+      resetRowScrollPositions();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSectionVisible]);
 
   return (
     <div css={wrapper}>
@@ -180,12 +198,17 @@ const rowWithArrows = {
 };
 
 const arrowStyle = {
-  width: "20px",
-  height: "20px",
+  width: "28px",
+  height: "28px",
   flexShrink: 0,
   cursor: "pointer",
-  opacity: 0.7,
-  "&:hover": { opacity: 1 },
+  padding: "5px",
+  borderRadius: "50%",
+  background: "var(--bg-muted)",
+  boxSizing: "border-box" as const,
+  opacity: 1,
+  transition: "background 0.2s",
+  "&:hover": { background: "var(--bg-muted-hover)" },
 };
 
 const swiperContainer = {
@@ -202,13 +225,25 @@ const scrollRow = (gap: number, circleSize: number) => ({
   // enough headroom that the hover-scaled (1.2x) icon never touches the
   // top/bottom edge.
   overflowY: "hidden" as const,
-  scrollbarWidth: "none" as const,
   gap: `${gap}px`,
-  padding: "4px 2px",
-  height: `${Math.ceil(circleSize * 1.3)}px`,
+  // enough side padding that the first/last icon's 1.2x hover-scale has
+  // room to grow without being clipped by the scroll container's edge;
+  // extra bottom padding keeps the scrollbar from sitting flush against
+  // the icons.
+  padding: `4px ${Math.ceil(circleSize * 0.15)}px 12px`,
+  height: `${Math.ceil(circleSize * 1.3) + 8}px`,
   alignItems: "center",
+  scrollbarWidth: "thin" as const,
+  scrollbarColor: "var(--bg-muted-hover) transparent",
   "&::-webkit-scrollbar": {
-    display: "none",
+    height: "6px",
+  },
+  "&::-webkit-scrollbar-track": {
+    background: "transparent",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: "var(--bg-muted-hover)",
+    borderRadius: "3px",
   },
   // belt-and-suspenders: explicit margin in case flex `gap` isn't
   // honored in some rendering context.
