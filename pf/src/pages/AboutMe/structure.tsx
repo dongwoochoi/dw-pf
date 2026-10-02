@@ -39,7 +39,7 @@ export const ABOUTME_STRUCTURE = [
         2018년도 대학입학 후 개발경험을 쌓기 시작하여 군 복무 기간 제외 꾸준히
         개발경험을 쌓았으며 실무경력은
         <span css={highlight}>
-          {currentYear}년 기준으로 {Number(currentYear) - 2022}년차
+          {currentYear}년 기준으로 {Number(currentYear) - 2023}년차
         </span>
         이며{" "}
         <span css={highlight}>
