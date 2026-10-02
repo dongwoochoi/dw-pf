@@ -263,11 +263,6 @@ const scrollRow = (gap: number, circleSize: number) => ({
     background: "var(--bg-muted-hover)",
     borderRadius: "3px",
   },
-  // belt-and-suspenders: explicit margin in case flex `gap` isn't
-  // honored in some rendering context.
-  "& > *:not(:last-child)": {
-    marginRight: `${gap}px`,
-  },
 });
 
 const btnBox = (isMobile: boolean) => ({
