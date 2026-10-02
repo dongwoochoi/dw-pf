@@ -34,7 +34,7 @@ export default function ProjectSlide({
   // in this layout (it ended up rendering zero slides). Instead, measure
   // the real available width ourselves and hand Swiper a concrete slide
   // count — robust regardless of how many ancestors use percentage
-  // widths, and it naturally adapts to the page's own 1300px content cap.
+  // widths, and it naturally adapts to the page's own 1125px content cap.
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
   useEffect(() => {

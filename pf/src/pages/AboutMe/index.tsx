@@ -102,7 +102,7 @@ const wrapper = (isMobile: boolean) => ({
   justifyContent: "center",
   textAlign: "center" as const,
   width: "85%",
-  maxWidth: "1300px",
+  maxWidth: "1125px",
   height: "auto",
   minHeight: isMobile ? "80vh" : "100vh",
 });
