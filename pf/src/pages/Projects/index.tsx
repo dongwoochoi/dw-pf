@@ -36,7 +36,7 @@ const wrapper = (isMobile: boolean) => ({
   paddingLeft: isMobile ? "0px" : "40px",
   boxSizing: "border-box" as const,
   width: isMobile ? "280px" : "75%",
-  maxWidth: "1200px",
+  maxWidth: "1300px",
   height: "auto",
   minHeight: isMobile ? "80vh" : "100vh",
 });

@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
 import { Global, css } from "@emotion/react";
@@ -7,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css";
 import ProjectCard from "./ProjectCard";
 import { MutableRefObject } from "react";
+import useMeasurement from "../../../hooks/useMeasurement";
 import useResponsive from "../../../hooks/useResponsive";
 
 export default function ProjectSlide({
@@ -24,53 +26,73 @@ export default function ProjectSlide({
   }[];
 }) {
   const { isMobile, isLaptop } = useResponsive();
+  const { projectSizeConverter } = useMeasurement();
+  const gap = isMobile ? 12 : 20;
+  const cardWidth = projectSizeConverter().width;
+
+  // Swiper's own `slidesPerView: "auto"` measurement has proven unreliable
+  // in this layout (it ended up rendering zero slides). Instead, measure
+  // the real available width ourselves and hand Swiper a concrete slide
+  // count — robust regardless of how many ancestors use percentage
+  // widths, and it naturally adapts to the page's own 1300px content cap.
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const updateWidth = () => setContainerWidth(el.clientWidth);
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const slidesPerView =
+    containerWidth > 0
+      ? Math.max(1, Math.floor((containerWidth + gap) / (cardWidth + gap)))
+      : 1;
+
   return (
-    <div css={wrapper(isMobile)}>
-      <Swiper
-        css={swiperContainer(isMobile, isLaptop)}
-        onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
-        spaceBetween={16}
-        direction="horizontal"
-        pagination={{
-          clickable: true,
-        }}
-        nested={true}
-        passiveListeners={false}
-        touchStartPreventDefault={false}
-        breakpoints={{
-          300: { slidesPerView: 1 },
-          600: { slidesPerView: 1 },
-          900: { slidesPerView: 1.7 },
-          1100: { slidesPerView: 2.2 },
-          1200: { slidesPerView: 1.6 },
-          1400: { slidesPerView: 1.8 },
-          1610: { slidesPerView: 2.2 },
-          1800: { slidesPerView: 2.2 },
-        }}
-        modules={[Pagination]}
-      >
-        {structure.map((item) => {
-          return (
-            <SwiperSlide key={item.title}>
-              <div
-                css={{
-                  width: "1005",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <ProjectCard
-                  title={item.title}
-                  team={item.team}
-                  text={item.text}
-                  tag={item.tag}
-                  img={item.img}
-                />
-              </div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+    <div css={wrapper(isMobile)} ref={containerRef}>
+      {containerWidth > 0 ? (
+        <Swiper
+          key={`${slidesPerView}-${cardWidth}`}
+          css={swiperContainer(isMobile, isLaptop)}
+          onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)}
+          spaceBetween={gap}
+          slidesPerView={slidesPerView}
+          direction="horizontal"
+          pagination={{
+            clickable: true,
+          }}
+          nested={true}
+          passiveListeners={false}
+          touchStartPreventDefault={false}
+          modules={[Pagination]}
+        >
+          {structure.map((item) => {
+            return (
+              <SwiperSlide key={item.title}>
+                <div
+                  css={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <ProjectCard
+                    title={item.title}
+                    team={item.team}
+                    text={item.text}
+                    tag={item.tag}
+                    img={item.img}
+                  />
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : null}
 
       <Global
         styles={css`
@@ -96,6 +118,7 @@ const wrapper = (isMobile: boolean) => ({
   flexDirection: "row" as const,
   alignItems: "center",
   justifyContent: isMobile ? "center" : "",
+  width: "100%",
 });
 
 const swiperContainer = (isMobile: boolean, isLaptop: boolean) => ({

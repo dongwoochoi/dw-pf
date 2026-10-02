@@ -59,7 +59,7 @@ export default function Skill() {
 const wrapper = (isMobile: boolean) => ({
   boxSizing: "border-box" as const,
   width: "85%",
-  maxWidth: "1400px",
+  maxWidth: "1300px",
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "center",
